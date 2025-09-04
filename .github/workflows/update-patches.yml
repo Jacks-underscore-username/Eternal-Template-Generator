@@ -38,3 +38,5 @@ jobs:
             echo "No changes to commit."
             echo "::set-output name=committed::false"
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
