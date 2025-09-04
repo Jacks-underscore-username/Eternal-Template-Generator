@@ -1,6 +1,11 @@
 name: Update Loaders
 
 on:
+  push:
+    branches:
+      - main 
+    paths-ignore:
+      - 'site/*.json' 
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
@@ -9,31 +14,62 @@ jobs:
   run_script_and_commit:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up node
-        uses: actions/setup-node@v4
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: '20' 
+          bun-version: latest
 
       - name: Install dependencies
-        run: npm install
+        run: bun i
 
       - name: Run the script
-        run: node getLoaders.js
+        run: bun getLoaders.js
 
       - name: Check for changes and commit
         id: git-check
         run: |
           git config user.name "GitHub Actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add . # Add all changes
+          git add "site/loaders.json" -f
           if ! git diff --cached --exit-code; then
-            git commit -m "Chore: Updated loader versions"
-            git push
-            echo "::set-output name=committed::true"
+            RETRY_COUNT=0
+            MAX_RETRIES=5
+            SUCCESS=false
+
+            while [ "$RETRY_COUNT" -lt "$MAX_RETRIES" ]; do
+              COMMIT_MESSAGE="Chore: Updated loader versions"
+
+              git commit -m "$COMMIT_MESSAGE" || {
+                echo "Commit failed, possibly no changes after rebase or concurrent commit. Retrying."
+                git pull --rebase
+                git add "site/template.json" -f
+              }
+
+              if git push; then
+                echo "Successfully pushed changes."
+                SUCCESS=true
+                break
+              else
+                echo "Push failed, retrying ($((RETRY_COUNT+1))/$MAX_RETRIES)..."
+                git pull --rebase
+                RETRY_COUNT=$((RETRY_COUNT+1))
+              fi
+              sleep 2
+            done
+
+            if [ "$SUCCESS" = "true" ]; then
+              echo "::set-output name=committed::true"
+            else
+              echo "Failed to push changes after $MAX_RETRIES retries."
+              exit 1 # Fail the step
+            fi
           else
             echo "No changes to commit."
             echo "::set-output name=committed::false"

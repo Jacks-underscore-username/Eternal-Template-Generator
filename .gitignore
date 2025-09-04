@@ -1,3 +1,6 @@
 biome.jsonc
 jsconfig.json
 node_modules
+site/loaders.json
+site/template.json
+site/yarn-patches.json
