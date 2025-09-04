@@ -1,0 +1,40 @@
+name: Update Patches
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  run_script_and_commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' 
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run the script
+        run: node getPatches.js
+
+      - name: Check for changes and commit
+        id: git-check
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add . # Add all changes
+          if ! git diff --cached --exit-code; then
+            git commit -m "Chore: Updated loader versions"
+            git push
+            echo "::set-output name=committed::true"
+          else
+            echo "No changes to commit."
+            echo "::set-output name=committed::false"
+          fi
