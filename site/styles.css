@@ -715,3 +715,7 @@ input.text_input {
   fill: var(--highlight-text-color);
   transform: scale(1.5);
 }
+
+#download_button.active::before {
+  font-size: calc(var(--size));
+}

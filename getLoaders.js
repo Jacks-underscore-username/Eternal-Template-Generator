@@ -46,7 +46,7 @@ const { XMLParser } = require('fast-xml-parser')
 
   /** @type {WrappedPromise<{ mcVersion: string, fabricVersion: string }[]>} */
   const fabricVersions = wrapPromise(
-    (async () => {
+    new Promise(async resolve => {
       console.log('Getting fabric game versions')
       /** @type {{ version: string }[]} */
       const raw = await (await fetch(new URL(`${fabricMetaUrl}versions/game`))).json()
@@ -56,20 +56,39 @@ const { XMLParser } = require('fast-xml-parser')
         fabricVersion: ''
       }))
 
-      for (let index = 0; index < mcVersions.length; index++) {
-        const mcVersion = mcVersions[index]
-        if (mcVersion === undefined) throw new TypeError('Uh oh')
-        console.log(`Getting fabric loader for mc ${mcVersion.mcVersion} (${index + 1}/${mcVersions.length})`)
-        /** @type {{ loader: { build: string, version: string } }[]} */
-        const options = await (await fetch(new URL(`${fabricMetaUrl}versions/loader/${mcVersion.mcVersion}`))).json()
-        mcVersion.fabricVersion = options.reduce(
-          (prev, option) => (Number.parseInt(option.loader.build) > Number.parseInt(prev.build) ? option.loader : prev),
-          { build: '0', version: '' }
-        ).version
+      let downloadCount = 0
+
+      let isDownloadingCount = 0
+
+      /** @type {(() => Promise<void>)[]} */
+      const queue = mcVersions
+        .sort(() => Math.floor(Math.random() * 2) - 1)
+        .map(mcVersion => async () => {
+          isDownloadingCount++
+          if (mcVersion === undefined) throw new TypeError('Uh oh')
+          console.log(`Getting fabric loader for mc ${mcVersion.mcVersion} (${downloadCount++}/${mcVersions.length})`)
+
+          /** @type {{ loader: { build: string, version: string } }[]} */
+          const options = await (await fetch(new URL(`${fabricMetaUrl}versions/loader/${mcVersion.mcVersion}`))).json()
+          mcVersion.fabricVersion = options.reduce(
+            (prev, option) =>
+              Number.parseInt(option.loader.build) > Number.parseInt(prev.build) ? option.loader : prev,
+            { build: '0', version: '' }
+          ).version
+          isDownloadingCount--
+        })
+
+      const tickQueue = () => {
+        const item = queue.pop()
+        if (item === undefined) {
+          if (isDownloadingCount === 0) resolve(mcVersions)
+          return
+        }
+        item().then(tickQueue)
       }
 
-      return mcVersions
-    })()
+      for (let i = 0; i < 10; i++) tickQueue()
+    })
   )
 
   /** @type {WrappedPromise<{ mcVersion: string, forgeVersion: string }[]>} */

@@ -340,12 +340,12 @@ document.addEventListener('DOMContentLoaded', async () => {
    */
   const compareVersions = (a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
 
-  /** @type {{ mcVersions: Mc[], fabricVersions: { mcVersion: Mc, fabricVersion: string }[], forgeVersions: { mcVersion: Mc, forgeVersion: string }[], neoforgeVersions: { mcVersion: Mc, neoforgeVersion: string }[] }} */
+  /** @type {{ mcVersions: Mc[], fabric: { mcVersion: Mc, fabricVersion: string }[], forge: { mcVersion: Mc, forgeVersion: string }[], neoforge: { mcVersion: Mc, neoforgeVersion: string }[] }} */
   const {
     mcVersions: allMcVersions,
-    fabricVersions,
-    forgeVersions,
-    neoforgeVersions
+    fabric: fabricVersions,
+    forge: forgeVersions,
+    neoforge: neoforgeVersions
   } = await (await fetch('./loaders.json')).json()
 
   /**
@@ -407,9 +407,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   /**
    * @param {Mc[]} mcVersions
    * @param {Loader[]} loaders
+   * @param {(message: string) => void} statusSubscriber
    * @returns {Promise<(DependencyInfo & { versions: VersionMap<string> })[]>}
    */
-  const getDependencyVersions = async (mcVersions, loaders) => {
+  const getDependencyVersions = async (mcVersions, loaders, statusSubscriber) => {
     /** @type {(DependencyInfo & { mc: Mc, loader: Loader })[]}} */
     const unprocessed = []
 
@@ -455,6 +456,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       url.searchParams.set('game_versions', JSON.stringify([...mcVersions]))
       url.searchParams.set('loaders', JSON.stringify([...loaders]))
       console.info(`Getting ${info.slug} for mc ${[...mcVersions].join(', ')} and loaders ${[...loaders].join(', ')}`)
+      statusSubscriber(`Getting ${info.slug} versions`)
       /** @type {ModrinthProjectVersion[]} */
       const options = await (await fetch(url)).json()
       for (const option of options)
@@ -960,9 +962,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   const modDescriptionElement = /** @type {HTMLTextAreaElement} */ (document.getElementById('mod_description_input'))
 
   let isDownloading = false
-  document.getElementById('download_button')?.addEventListener('click', async () => {
+  const downloadButton = /** @type {HTMLButtonElement} */ (document.getElementById('download_button'))
+  downloadButton.addEventListener('click', async () => {
     if (isDownloading) return
     isDownloading = true
+    downloadButton.classList.add('active')
+
+    /**
+     * @param {string} status
+     */
+    const updateStatus = status => (downloadButton.dataset['label'] = `${status}...`)
+
     /**
      * @param {Folder | undefined} [parent]
      * @returns {Folder["createFolder"]}
@@ -995,7 +1005,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const uniqueVersions = [...new Set(selectedVersions.map(version => version.mc))]
     const uniqueLoaders = [...new Set(selectedVersions.map(version => version.loader))]
 
-    const dependencies = wrapPromise(getDependencyVersions(uniqueVersions, uniqueLoaders))
+    updateStatus('Getting dependencies')
+
+    const dependencies = wrapPromise(getDependencyVersions(uniqueVersions, uniqueLoaders, updateStatus))
 
     const yarnVersions = wrapPromise(getYarnVersions())
     const parchmentVersions = wrapPromise(getParchmentVersions())
@@ -1020,6 +1032,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       className: orDefault(modNameElement.value, 'Example Mod').replaceAll(/[^a-zA-Z]/g, ''),
       stonecutterVcs: ''
     }
+
+    updateStatus('Generating versions')
 
     let hadWarnings = false
 
@@ -1055,6 +1069,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         removeVersion(mc, loader)
         continue
       }
+
+      lines.push('')
 
       if (asStr(loader) === 'fabric')
         lines.push(
@@ -1115,6 +1131,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (localUsedLoaders === undefined) usedVersions[mc] = [loader]
       else localUsedLoaders.push(loader)
     }
+
+    updateStatus('Filling template')
 
     let templateStr = await (await fetch('./template.json')).text()
     const replacements = {
@@ -1262,6 +1280,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     wrapperFolder.createFile('gradle-wrapper.jar', extraFiles.value['gradle/wrapper/gradle-wrapper.jar'])
     wrapperFolder.createFile('gradle-wrapper.properties', extraFiles.value['gradle/wrapper/gradle-wrapper.properties'])
 
+    updateStatus('Downloading zip')
+
     populateVersionSelector()
 
     await new Promise(r => setTimeout(r, 0))
@@ -1274,6 +1294,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       )
     )
       await downloadFolder(folder, `${endVersionCount}-version-${modData.id}-mod`)
+
+    downloadButton.classList.remove('active')
+    downloadButton.dataset['label'] = 'Download'
     isDownloading = false
   })
 
