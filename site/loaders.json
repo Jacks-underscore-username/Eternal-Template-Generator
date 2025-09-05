@@ -1,440 +1,440 @@
 {
   "mcVersions": [
-    "18w47a",
-    "23w18a",
-    "1.20.2-rc2",
-    "20w12a",
-    "21w06a",
-    "19w46a",
-    "21w07a",
-    "1.17-pre2",
-    "23w17a",
-    "19w11a",
-    "1.14.1 Pre-Release 1",
-    "1.20-pre2",
-    "1.16.4",
-    "23w33a",
-    "1.21.7-rc1",
-    "25w36b",
-    "18w48a",
-    "1.21.1",
-    "1.14.1",
-    "1.20.4-rc1",
-    "24w40a",
-    "23w04a",
-    "1.19.1-rc2",
-    "1.16.5-rc1",
-    "19w05a",
-    "1.19.4-pre3",
-    "1.19.4-rc3",
-    "23w13a",
-    "19w08a",
-    "19w14b",
-    "1.20",
-    "23w13a_or_b_original",
-    "20w48a",
-    "19w35a",
-    "22w24a",
-    "21w43a",
-    "1.16.3",
-    "1.20.5-pre2",
-    "1.19.2-rc1",
-    "21w18a",
-    "20w19a",
-    "21w13a",
-    "1.21.4-rc3",
-    "24w14potato",
-    "21w44a",
-    "1.15",
-    "1.21.4",
-    "1.19.3-rc1",
-    "18w43c",
-    "1.15.2-pre1",
-    "21w40a",
-    "1.21.5",
-    "22w19a",
-    "21w19a",
-    "1.14.3",
-    "1.17-pre3",
-    "24w13a",
-    "23w42a",
-    "24w33a",
-    "1.20.2-rc1",
-    "1.20.2-pre3",
-    "25w19a",
-    "1.14 Pre-Release 3",
-    "1.20-pre4",
-    "1.18-pre5",
-    "21w37a",
-    "1.16.5",
-    "1.19-pre5",
-    "1.21.7",
-    "23w14a",
-    "18w48b",
-    "1.18-rc1",
-    "25w18a",
-    "20w51a",
-    "1.21.2-pre2",
-    "18w46a",
-    "20w30a",
-    "19w08b",
-    "1.18.1-rc1",
-    "1.21-pre4",
-    "1.21.5-pre2",
-    "1.21.2-pre3",
-    "23w05a",
-    "1.21.3",
-    "25w05a",
-    "18w47b",
-    "1.19-rc2",
-    "1.19.2",
-    "25w36a",
-    "1.19.1-pre5",
-    "1.20.5-pre1",
-    "21w14a",
-    "19w03b",
-    "1.20-pre6",
-    "1.18-pre8",
-    "1.16-pre8",
-    "23w12a",
-    "20w11a",
-    "18w50a",
-    "1.16-pre2",
-    "1.14.4",
-    "1.19_deep_dark_experimental_snapshot-1",
-    "1.20.2-pre2",
-    "23w16a",
-    "1.19.1-pre4",
-    "19w06a",
-    "1.14.3-pre3",
-    "25w21a",
-    "24w39a",
-    "1.16-pre7",
-    "23w32a",
-    "20w27a",
-    "1.18",
-    "1.14.3-pre2",
-    "1.20.2-pre4",
-    "1.19.4-pre2",
-    "18w45a",
-    "19w03c",
-    "1.19.1-pre6",
-    "1.21.6-rc1",
-    "1.14_combat-0",
-    "18w43b",
-    "1.16.2",
-    "1.21.4-pre1",
-    "20w15a",
-    "1.19.4",
-    "25w33a",
-    "1.14.1 Pre-Release 2",
-    "21w15a",
-    "1.14_combat-3",
-    "1.18-rc4",
-    "20w07a",
-    "19w09a",
-    "1.17.1-pre1",
-    "1.14.2 Pre-Release 1",
-    "1.18.2-pre2",
-    "24w07a",
-    "1.20.3-pre4",
-    "1.15-pre2",
-    "1.21.4-rc1",
-    "1.19.1-pre3",
-    "22w13oneblockatatime",
-    "1.20.3",
-    "1.20.3-pre2",
-    "24w38a",
-    "1.16_combat-3",
-    "20w10a",
-    "24w19a",
-    "1.14 Pre-Release 5",
-    "1.20.5",
-    "1.21.2",
-    "1.21.6-pre2",
-    "1.20-pre3",
-    "22w42a",
-    "1.14.4-pre3",
-    "1.19.3-rc2",
-    "18w44a",
-    "19w11b",
-    "1.21.7-rc2",
-    "24w35a",
-    "21w03a",
-    "22w43a",
-    "25w35a",
-    "23w06a",
-    "1.20.5-pre4",
-    "23w35a",
-    "1.21.2-rc1",
-    "1.14.3-pre4",
-    "20w20a",
-    "24w06a",
-    "1.19.3-pre2",
-    "1.19.3-pre3",
-    "1.21.4-pre2",
-    "1.19.4-rc2",
-    "1.14 Pre-Release 2",
-    "1.18.1",
-    "25w02a",
-    "1.20-pre1",
-    "1.20.2-pre1",
-    "23w03a",
-    "1.19.4-pre1",
-    "1.19.2-rc2",
-    "24w14a",
-    "1.19-pre2",
-    "1.14.3-pre1",
-    "1.16-pre4",
-    "19w36a",
-    "1.18.1-rc2",
-    "1.15.2",
-    "1.16-rc1",
-    "23w40a",
-    "1.18-pre1",
-    "25w08a",
-    "1.15.1-pre1",
-    "1.16.2-rc2",
-    "1.18_experimental-snapshot-4",
-    "25w04a",
-    "1.14.4-pre2",
-    "24w45a",
-    "23w31a",
-    "1.19.3-rc3",
-    "1.21.4-rc2",
-    "25w32a",
-    "22w44a",
-    "1.20.1-rc1",
-    "1.21.2-pre4",
-    "1.19.1-rc3",
-    "1.14.2 Pre-Release 3",
-    "1.18.1-rc3",
-    "1.19-rc1",
-    "22w16b",
-    "1.21.6",
-    "1.21-pre2",
-    "1.19.4-pre4",
-    "1.21.5-rc1",
-    "19w13a",
-    "1.19-pre4",
-    "25w07a",
-    "20w18a",
-    "20w13a",
-    "1.21.4-pre3",
-    "19w44a",
-    "19w45a",
-    "25w10a",
-    "25w16a",
-    "1.19.3-pre1",
-    "20w46a",
-    "1.20.5-rc2",
-    "1.21.5-pre1",
-    "19w14a",
-    "1.21.5-pre3",
-    "19w02a",
-    "1.15_combat-1",
-    "25w34b",
-    "1.19.1",
-    "25w09b",
-    "1.20.1",
-    "24w12a",
-    "23w07a",
-    "1.19.1-rc1",
-    "1.20-rc1",
-    "21w05a",
-    "1.21-pre1",
-    "1.14",
-    "1.19.1-pre2",
-    "1.18-pre3",
-    "24w37a",
-    "22w17a",
-    "19w04a",
-    "24w05a",
-    "24w04a",
-    "19w03a",
-    "21w16a",
-    "22w45a",
-    "1.15-pre4",
-    "21w39a",
-    "23w43b",
-    "22w07a",
-    "1.21.2-pre1",
-    "1.18.2-rc1",
-    "19w12b",
-    "1.20.3-pre1",
-    "24w44a",
-    "23w13a_or_b",
-    "1.17-rc1",
-    "1.19.4-rc1",
-    "1.19.3",
-    "1.16-pre6",
-    "1.18-pre7",
-    "23w44a",
-    "19w34a",
-    "1.15-pre7",
-    "22w46a",
-    "23w46a",
-    "23w51b",
-    "25w20a",
-    "1.20-pre5",
-    "1.14.2 Pre-Release 4",
-    "19w38b",
-    "1.20-pre7",
-    "25w31a",
-    "1.20.6-rc1",
-    "24w34a",
-    "1.21.2-rc2",
-    "1.21.6-pre1",
-    "1.14.4-pre1",
-    "1.18_experimental-snapshot-5",
-    "1.20.3-pre3",
-    "22w15a",
-    "1.21.8-rc1",
-    "25w06a",
-    "1.21.6-pre4",
-    "25w03a",
-    "1.21.2-pre5",
     "25w15a",
-    "21w41a",
-    "24w36a",
-    "1.21.8",
-    "25w09a",
-    "25w14craftmine",
-    "1.14 Pre-Release 1",
-    "25w17a",
-    "22w13a",
+    "1.18.2-rc1",
+    "1.20-pre4",
+    "23w42a",
+    "24w35a",
+    "19w08b",
     "18w49a",
-    "20w08a",
-    "1.14.2 Pre-Release 2",
-    "1.17.1-pre3",
-    "1.21.1-rc1",
-    "24w46a",
-    "3D Shareware v1.34",
-    "19w12a",
-    "20w06a",
-    "1.15-pre3",
-    "19w13b",
-    "24w20a",
-    "1.21.5-rc2",
-    "1.17.1-rc1",
-    "1.21.6-pre3",
-    "24w10a",
-    "23w51a",
-    "1.20.2",
-    "24w05b",
-    "25w34a",
-    "1.16.3-rc1",
-    "1.20.6",
-    "1.21-pre3",
-    "19w46b",
-    "23w43a",
-    "1.14.4-pre7",
-    "1.16.4-pre2",
-    "23w45a",
-    "1.20.5-rc3",
-    "24w18a",
-    "1.17",
-    "20w13b",
-    "20w45a",
-    "19w07a",
-    "24w09a",
-    "1.21-rc1",
-    "1.20.4",
-    "1.18.2",
-    "1.20.5-pre3",
-    "1.14.2",
-    "1.20.3-rc1",
-    "1.16.2-pre1",
-    "24w19b",
-    "1.19-pre1",
-    "1.14 Pre-Release 4",
-    "22w05a",
-    "1.19.1-pre1",
-    "19w04b",
-    "24w21a",
-    "20w16a",
-    "1.16-pre5",
-    "24w03b",
-    "21w05b",
-    "24w03a",
-    "1.20.5-rc1",
-    "24w14potato_original",
-    "1.16.1",
-    "22w03a",
-    "1.18-pre6",
-    "1.21",
-    "24w21b",
-    "1.16.4-rc1",
-    "1.17.1-pre2",
-    "19w40a",
-    "19w41a",
-    "24w11a",
-    "23w41a",
-    "1.16",
-    "1.15.1",
-    "1.16.2-pre3",
-    "1.14_combat-212796",
-    "1.14.4-pre4",
-    "1.16.2-pre2",
-    "19w45b",
-    "22w14a",
-    "1.18.2-pre1",
-    "1.16-pre3",
-    "21w08b",
-    "1.15-pre6",
-    "1.17-pre5",
-    "1.14.4-pre5",
-    "20w20b",
-    "1.16.2-rc1",
-    "1.18-rc2",
-    "1.16-pre1",
-    "1.15.2-pre2",
-    "22w12a",
-    "1.15-pre5",
+    "25w03a",
+    "18w45a",
+    "1.19.1-pre4",
     "20w14infinite",
-    "19w42a",
-    "20w09a",
-    "1.16.4-pre1",
-    "1.18-pre4",
-    "20w21a",
+    "18w44a",
+    "1.19.2-rc1",
+    "20w20a",
+    "1.18.1",
+    "1.18_experimental-snapshot-2",
+    "19w39a",
+    "19w06a",
+    "25w16a",
+    "1.16-pre3",
+    "1.19.4-rc1",
+    "19w44a",
+    "23w45a",
+    "1.16.3",
+    "21w40a",
+    "1.19.4-rc3",
+    "1.18.2-pre1",
+    "24w12a",
+    "20w46a",
+    "18w48b",
+    "1.16.4-pre2",
+    "1.18.1-rc1",
+    "1.19.1-pre1",
+    "24w06a",
+    "23w07a",
+    "18w43b",
+    "1.17-pre4",
+    "23w13a",
+    "1.19.1-pre5",
+    "20w10a",
+    "22w42a",
+    "23w33a",
+    "1.20-pre5",
+    "1.21.7-rc1",
+    "25w08a",
+    "1.21.4-rc2",
+    "1.20.2-pre3",
+    "1.21.6-pre4",
+    "19w46b",
+    "19w11a",
+    "1.20",
+    "21w14a",
+    "1.20.5",
+    "24w03a",
+    "1.16.4",
+    "1.15-pre3",
+    "21w42a",
+    "1.17.1-pre2",
+    "1.21.4-pre2",
+    "1.19.2-rc2",
+    "1.21-pre2",
+    "1.19.4-pre3",
+    "1.14.2",
+    "18w50a",
+    "23w32a",
+    "20w28a",
+    "1.19.4",
+    "23w13a_or_b_original",
+    "24w13a",
+    "21w44a",
+    "24w04a",
+    "1.15",
+    "1.14.2 Pre-Release 4",
     "1.18.2-pre3",
+    "25w36b",
+    "20w20b",
+    "1.21.2-pre2",
+    "1.21.2-pre3",
+    "1.18-pre6",
+    "1.19.3-rc1",
+    "1.19.1",
+    "1.14 Pre-Release 5",
+    "19w13b",
+    "1.20.1-rc1",
+    "25w10a",
+    "23w17a",
+    "1.21.5-rc2",
+    "1.20-pre7",
+    "1.21.6-pre3",
+    "1.20-pre6",
+    "25w02a",
+    "1.19.4-pre2",
+    "1.19.3-pre1",
+    "24w39a",
+    "1.14.2 Pre-Release 2",
+    "22w16b",
+    "22w43a",
+    "22w05a",
+    "23w14a",
+    "1.19.1-pre3",
+    "1.20.1",
+    "21w07a",
+    "25w36a",
+    "19w36a",
+    "1.16-pre5",
+    "1.21.5-rc1",
+    "1.21.8-rc1",
+    "1.20.6-rc1",
+    "1.19.4-rc2",
+    "22w44a",
+    "1.18.1-rc3",
+    "24w21b",
+    "20w17a",
+    "1.19.3-rc2",
+    "25w34a",
+    "24w34a",
+    "1.16.1",
+    "23w35a",
+    "19w08a",
+    "20w09a",
+    "1.19.1-rc3",
+    "1.19.3-pre3",
+    "1.14.2 Pre-Release 1",
+    "1.14.1",
+    "20w22a",
+    "21w03a",
+    "25w09b",
+    "1.15_combat-1",
+    "1.20.5-pre2",
+    "24w18a",
+    "1.19.1-pre6",
     "1.15-pre1",
+    "24w14potato_original",
+    "19w46a",
+    "1.18_experimental-snapshot-4",
+    "1.20.2-pre2",
+    "19w45a",
+    "1.15.2",
+    "1.21.4-pre3",
+    "19w03a",
+    "19w09a",
+    "1.14",
+    "1.15.2-pre1",
+    "23w31a",
+    "1.14.4-pre4",
+    "21w17a",
+    "23w43a",
+    "22w19a",
+    "1.14 Pre-Release 1",
+    "1.19.1-rc2",
+    "1.20.2-pre4",
+    "1.18_experimental-snapshot-6",
+    "1.21.2-pre5",
+    "19w12a",
+    "1.21.7-rc2",
+    "1.20-rc1",
+    "1.21.6-pre2",
+    "1.19-pre3",
+    "19w11b",
+    "1.21.7",
+    "1.19.4-pre4",
+    "1.19.1-rc1",
+    "1.21.6",
+    "1.21.4",
+    "23w13a_or_b",
+    "19w14a",
+    "1.20.5-rc3",
+    "1.14.4-pre2",
+    "23w04a",
+    "23w06a",
+    "23w12a",
+    "1.20.3-pre4",
+    "23w03a",
+    "19w02a",
+    "1.20.5-pre4",
+    "23w16a",
+    "21w05b",
+    "1.14.2 Pre-Release 3",
+    "1.14.1 Pre-Release 2",
+    "25w06a",
+    "1.20.5-rc2",
+    "1.21.4-pre1",
+    "21w39a",
+    "23w51a",
+    "21w11a",
+    "25w09a",
+    "1.14 Pre-Release 4",
+    "20w07a",
+    "1.14.4-pre3",
+    "23w05a",
+    "1.21.8",
+    "19w04a",
+    "1.21.6-rc1",
+    "1.14.3-pre4",
+    "24w07a",
+    "23w18a",
+    "1.16-pre7",
+    "23w44a",
+    "1.16-rc1",
+    "24w05b",
+    "19w07a",
+    "20w14a",
+    "21w08a",
+    "1.19.3-rc3",
+    "1.16_combat-3",
+    "1.21.2-pre1",
+    "19w05a",
+    "24w11a",
+    "1.15-pre5",
+    "20w13a",
+    "22w11a",
+    "3D Shareware v1.34",
+    "22w15a",
+    "24w40a",
+    "19w12b",
+    "1.18-pre1",
+    "19w41a",
+    "1.19.3",
+    "1.16.2-pre2",
+    "18w43c",
+    "1.20-pre3",
+    "1.14 Pre-Release 3",
+    "1.17.1-pre3",
+    "1.18-pre8",
+    "19w04b",
+    "23w51b",
+    "1.21-rc1",
+    "1.20-pre1",
+    "1.19.4-pre1",
+    "20w13b",
+    "23w43b",
+    "1.16.2-rc2",
+    "1.17.1-pre1",
+    "1.20-pre2",
+    "1.18-rc2",
+    "1.14.4-pre7",
+    "20w51a",
+    "1.15-pre2",
+    "1.19_deep_dark_experimental_snapshot-1",
+    "22w45a",
+    "22w03a",
+    "1.15-pre4",
+    "1.19.1-pre2",
+    "22w46a",
+    "1.14.1 Pre-Release 1",
+    "1.19.3-pre2",
+    "1.19-pre1",
+    "1.14.3-pre1",
+    "1.16.3-rc1",
+    "19w37a",
+    "1.20.2-pre1",
+    "1.21.1-rc1",
+    "1.16.5-rc1",
+    "24w20a",
+    "18w47a",
+    "18w48a",
+    "19w34a",
+    "1.19.2",
+    "1.21.6-pre1",
+    "1.16",
+    "1.20.5-pre1",
+    "1.18",
+    "1.16.5",
+    "25w07a",
+    "1.21.4-rc3",
+    "25w21a",
+    "24w21a",
+    "24w10a",
+    "22w13oneblockatatime",
+    "25w31a",
+    "1.21.2-pre4",
+    "22w06a",
+    "1.20.3-rc1",
+    "1.17",
+    "1.21.3",
+    "24w45a",
+    "1.20.3-pre3",
+    "20w49a",
+    "19w40a",
+    "1.21.5-pre2",
+    "1.18-pre2",
+    "19w13a",
+    "18w47b",
+    "22w18a",
+    "24w19b",
+    "19w14b",
+    "25w05a",
+    "20w11a",
+    "19w03b",
+    "19w03c",
+    "1.14 Pre-Release 2",
+    "1.16-pre8",
+    "25w19a",
+    "18w46a",
+    "1.20.2",
+    "25w18a",
+    "1.20.5-pre3",
+    "1.21.5-pre3",
+    "20w48a",
+    "1.15.2-pre2",
+    "1.20.3",
+    "20w15a",
+    "1.18.2",
+    "1.20.4-rc1",
+    "1.20.4",
+    "21w41a",
+    "21w19a",
+    "1.21.2-rc2",
+    "19w35a",
+    "1.20.2-rc2",
+    "1.14.3-pre3",
+    "1.21.5-pre1",
+    "1.15-pre7",
+    "1.21.1",
+    "21w18a",
+    "24w14a",
+    "24w46a",
+    "1.16.2-pre3",
+    "20w16a",
+    "25w14craftmine",
+    "25w34b",
+    "1.14.3-pre2",
+    "1.20.3-pre1",
+    "1.18_experimental-snapshot-5",
+    "1.14_combat-0",
+    "24w05a",
+    "1.19-pre2",
+    "25w32a",
+    "20w18a",
+    "1.20.3-pre2",
+    "24w09a",
+    "1.21",
+    "1.20.6",
+    "21w38a",
+    "1.21-pre1",
+    "1.14_combat-212796",
+    "1.21.2",
+    "1.21.4-rc1",
+    "25w17a",
+    "24w14potato",
+    "21w20a",
+    "1.16.2-pre1",
+    "25w04a",
+    "19w38b",
+    "1.20.5-rc1",
+    "1.15.1",
+    "22w07a",
+    "24w19a",
+    "1.19",
+    "1.18-pre5",
+    "1.21-pre3",
+    "1.15.1-pre1",
+    "23w46a",
+    "1.14.4-pre6",
+    "1.14_combat-3",
+    "24w03b",
+    "22w24a",
+    "25w33a",
+    "20w21a",
+    "25w20a",
+    "1.21.2-rc1",
+    "1.21-pre4",
+    "25w35a",
+    "20w08a",
+    "24w44a",
+    "1.21.5",
+    "19w38a",
+    "24w38a",
+    "24w37a",
+    "24w33a",
+    "19w45b",
+    "24w36a",
+    "1.18.1-pre1",
+    "20w30a",
+    "23w41a",
+    "23w40a",
+    "1.20.2-rc1",
+    "1.16.4-rc1",
+    "1.15-pre6",
+    "1.16.2-rc1",
+    "1.17-rc1",
+    "1.17-rc2",
+    "20w19a",
+    "1.14.3",
+    "19w42a",
+    "1.18-rc1",
+    "1.17-pre5",
+    "1.14.4-pre1",
+    "20w12a",
+    "1.16.4-pre1",
+    "1.18-pre3",
+    "22w14a",
+    "1.14.4",
+    "1.14.4-pre5",
+    "1.18.1-rc2",
+    "1.17-pre3",
+    "1.18_experimental-snapshot-1",
+    "21w16a",
+    "1.16-pre4",
+    "1.16-pre1",
+    "20w06a",
+    "1.19-rc2",
+    "1.17-pre2",
+    "21w15a",
     "21w10a",
     "1.18-rc3",
-    "20w14a",
-    "19w39a",
-    "20w22a",
-    "22w11a",
-    "20w17a",
-    "1.14.4-pre6",
-    "19w38a",
-    "1.19",
-    "19w37a",
-    "20w49a",
-    "21w20a",
-    "21w11a",
-    "1.19-pre3",
-    "1.18.1-pre1",
-    "20w28a",
-    "20w29a",
-    "21w17a",
-    "1.18_experimental-snapshot-6",
-    "21w42a",
-    "21w38a",
-    "1.17-pre4",
-    "1.18_experimental-snapshot-3",
-    "1.17-rc2",
-    "1.17.1-rc2",
-    "1.17-pre1",
-    "21w08a",
-    "22w18a",
-    "22w16a",
+    "1.18-pre4",
     "1.18_experimental-snapshot-7",
-    "22w06a",
-    "1.18-pre2",
-    "1.18_experimental-snapshot-2",
-    "1.18_experimental-snapshot-1",
+    "1.19-pre4",
+    "1.16.2",
+    "21w06a",
+    "20w27a",
+    "22w17a",
+    "21w43a",
+    "20w29a",
+    "1.18-pre7",
     "1.17.1",
+    "1.18.2-pre2",
+    "1.18-rc4",
+    "1.19-pre5",
+    "21w08b",
+    "21w13a",
+    "1.16-pre2",
+    "1.19-rc1",
+    "22w13a",
+    "21w05a",
+    "20w45a",
+    "1.17-pre1",
+    "22w16a",
+    "22w12a",
+    "21w37a",
+    "1.16-pre6",
+    "1.18_experimental-snapshot-3",
+    "1.17.1-rc2",
+    "1.17.1-rc1",
     "1.13.2",
     "1.12",
     "1.12.2",
@@ -475,1039 +475,7 @@
   ],
   "fabric": [
     {
-      "mcVersion": "18w47a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w18a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.2-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w12a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w06a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w46a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w07a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w17a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w11a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.1 Pre-Release 1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w33a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.7-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w36b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "18w48a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.4-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w40a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w04a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.1-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.5-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w05a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.4-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.4-rc3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w13a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w08a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w14b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w13a_or_b_original",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w48a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w35a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w24a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w43a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.5-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.2-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w18a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w19a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w13a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.4-rc3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w14potato",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w44a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.3-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "18w43c",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15.2-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w40a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w19a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w19a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w13a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w42a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w33a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.2-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.2-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w19a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14 Pre-Release 3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18-pre5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w37a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19-pre5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.7",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w14a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "18w48b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w18a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w51a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.2-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "18w46a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w30a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w08b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18.1-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.5-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.2-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w05a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w05a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "18w47b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w36a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.1-pre5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.5-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w14a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w03b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20-pre6",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18-pre8",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16-pre8",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w12a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w11a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "18w50a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19_deep_dark_experimental_snapshot-1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.2-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w16a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.1-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w06a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.3-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w21a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w39a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16-pre7",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w32a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w27a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.3-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.2-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.4-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "18w45a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w03c",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.1-pre6",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.6-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14_combat-0",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "18w43b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.4-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w15a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w33a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.1 Pre-Release 2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w15a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14_combat-3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18-rc4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w07a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w09a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17.1-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.2 Pre-Release 1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18.2-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w07a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.3-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.4-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.1-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w13oneblockatatime",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.3-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w38a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16_combat-3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w10a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w19a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14 Pre-Release 5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.6-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w42a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.4-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.3-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "18w44a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w11b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.7-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w35a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w03a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w43a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w35a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w06a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.5-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w35a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.2-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.3-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w20a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w06a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.3-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.3-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.4-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.4-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14 Pre-Release 2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18.1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w02a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.2-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w03a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.4-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.2-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w14a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.3-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w36a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18.1-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15.2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w40a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w08a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15.1-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.2-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18_experimental-snapshot-4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w04a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.4-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w45a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w31a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.3-rc3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.4-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w32a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w44a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.1-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.2-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.1-rc3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.2 Pre-Release 3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18.1-rc3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w16b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.6",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.4-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.5-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w13a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w07a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w18a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w13a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.4-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w44a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w45a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w10a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w16a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.3-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w46a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.5-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.5-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w14a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.5-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w02a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15_combat-1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w34b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w09b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w12a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w07a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.1-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w05a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.1-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w37a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w17a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w04a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w05a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w04a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w03a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w16a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w45a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w39a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w43b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w07a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.2-pre1",
+      "mcVersion": "25w15a",
       "fabricVersion": "0.10.6+build.214"
     },
     {
@@ -1515,175 +483,19 @@
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "19w12b",
+      "mcVersion": "1.20-pre4",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "1.20.3-pre1",
+      "mcVersion": "23w42a",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "24w44a",
+      "mcVersion": "24w35a",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "23w13a_or_b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.4-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16-pre6",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18-pre7",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w44a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w34a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15-pre7",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w46a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w46a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w51b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w20a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20-pre5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.2 Pre-Release 4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w38b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20-pre7",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w31a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.6-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w34a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.2-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.6-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.4-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18_experimental-snapshot-5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.3-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w15a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.8-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w06a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.6-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w03a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.2-pre5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w15a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w41a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w36a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.8",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w09a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w14craftmine",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14 Pre-Release 1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w17a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w13a",
+      "mcVersion": "19w08b",
       "fabricVersion": "0.10.6+build.214"
     },
     {
@@ -1691,351 +503,15 @@
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "20w08a",
+      "mcVersion": "25w03a",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "1.14.2 Pre-Release 2",
+      "mcVersion": "18w45a",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "1.17.1-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.1-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w46a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "3D Shareware v1.34",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w12a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w06a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w13b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w20a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.5-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17.1-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21.6-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w10a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w51a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w05b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "25w34a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.3-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.6",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w46b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w43a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.4-pre7",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.4-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w45a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.5-rc3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w18a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w13b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w45a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w07a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w09a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18.2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.5-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.3-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.2-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w19b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14 Pre-Release 4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w05a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19.1-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w04b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w21a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w16a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16-pre5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w03b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w05b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w03a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.20.5-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w14potato_original",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w03a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18-pre6",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.21",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w21b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.4-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17.1-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w40a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w41a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "24w11a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "23w41a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15.1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.2-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14_combat-212796",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.4-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.2-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w45b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w14a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18.2-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w08b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15-pre6",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17-pre5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.4-pre5",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w20b",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16.2-rc1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.16-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15.2-pre2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w12a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.15-pre5",
+      "mcVersion": "1.19.1-pre4",
       "fabricVersion": "0.10.6+build.214"
     },
     {
@@ -2043,23 +519,251 @@
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "19w42a",
+      "mcVersion": "18w44a",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "20w09a",
+      "mcVersion": "1.19.2-rc1",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "1.16.4-pre1",
+      "mcVersion": "20w20a",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "1.18-pre4",
+      "mcVersion": "1.18.1",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "20w21a",
+      "mcVersion": "1.18_experimental-snapshot-2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w39a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w06a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w16a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.4-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w44a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w45a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w40a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.4-rc3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18.2-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w12a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w46a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "18w48b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.4-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18.1-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.1-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w06a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w07a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "18w43b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w13a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.1-pre5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w10a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w42a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w33a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20-pre5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.7-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w08a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.4-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.2-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.6-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w46b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w11a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w14a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w03a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w42a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17.1-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.4-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.2-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.4-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "18w50a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w32a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w28a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w13a_or_b_original",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w13a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w44a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w04a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.2 Pre-Release 4",
       "fabricVersion": "0.10.6+build.214"
     },
     {
@@ -2067,7 +771,1323 @@
       "fabricVersion": "0.10.6+build.214"
     },
     {
+      "mcVersion": "25w36b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w20b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.2-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.2-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18-pre6",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.3-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14 Pre-Release 5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w13b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.1-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w10a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w17a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.5-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20-pre7",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.6-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20-pre6",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w02a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.4-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.3-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w39a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.2 Pre-Release 2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w16b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w43a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w05a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w14a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.1-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w07a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w36a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w36a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16-pre5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.5-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.8-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.6-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.4-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w44a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18.1-rc3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w21b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w17a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.3-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w34a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w34a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w35a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w08a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w09a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.1-rc3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.3-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.2 Pre-Release 1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w22a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w03a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w09b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15_combat-1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.5-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w18a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.1-pre6",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
       "mcVersion": "1.15-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w14potato_original",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w46a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18_experimental-snapshot-4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.2-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w45a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15.2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.4-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w03a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w09a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15.2-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w31a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.4-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w17a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w43a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w19a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14 Pre-Release 1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.1-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.2-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18_experimental-snapshot-6",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.2-pre5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w12a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.7-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.6-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w11b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.7",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.4-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.1-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.6",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w13a_or_b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w14a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.5-rc3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.4-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w04a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w06a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w12a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.3-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w03a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w02a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.5-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w16a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w05b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.2 Pre-Release 3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.1 Pre-Release 2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w06a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.5-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.4-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w39a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w51a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w11a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w09a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14 Pre-Release 4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w07a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.4-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w05a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.8",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w04a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.6-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.3-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w07a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w18a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16-pre7",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w44a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w05b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w07a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w14a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w08a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.3-rc3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16_combat-3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.2-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w05a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w11a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15-pre5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w13a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w11a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "3D Shareware v1.34",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w15a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w40a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w12b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w41a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.2-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "18w43c",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14 Pre-Release 3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17.1-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18-pre8",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w04b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w51b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.4-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w13b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w43b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.2-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17.1-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.4-pre7",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w51a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19_deep_dark_experimental_snapshot-1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w45a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w03a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.1-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w46a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.1 Pre-Release 1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.3-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.3-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.3-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w37a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.2-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.1-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.5-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w20a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "18w47a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "18w48a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w34a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19.2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.6-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.5-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w07a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.4-rc3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w21a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w21a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w10a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w13oneblockatatime",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w31a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.2-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w06a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.3-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w45a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.3-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w49a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w40a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.5-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w13a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "18w47b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w18a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w19b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w14b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w05a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w11a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w03b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w03c",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14 Pre-Release 2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16-pre8",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w19a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "18w46a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w18a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.5-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.5-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w48a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15.2-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w15a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18.2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.4-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w41a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w19a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.2-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w35a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.2-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.3-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.5-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15-pre7",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w18a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w14a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w46a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.2-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w16a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w14craftmine",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w34b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.3-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.3-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18_experimental-snapshot-5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14_combat-0",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w05a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w32a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w18a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.3-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w09a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.6",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w38a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14_combat-212796",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.4-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w17a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w14potato",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w20a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.2-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w04a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w38b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.5-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15.1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w07a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w19a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18-pre5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15.1-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w46a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.4-pre6",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14_combat-3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w03b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w24a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w33a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w21a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w20a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.2-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "25w35a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w08a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w44a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.21.5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w38a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w38a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w37a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w33a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w45b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "24w36a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18.1-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w30a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w41a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "23w40a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.20.2-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.4-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.15-pre6",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.2-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w19a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "19w42a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17-pre5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.4-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w12a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16.4-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w14a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.14.4-pre5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18.1-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17-pre3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18_experimental-snapshot-1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w16a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16-pre4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w06a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w15a",
       "fabricVersion": "0.10.6+build.214"
     },
     {
@@ -2079,115 +2099,7 @@
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "20w14a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w39a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w22a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w11a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w17a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.14.4-pre6",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w38a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "19w37a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w49a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w20a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w11a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.19-pre3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18.1-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w28a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "20w29a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w17a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18_experimental-snapshot-6",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w42a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w38a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17-pre4",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.18_experimental-snapshot-3",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17.1-rc2",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "1.17-pre1",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "21w08a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w18a",
-      "fabricVersion": "0.10.6+build.214"
-    },
-    {
-      "mcVersion": "22w16a",
+      "mcVersion": "1.18-pre4",
       "fabricVersion": "0.10.6+build.214"
     },
     {
@@ -2195,23 +2107,111 @@
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "22w06a",
+      "mcVersion": "1.19-pre4",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "1.18-pre2",
+      "mcVersion": "1.16.2",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "1.18_experimental-snapshot-2",
+      "mcVersion": "21w06a",
       "fabricVersion": "0.10.6+build.214"
     },
     {
-      "mcVersion": "1.18_experimental-snapshot-1",
+      "mcVersion": "20w27a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w17a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w43a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w29a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18-pre7",
       "fabricVersion": "0.10.6+build.214"
     },
     {
       "mcVersion": "1.17.1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18.2-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18-rc4",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19-pre5",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w08b",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w13a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16-pre2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.19-rc1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w13a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w05a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "20w45a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17-pre1",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w16a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "22w12a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "21w37a",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.16-pre6",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.18_experimental-snapshot-3",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17.1-rc2",
+      "fabricVersion": "0.10.6+build.214"
+    },
+    {
+      "mcVersion": "1.17.1-rc1",
       "fabricVersion": "0.10.6+build.214"
     }
   ],
@@ -2552,7 +2552,7 @@
     },
     {
       "mcVersion": "1.21.8",
-      "neoforgeVersion": "21.8.44"
+      "neoforgeVersion": "21.8.45"
     }
   ]
 }
