@@ -1,6 +1,6 @@
 const fs = require('node:fs')
 const path = require('node:path')
-const { XMLParser } = require('fast-xml-parser')
+const puppeteer = require('puppeteer')
 ;(async () => {
   /**
    * @template T
@@ -56,32 +56,35 @@ const { XMLParser } = require('fast-xml-parser')
         fabricVersion: ''
       }))
 
+      /** @type {{ mcVersion: string, fabricVersion: string }[]} */
+      const result = []
+
       let downloadCount = 0
 
       let isDownloadingCount = 0
 
       /** @type {(() => Promise<void>)[]} */
-      const queue = mcVersions
-        .sort(() => Math.floor(Math.random() * 2) - 1)
-        .map(mcVersion => async () => {
-          isDownloadingCount++
-          if (mcVersion === undefined) throw new TypeError('Uh oh')
-          console.log(`Getting fabric loader for mc ${mcVersion.mcVersion} (${downloadCount++}/${mcVersions.length})`)
+      const queue = mcVersions.map(mcVersion => async () => {
+        isDownloadingCount++
+        if (mcVersion === undefined) throw new TypeError('Uh oh')
+        console.log(`Getting fabric loader for mc ${mcVersion.mcVersion} (${downloadCount++}/${mcVersions.length})`)
 
-          /** @type {{ loader: { build: string, version: string } }[]} */
-          const options = await (await fetch(new URL(`${fabricMetaUrl}versions/loader/${mcVersion.mcVersion}`))).json()
-          mcVersion.fabricVersion = options.reduce(
-            (prev, option) =>
-              Number.parseInt(option.loader.build) > Number.parseInt(prev.build) ? option.loader : prev,
-            { build: '0', version: '' }
-          ).version
-          isDownloadingCount--
+        /** @type {{ loader: { build: string, version: string } }[]} */
+        const options = await (await fetch(new URL(`${fabricMetaUrl}versions/loader/${mcVersion.mcVersion}`))).json()
+        result.push({
+          mcVersion: mcVersion.mcVersion,
+          fabricVersion: options.reduce(
+            (prev, option) => (compareVersions(option.loader.version, prev) === 1 ? option.loader.version : prev),
+            '0'
+          )
         })
+        isDownloadingCount--
+      })
 
       const tickQueue = () => {
         const item = queue.pop()
         if (item === undefined) {
-          if (isDownloadingCount === 0) resolve(mcVersions)
+          if (isDownloadingCount === 0) resolve(result)
           return
         }
         item().then(tickQueue)
@@ -94,26 +97,99 @@ const { XMLParser } = require('fast-xml-parser')
   /** @type {WrappedPromise<{ mcVersion: string, forgeVersion: string }[]>} */
   const forgeVersions = wrapPromise(
     (async () => {
-      console.log('Getting forge versions')
-      const xml = await new XMLParser().parse(
-        await (
-          await fetch(new URL('https://maven.minecraftforge.net/net/minecraftforge/forge/maven-metadata.xml'))
-        ).text()
+      console.log('Getting forge game versions')
+
+      const browser = await puppeteer.launch({
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-accelerated-video-decode',
+          '--disable-accelerated-2d-canvas',
+          '--no-first-run',
+          '--no-zygote',
+          '--single-process',
+          '--disable-gpu',
+          '--lang=en-US,en'
+        ],
+        ...(process.env['GITHUB_ACTIONS'] === 'true'
+          ? {}
+          : {
+              channel: 'chrome',
+              executablePath: `${process.env['BROWSER_PATH']}/chromium`
+            })
+      })
+
+      const page = await browser.newPage()
+
+      await page.setViewport({ width: 100, height: 100 })
+
+      await page.goto('https://files.minecraftforge.net/')
+      ;(await page.waitForSelector('body > header > div > nav > ul > li:nth-child(2) > a'))?.click()
+
+      await page.waitForSelector(
+        'body > main > div.sidebar-left.sidebar-sticky > aside > section > ul > div > div.jspPane > li > ul > li > a'
       )
 
-      /** @type {string[]} */
-      const forgeVersions = xml.metadata.versioning.versions.version
+      const linkedVersions = [
+        await page.$eval(
+          'body > main > div.sidebar-left.sidebar-sticky > aside > section > ul > div > div.jspPane > li:nth-child(1) > ul > li.elem-active',
+          element => element.textContent ?? 'MISSING'
+        ),
+        ...(await page.$$eval(
+          'body > main > div.sidebar-left.sidebar-sticky > aside > section > ul > div > div.jspPane > li > ul > li > a',
+          elements => elements.map(element => element.href.match(/index_([0-9a-z._]+)\.html$/)?.[1] ?? 'MISSING')
+        ))
+      ].map(version => ({
+        mcVersion: version,
+        url: `https://files.minecraftforge.net/net/minecraftforge/forge/index_${version}.html`
+      }))
 
-      /** @type {{ [mc: string]: string }} */
-      const mcToForgeMap = {}
+      /** @type {{ mcVersion: string, forgeVersion: string }[]} */
+      const result = []
 
-      for (const version of forgeVersions) {
-        const mcVersion = version.split('-')[0] ?? ''
-        if (mcToForgeMap[mcVersion] === undefined) mcToForgeMap[mcVersion] = version
-        else if (compareVersions(version, mcToForgeMap[mcVersion]) === 1) mcToForgeMap[mcVersion] = version
+      for (let index = 0; index < linkedVersions.length; index++) {
+        const link = linkedVersions[index]
+        if (link === undefined) throw new TypeError('Uh oh')
+
+        console.log(`Getting forge loader for ${link.mcVersion} (${index + 1}/${linkedVersions.length})`)
+
+        await page.goto(link.url)
+        await page.waitForFunction(
+          version => {
+            const title = document.querySelector(
+              'body > main > div.sidebar-sticky-wrapper-content > div.promos-wrapper > div.promos-content > h1'
+            )
+            return title !== null && title.textContent === `Downloads for Minecraft Forge - MC ${version}`
+          },
+          {},
+          link.mcVersion
+        )
+
+        const forgeVersion = await page.evaluate(() => {
+          const latest = document.querySelector(
+            'body > main > div.sidebar-sticky-wrapper-content > div.promos-wrapper > div.promos-content > div > div:nth-child(1) > div.title > small'
+          )
+          const recommended = document.querySelector(
+            'body > main > div.sidebar-sticky-wrapper-content > div.promos-wrapper > div.promos-content > div > div:nth-child(2) > div.title > small'
+          )
+
+          const wrapper = recommended || latest
+          if (wrapper === null) throw new Error(`Missing version element for forge ${link.mcVersion}}`)
+
+          return (wrapper.textContent ?? '').replace(' - ', '-')
+        })
+
+        result.push({ mcVersion: link.mcVersion, forgeVersion })
+
+        await new Promise(r => setTimeout(r, 1_000))
       }
 
-      return Object.entries(mcToForgeMap).map(([key, value]) => ({ mcVersion: key, forgeVersion: value }))
+      await page.close()
+
+      await browser.close()
+
+      return result
     })()
   )
 

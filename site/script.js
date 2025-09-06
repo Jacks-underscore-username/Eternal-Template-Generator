@@ -1091,11 +1091,11 @@ document.addEventListener('DOMContentLoaded', async () => {
           removeVersion(mc, loader)
           continue
         }
-        lines.push(`deps.yarn=${dependency.version}`)
+        lines.push(`deps.mappings.yarn=${dependency.version}`)
 
         // If there is a patch for this version specifically
         const explicitPatch = yarnPatches[loader]?.[mc]
-        if (explicitPatch !== undefined) lines.push(`deps.yarn.patch=${explicitPatch}`)
+        if (explicitPatch !== undefined) lines.push(`deps.mappings.yarn.patch=${explicitPatch}`)
 
         // Otherwise use the most version recent patch if there is one
         const explicitPatchVersions = Object.keys(yarnPatches[loader] ?? {}).sort(compareVersions)
@@ -1103,7 +1103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (compareVersions(mc, oldestPatch) === 1)
           for (const explicitVersion of explicitPatchVersions.toReversed())
             if (compareVersions(mc, explicitVersion) === 1) {
-              lines.push(`deps.yarn.patch=${yarnPatches[loader]?.[explicitVersion]}`)
+              lines.push(`deps.mappings.yarn.patch=${yarnPatches[loader]?.[explicitVersion]}`)
               break
             }
       } else if (selectedMapping === 'parchment') {
@@ -1114,7 +1114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           removeVersion(mc, loader)
           continue
         }
-        lines.push(`deps.parchment=${dependency}`)
+        lines.push(`deps.mappings.parchment=${dependency}`)
       }
 
       lines.push(`deps.pack_format=${packFormats.value[mc] ?? ''}`)
@@ -1166,7 +1166,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         ') { src ->',
         '    src.versionRange.isPresent',
         '},'
-      ])
+      ]),
+      'config-fabric-range': `deps.core.fabric.loader.version_range=${fabricVersions.reduce((prev, version) => (prev === undefined ? version.fabricVersion : compareVersions(version.fabricVersion, prev) === 1 ? prev : version.fabricVersion), fabricVersions[0]?.fabricVersion)} UNSET`
     }
 
     /** @type {Object<string, boolean>} */
@@ -1182,13 +1183,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     /** @type {StringifiedFolder} */
     const template = JSON.parse(templateStr)
 
-    // biome-ignore lint/performance/noDelete: <explanation>
     if (!miscSettings.githubActions) delete template['.github']
 
     /**
      * @param {string} file
      * @param {string} path
-     * @returns {string}
+     * @returns {string | false}
      */
     const templateFile = (file, path) => {
       const lines = file.split('\n')
@@ -1213,7 +1213,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               if (typeof varr === 'string') varr = [varr]
               const offset = line.length - line.trimStart().length
               lines.splice(index, subIndex - index + 1, varr.map(line => `${' '.repeat(offset)}${line}`).join('\n'))
-              lineNumber += varr.length + 1
+              lineNumber += subIndex - index - 1
               index--
             }
             if (isIf) {
@@ -1226,7 +1226,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 lineNumber += 2
               } else {
                 lines.splice(index, subIndex - index + 1)
-                lineNumber += subIndex - index
+                lineNumber += subIndex - index - 1
               }
               index--
               breakIndex++
@@ -1235,6 +1235,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             break
           }
       }
+      if (
+        file.split('\n').filter(line => line.trim().length).length &&
+        !lines.filter(line => line.trim().length).length
+      )
+        return false
       return lines.join('\n')
     }
 
@@ -1245,8 +1250,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const templateFolder = (folder, path = '') => {
       for (const [name, item] of ObjectEntries(folder)) {
         const itemPath = path.length ? `${path}/${name}` : name
-        if (typeof item === 'string') folder[name] = templateFile(item, itemPath)
-        else templateFolder(item, itemPath)
+        if (typeof item === 'string') {
+          const result = templateFile(item, itemPath)
+          if (result === false) delete folder[name]
+          else folder[name] = result
+        } else templateFolder(item, itemPath)
       }
     }
 

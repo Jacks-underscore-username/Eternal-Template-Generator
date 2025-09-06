@@ -4,7 +4,9 @@
   "package": "com.author.example_mod.mixins",
   "compatibilityLevel": "JAVA_${java_ver}",
   "mixins": [
-    "TitleScreenMixin"
+    "$if mappings-yarn",
+    "TitleScreenMixin",
+    "$end mappings-yarn"
   ],
   "client": [],
   "injectors": {

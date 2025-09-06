@@ -607,15 +607,15 @@ dependencies {
     mappings(
         loom.layered {
             officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-${env.mcVersion.min}:${property("deps.parchment")}@zip")
+            parchment("org.parchmentmc.data:parchment-${env.mcVersion.min}:${property("deps.mappings.parchment")}@zip")
         },
     )
        $end mappings-parchment */
     // $if mappings-yarn
     mappings(
         loom.layered {
-            mappings("net.fabricmc:yarn:${property("deps.yarn")}:v2")
-            val patch = optionalStrProperty("deps.yarn.patch")
+            mappings("net.fabricmc:yarn:${property("deps.mappings.yarn")}:v2")
+            val patch = optionalStrProperty("deps.mappings.yarn.patch")
             if (patch.isPresent) {
                 mappings("dev.architectury:yarn-mappings-patch-${env.loader}:${patch.get()}")
             }

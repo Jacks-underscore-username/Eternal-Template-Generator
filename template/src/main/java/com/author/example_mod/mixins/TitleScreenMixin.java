@@ -1,3 +1,4 @@
+// $if mappings-yarn
 package com.author.example_mod.mixins;
 
 //? if > 1.17.1 {
@@ -30,3 +31,4 @@ public class TitleScreenMixin {
         LOGGER.info(baseString);
     }
 }
+// $end mappings-yarn
