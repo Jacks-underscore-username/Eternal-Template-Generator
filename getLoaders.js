@@ -217,10 +217,10 @@ const htmlParser = require('node-html-parser')
     mcVersions.add(version.mcVersion)
 
   const result = {
-    mcVersions: [...mcVersions],
-    fabric: fabricVersions.value,
-    forge: forgeVersions.value,
-    neoforge: neoforgeVersions.value
+    mcVersions: [...mcVersions].sort(compareVersions),
+    fabric: fabricVersions.value.sort((a, b) => compareVersions(a.mcVersion, b.mcVersion)),
+    forge: forgeVersions.value.sort((a, b) => compareVersions(a.mcVersion, b.mcVersion)),
+    neoforge: neoforgeVersions.value.sort((a, b) => compareVersions(a.mcVersion, b.mcVersion))
   }
 
   fs.writeFileSync(path.join(__dirname, 'site', 'loaders.json'), JSON.stringify(result, undefined, 2), 'utf8')

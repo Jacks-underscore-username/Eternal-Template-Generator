@@ -4,11 +4,8 @@ on:
   push:
     branches:
       - main 
-    paths-ignore:
-      - 'site/*.json' 
   schedule:
     - cron: '0 0 * * *'
-  workflow_dispatch:
 
 jobs:
   run_script_and_commit:
@@ -20,6 +17,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
@@ -32,12 +32,29 @@ jobs:
       - name: Run the script
         run: bun getLoaders.js
 
+      - name: Move generated assets
+        run: |
+          mkdir -p temp-assets
+          mv site/loaders.json temp-assets/loaders.json
+
+      - name: Checkout 'generated' branch
+        uses: actions/checkout@v4
+        with:
+          ref: generated
+          path: generated
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy generated assets into the 'generated' branch directory
+        run: |
+          mv temp-assets/loaders.json generated/loaders.json
+
       - name: Check for changes and commit
         id: git-check
         run: |
+          cd generated
           git config user.name "GitHub Actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add "site/loaders.json" -f
+          git add "loaders.json" -f
           if ! git diff --cached --exit-code; then
             RETRY_COUNT=0
             MAX_RETRIES=5
@@ -48,17 +65,17 @@ jobs:
 
               git commit -m "$COMMIT_MESSAGE" || {
                 echo "Commit failed, possibly no changes after rebase or concurrent commit. Retrying."
-                git pull --rebase
-                git add "site/template.json" -f
+                git pull --rebase origin generated
+                git add "template.json" -f
               }
 
-              if git push; then
+              if git push origin generated; then
                 echo "Successfully pushed changes."
                 SUCCESS=true
                 break
               else
                 echo "Push failed, retrying ($((RETRY_COUNT+1))/$MAX_RETRIES)..."
-                git pull --rebase
+                git pull --rebase origin generated
                 RETRY_COUNT=$((RETRY_COUNT+1))
               fi
               sleep 2
