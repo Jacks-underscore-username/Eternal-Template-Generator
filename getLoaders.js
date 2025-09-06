@@ -1,7 +1,11 @@
 const fs = require('node:fs')
 const path = require('node:path')
-const puppeteer = require('puppeteer')
+const htmlParser = require('node-html-parser')
 ;(async () => {
+  const doFabric = ['forge', 'neoforge'].every(str => !process.argv.includes(str))
+  const doForge = ['fabric', 'neoforge'].every(str => !process.argv.includes(str))
+  const doNeoforge = ['fabric', 'forge'].every(str => !process.argv.includes(str))
+
   /**
    * @template T
    * @typedef {{ value: T, promise: Promise<T>, hasResolved: boolean }} WrappedPromise
@@ -46,200 +50,162 @@ const puppeteer = require('puppeteer')
 
   /** @type {WrappedPromise<{ mcVersion: string, fabricVersion: string }[]>} */
   const fabricVersions = wrapPromise(
-    new Promise(async resolve => {
-      console.log('Getting fabric game versions')
-      /** @type {{ version: string }[]} */
-      const raw = await (await fetch(new URL(`${fabricMetaUrl}versions/game`))).json()
-      /** @type {{ mcVersion: string, fabricVersion: string }[]} */
-      const mcVersions = raw.map(ver => ({
-        mcVersion: ver.version,
-        fabricVersion: ''
-      }))
+    doFabric
+      ? new Promise(async resolve => {
+          console.log('Getting fabric game versions')
+          /** @type {{ version: string }[]} */
+          const raw = await (await fetch(new URL(`${fabricMetaUrl}versions/game`))).json()
+          /** @type {{ mcVersion: string, fabricVersion: string }[]} */
+          const mcVersions = raw.map(ver => ({
+            mcVersion: ver.version,
+            fabricVersion: ''
+          }))
 
-      /** @type {{ mcVersion: string, fabricVersion: string }[]} */
-      const result = []
+          /** @type {{ mcVersion: string, fabricVersion: string }[]} */
+          const result = []
 
-      let downloadCount = 0
+          let downloadCount = 0
 
-      let isDownloadingCount = 0
+          let isDownloadingCount = 0
 
-      /** @type {(() => Promise<void>)[]} */
-      const queue = mcVersions.map(mcVersion => async () => {
-        isDownloadingCount++
-        if (mcVersion === undefined) throw new TypeError('Uh oh')
-        console.log(`Getting fabric loader for mc ${mcVersion.mcVersion} (${downloadCount++}/${mcVersions.length})`)
+          /** @type {(() => Promise<void>)[]} */
+          const queue = mcVersions.map(mcVersion => async () => {
+            isDownloadingCount++
+            if (mcVersion === undefined) throw new TypeError('Uh oh')
+            console.log(`Getting fabric loader for mc ${mcVersion.mcVersion} (${downloadCount++}/${mcVersions.length})`)
 
-        /** @type {{ loader: { build: string, version: string } }[]} */
-        const options = await (await fetch(new URL(`${fabricMetaUrl}versions/loader/${mcVersion.mcVersion}`))).json()
-        result.push({
-          mcVersion: mcVersion.mcVersion,
-          fabricVersion: options.reduce(
-            (prev, option) => (compareVersions(option.loader.version, prev) === 1 ? option.loader.version : prev),
-            '0'
-          )
+            /** @type {{ loader: { build: string, version: string } }[]} */
+            const options = await (
+              await fetch(new URL(`${fabricMetaUrl}versions/loader/${mcVersion.mcVersion}`))
+            ).json()
+            result.push({
+              mcVersion: mcVersion.mcVersion,
+              fabricVersion: options.reduce(
+                (prev, option) => (compareVersions(option.loader.version, prev) === 1 ? option.loader.version : prev),
+                '0'
+              )
+            })
+            isDownloadingCount--
+          })
+
+          const tickQueue = () => {
+            const item = queue.pop()
+            if (item === undefined) {
+              if (isDownloadingCount === 0) resolve(result)
+              return
+            }
+            item().then(tickQueue)
+          }
+
+          for (let i = 0; i < 10; i++) tickQueue()
         })
-        isDownloadingCount--
-      })
-
-      const tickQueue = () => {
-        const item = queue.pop()
-        if (item === undefined) {
-          if (isDownloadingCount === 0) resolve(result)
-          return
-        }
-        item().then(tickQueue)
-      }
-
-      for (let i = 0; i < 10; i++) tickQueue()
-    })
+      : Promise.resolve([])
   )
 
   /** @type {WrappedPromise<{ mcVersion: string, forgeVersion: string }[]>} */
   const forgeVersions = wrapPromise(
-    (async () => {
-      console.log('Getting forge game versions')
+    doForge
+      ? (async () => {
+          console.log('Getting forge game versions')
 
-      const browser = await puppeteer.launch({
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--disable-dev-shm-usage',
-          '--disable-accelerated-video-decode',
-          '--disable-accelerated-2d-canvas',
-          '--no-first-run',
-          '--no-zygote',
-          '--single-process',
-          '--disable-gpu',
-          '--lang=en-US,en'
-        ],
-        ...(process.env['GITHUB_ACTIONS'] === 'true'
-          ? {}
-          : {
-              channel: 'chrome',
-              executablePath: `${process.env['BROWSER_PATH']}/chromium`
-            })
-      })
+          const firstPage = htmlParser.parse(await (await fetch('https://files.minecraftforge.net/')).text())
 
-      const page = await browser.newPage()
+          const linkedVersions = [
+            firstPage.querySelector(
+              'body > main > div.sidebar-left.sidebar-sticky > aside > section > ul > li > ul > li.elem-active'
+            )?.textContent,
+            ...firstPage
+              .querySelectorAll(
+                'body > main > div.sidebar-left.sidebar-sticky > aside > section > ul > li > ul > li > a'
+              )
+              .map(element => element.textContent)
+          ].map(version => ({
+            mcVersion: version ?? 'MISSING',
+            url: `https://files.minecraftforge.net/net/minecraftforge/forge/index_${version ?? 'MISSING'}.html`
+          }))
 
-      await page.setViewport({ width: 100, height: 100 })
+          /** @type {{ mcVersion: string, forgeVersion: string }[]} */
+          const result = []
 
-      await page.goto('https://files.minecraftforge.net/')
-      ;(await page.waitForSelector('body > header > div > nav > ul > li:nth-child(2) > a'))?.click()
+          for (let index = 0; index < linkedVersions.length; index++) {
+            const link = linkedVersions[index]
+            if (link === undefined) throw new TypeError('Uh oh')
 
-      await page.waitForSelector(
-        'body > main > div.sidebar-left.sidebar-sticky > aside > section > ul > div > div.jspPane > li > ul > li > a'
-      )
+            console.log(`Getting forge loader for ${link.mcVersion} (${index + 1}/${linkedVersions.length})`)
 
-      const linkedVersions = [
-        await page.$eval(
-          'body > main > div.sidebar-left.sidebar-sticky > aside > section > ul > div > div.jspPane > li:nth-child(1) > ul > li.elem-active',
-          element => element.textContent ?? 'MISSING'
-        ),
-        ...(await page.$$eval(
-          'body > main > div.sidebar-left.sidebar-sticky > aside > section > ul > div > div.jspPane > li > ul > li > a',
-          elements => elements.map(element => element.href.match(/index_([0-9a-z._]+)\.html$/)?.[1] ?? 'MISSING')
-        ))
-      ].map(version => ({
-        mcVersion: version,
-        url: `https://files.minecraftforge.net/net/minecraftforge/forge/index_${version}.html`
-      }))
+            const page = htmlParser.parse(await (await fetch(link.url)).text())
 
-      /** @type {{ mcVersion: string, forgeVersion: string }[]} */
-      const result = []
+            const forgeVersion = (() => {
+              const latest = page.querySelector(
+                'body > main > div.sidebar-sticky-wrapper-content > div.promos-wrapper > div.promos-content > div > div:nth-child(1) > div.title > small'
+              )
+              const recommended = page.querySelector(
+                'body > main > div.sidebar-sticky-wrapper-content > div.promos-wrapper > div.promos-content > div > div:nth-child(2) > div.title > small'
+              )
 
-      for (let index = 0; index < linkedVersions.length; index++) {
-        const link = linkedVersions[index]
-        if (link === undefined) throw new TypeError('Uh oh')
+              const wrapper = recommended || latest
+              if (wrapper === null) throw new Error(`Missing version element for forge ${link.mcVersion}}`)
 
-        console.log(`Getting forge loader for ${link.mcVersion} (${index + 1}/${linkedVersions.length})`)
+              return (wrapper.textContent ?? '').replace(' - ', '-')
+            })()
 
-        await page.goto(link.url)
-        await page.waitForFunction(
-          version => {
-            const title = document.querySelector(
-              'body > main > div.sidebar-sticky-wrapper-content > div.promos-wrapper > div.promos-content > h1'
-            )
-            return title !== null && title.textContent === `Downloads for Minecraft Forge - MC ${version}`
-          },
-          {},
-          link.mcVersion
-        )
+            result.push({ mcVersion: link.mcVersion, forgeVersion })
+          }
 
-        const forgeVersion = await page.evaluate(() => {
-          const latest = document.querySelector(
-            'body > main > div.sidebar-sticky-wrapper-content > div.promos-wrapper > div.promos-content > div > div:nth-child(1) > div.title > small'
-          )
-          const recommended = document.querySelector(
-            'body > main > div.sidebar-sticky-wrapper-content > div.promos-wrapper > div.promos-content > div > div:nth-child(2) > div.title > small'
-          )
-
-          const wrapper = recommended || latest
-          if (wrapper === null) throw new Error(`Missing version element for forge ${link.mcVersion}}`)
-
-          return (wrapper.textContent ?? '').replace(' - ', '-')
-        })
-
-        result.push({ mcVersion: link.mcVersion, forgeVersion })
-
-        await new Promise(r => setTimeout(r, 1_000))
-      }
-
-      await page.close()
-
-      await browser.close()
-
-      return result
-    })()
+          return result
+        })()
+      : Promise.resolve([])
   )
 
   /** @type {WrappedPromise<{ mcVersion: string, neoforgeVersion: string }[]>} */
   const neoforgeVersions = wrapPromise(
-    (async () => {
-      /**
-       * @param {string} versionString
-       * @returns {string}
-       */
-      const getFirstTwoVersionNumbers = versionString => {
-        const splitVersion = versionString.split('.')
-        return `${splitVersion[0]}.${splitVersion[1]}`
-      }
+    doNeoforge
+      ? (async () => {
+          /**
+           * @param {string} versionString
+           * @returns {string}
+           */
+          const getFirstTwoVersionNumbers = versionString => {
+            const splitVersion = versionString.split('.')
+            return `${splitVersion[0]}.${splitVersion[1]}`
+          }
 
-      const VERSIONS_ENDPOINT = 'https://maven.neoforged.net/api/maven/versions/releases/'
-      const NEOFORGE_GAV = 'net/neoforged/neoforge'
+          const VERSIONS_ENDPOINT = 'https://maven.neoforged.net/api/maven/versions/releases/'
+          const NEOFORGE_GAV = 'net/neoforged/neoforge'
 
-      // Reminder, this endpoint will return all NeoForge versions with April Fools versions first, then oldest to newest versions afterwards.
-      const allVersionUrl = new URL(VERSIONS_ENDPOINT + encodeURIComponent(NEOFORGE_GAV))
+          // Reminder, this endpoint will return all NeoForge versions with April Fools versions first, then oldest to newest versions afterwards.
+          const allVersionUrl = new URL(VERSIONS_ENDPOINT + encodeURIComponent(NEOFORGE_GAV))
 
-      console.log('Getting neoforge versions')
-      const neoforgeVersionsJson = await (await fetch(allVersionUrl)).json()
+          console.log('Getting neoforge versions')
+          const neoforgeVersionsJson = await (await fetch(allVersionUrl)).json()
 
-      // Extract all NeoForge versions.
-      /** @type {{ versions: string[] }} */
-      const { versions } = neoforgeVersionsJson
+          // Extract all NeoForge versions.
+          /** @type {{ versions: string[] }} */
+          const { versions } = neoforgeVersionsJson
 
-      // Remove 0.25w14craftmine and other april fools versions
-      const neoforgeVersions = versions.filter(version => !version.startsWith('0'))
+          // Remove 0.25w14craftmine and other april fools versions
+          const neoforgeVersions = versions.filter(version => !version.startsWith('0'))
 
-      // Using a set to prevent duplicate minecraft versions quickly as we extract the Minecraft versions from the NeoForge versions.
-      /** @type {Set<string>} */
-      const minecraftVersions = new Set([])
-      for (const neoforgeVersion of neoforgeVersions) {
-        // The left 2 numbers for NeoForge versions is the last 2 numbers for Minecraft versions.
-        minecraftVersions.add(`1.${getFirstTwoVersionNumbers(neoforgeVersion)}`)
-      }
+          // Using a set to prevent duplicate minecraft versions quickly as we extract the Minecraft versions from the NeoForge versions.
+          /** @type {Set<string>} */
+          const minecraftVersions = new Set([])
+          for (const neoforgeVersion of neoforgeVersions) {
+            // The left 2 numbers for NeoForge versions is the last 2 numbers for Minecraft versions.
+            minecraftVersions.add(`1.${getFirstTwoVersionNumbers(neoforgeVersion)}`)
+          }
 
-      /** @type {{ [mc: string]: string }} */
-      const mcToNeoMap = {}
+          /** @type {{ [mc: string]: string }} */
+          const mcToNeoMap = {}
 
-      for (const version of neoforgeVersions) {
-        const mcVersion = `1.${getFirstTwoVersionNumbers(version)}`
-        if (mcToNeoMap[mcVersion] === undefined) mcToNeoMap[mcVersion] = version
-        else if (compareVersions(version, mcToNeoMap[mcVersion]) === 1) mcToNeoMap[mcVersion] = version
-      }
+          for (const version of neoforgeVersions) {
+            const mcVersion = `1.${getFirstTwoVersionNumbers(version)}`
+            if (mcToNeoMap[mcVersion] === undefined) mcToNeoMap[mcVersion] = version
+            else if (compareVersions(version, mcToNeoMap[mcVersion]) === 1) mcToNeoMap[mcVersion] = version
+          }
 
-      return Object.entries(mcToNeoMap).map(([key, value]) => ({ mcVersion: key, neoforgeVersion: value }))
-    })()
+          return Object.entries(mcToNeoMap).map(([key, value]) => ({ mcVersion: key, neoforgeVersion: value }))
+        })()
+      : Promise.resolve([])
   )
 
   await Promise.all(wrappedPromises)

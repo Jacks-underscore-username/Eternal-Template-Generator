@@ -1,7 +1,14 @@
 {
+  "name": "eternal-template-generator",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
   "dependencies": {
-    "@types/node": "^24.3.0",
     "fast-xml-parser": "^5.2.5",
-    "puppeteer": "^24.9.0"
+    "node-html-parser": "^7.0.1"
   }
 }
