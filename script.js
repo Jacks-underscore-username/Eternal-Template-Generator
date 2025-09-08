@@ -705,8 +705,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       name.addEventListener('change', () => {
         for (const toggle of toggles) toggle.checked = name.checked
         for (const loader of loaders)
-          if (name.checked) addVersion(version, loader)
-          else removeVersion(version, loader)
+          if (doesLoaderSupportVersion(version, loader))
+            if (name.checked) addVersion(version, loader)
+            else removeVersion(version, loader)
       })
       versionSelectorElement.appendChild(wrapper)
     }
@@ -1310,6 +1311,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   populateVersionSelector()
 
+  await new Promise(r => setTimeout(r, 100))
   supportsFabricCheckbox.click()
   supportsNeoOrForgeCheckbox.click()
   modNameElement.value = 'Demo Mod'
@@ -1317,9 +1319,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   modAuthorElement.value = 'Me'
   modLicenseElement.value = 'MITE'
   modDescriptionElement.value = 'Really just a demo mod'
-  addManualDependency(
-    asUniqueStr('nfn13YXA', UNIQUE_STRING_TYPES.Id),
-    true,
-    asUniqueStr('IMPL', UNIQUE_STRING_TYPES.JavaDepType)
-  )
+  // addManualDependency(
+  //   asUniqueStr('nfn13YXA', UNIQUE_STRING_TYPES.Id),
+  //   true,
+  //   asUniqueStr('IMPL', UNIQUE_STRING_TYPES.JavaDepType)
+  // )
+
+  for (const element of Array.from(document.querySelectorAll('#version_selector > div > input:nth-child(1)')))
+    if (element instanceof HTMLInputElement && compareVersions(element.dataset['label'] ?? '0', '1.16.5') >= 0)
+      element.click()
+  document.querySelector('#dependency_selector > div:nth-child(1) > svg')?.dispatchEvent(new Event('click'))
 })
