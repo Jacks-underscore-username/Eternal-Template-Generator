@@ -1,8 +1,8 @@
 /**
- * @import { Mc, Loader, Id, Yarn, DependencyInfo, ModrinthProject, ModrinthError, ModrinthProjectVersion, VersionConstraints, WrappedPromise, ExtraFiles } from './types.d.js'
+ * @import { Mc, Loader, Id, Mapper, Yarn, DependencyInfo, ModrinthProject, ModrinthError, ModrinthProjectVersion, VersionConstraints, ExtraFiles } from './types.d.js'
  */
 
-import { VersionMap, asUniqueStr, UNIQUE_STRING_TYPES } from './types.d.js'
+import { VersionMap, asUniqueStr, UNIQUE_STRING_TYPES, ObjectEntries, asStr } from './types.d.js'
 
 const CACHE_LENGTH = 60 * 60 * 60 * 1000
 
@@ -17,8 +17,27 @@ export const {
   neoforge: neoforgeVersions
 } = await (await fetch('./loaders.json')).json()
 
-/** @type {Object<Loader, Object<Mc, string>>}} */
-export const yarnPatches = await (await fetch('./yarn-patches.json')).json()
+/** @type {{ [loader: Loader]: { [mc: Mc]: string } }}} */
+const rawYarnPatches = await (await fetch('./yarn-patches.json')).json()
+export const yarnPatches = VersionMap.fromEntries(
+  ObjectEntries(rawYarnPatches).flatMap(([loader, entry]) =>
+    ObjectEntries(entry).flatMap(([mc, patch]) => ({ loader, mc, value: patch }))
+  )
+)
+
+const template = await (await fetch('./template.json')).text()
+
+/**
+ * @param {Mapper} mapper
+ * @returns {string}
+ */
+export const getTemplate = mapper => {
+  if (asStr(mapper) !== 'yarn')
+    console.warn(
+      `Warning: The ${mapper} mappings are not fully supported yet, you may have to remap the JAVA side of the template.`
+    )
+  return template
+}
 
 /**
  * @param {URL} url
@@ -37,7 +56,7 @@ const cacheFetch = async url => {
     }
     return newValue
   }
-  return value
+  return Promise.resolve(value)
 }
 
 /**
@@ -49,9 +68,10 @@ const cacheFetch = async url => {
 const cache = async (name, getter) => {
   const rawCache = sessionStorage.getItem(name)
   /** @type {{ value: T, date: number } | null} */
-  const cachedValue = rawCache === null ? null : JSON.parse(rawCache)
-  if (cachedValue !== null && Date.now() - cachedValue.date <= CACHE_LENGTH) return cachedValue.value
+  const cachedEntry = rawCache === null ? null : JSON.parse(rawCache)
+  if (cachedEntry !== null && Date.now() - cachedEntry.date <= CACHE_LENGTH) return cachedEntry.value
   const freshValue = await getter()
+  if (freshValue === undefined) throw new TypeError('Getter returned undefined')
   sessionStorage.setItem(name, JSON.stringify({ value: freshValue, date: Date.now() }))
   return freshValue
 }
@@ -98,12 +118,14 @@ export const sortedMcVersions = Array.from(allMcVersions)
     return 0
   })
 
+/** @type {Promise<Yarn[]>} */
+const rawYarnVersions = (async () => JSON.parse(await cacheFetch(new URL(`${fabricMetaUrl}versions/yarn`))))()
+
 /**
- * @returns {Promise<Object<string, Yarn | undefined>>}
+ * @returns {Promise<{ [mc: Mc]: Yarn | undefined }>}
  */
 export const getYarnVersions = async () => {
-  /** @type {Yarn[]} */
-  const options = JSON.parse(await cacheFetch(new URL(`${fabricMetaUrl}versions/yarn`)))
+  const options = await rawYarnVersions
   /** @type {Object<string, Yarn | undefined>} */
   const result = {}
   for (const option of options)
@@ -114,11 +136,11 @@ export const getYarnVersions = async () => {
   return result
 }
 
-/**
- * @returns {Promise<Object<string, string>>}
- */
-export const getParchmentVersions = async () =>
-  JSON.parse(await cacheFetch(new URL('https://versioning.parchmentmc.org/versions'))).releases
+/** @type {Promise<{ [mc: Mc]: string }>} */
+const parchmentVersions = (async () =>
+  JSON.parse(await cacheFetch(new URL('https://versioning.parchmentmc.org/versions'))).releases)()
+
+export const getParchmentVersions = () => parchmentVersions
 
 /**
  * @param {Mc[]} mcVersions
@@ -359,95 +381,56 @@ export const getModrinthProjectById = async id => {
   return
 }
 
-/**
- * @returns {Promise<Object<string, string>>}
- */
-export const getPackFormats = async () =>
-  await cache('packFormats', async () => {
-    try {
-      const raw = (await (await fetch(new URL('https://minecraft.wiki/w/Pack_format'))).text()).replaceAll(
-        'src',
-        'notSrc'
-      )
-      const wrapper = document.createElement('div')
-      wrapper.innerHTML = raw
-      const table = wrapper.querySelector(
-        '#mw-content-text > div.mw-content-ltr.mw-parser-output > table:nth-child(11) > tbody'
-      )
-      if (table === null) throw new Error('Missing table')
-      /** @type {Object<string, string>} */
-      const result = {}
-      for (const row of /** @type {HTMLTableRowElement[]} */ (Array.from(table.children).slice(1))) {
-        const format = row.children[0]?.textContent
-        if (format === undefined || format === null) throw new Error('Missing format')
-        for (const rangeElement of [row.children[1], row.children[2]]) {
-          if (rangeElement === undefined) throw new Error('Missing range')
-          const rangeChildren = rangeElement.children
-          if (rangeChildren.length === 0) continue
-          if (rangeChildren.length === 1) result[rangeChildren[0]?.textContent ?? ''] = format
-          else if (rangeChildren.length === 2)
-            for (const version of getVersionsInRange(
-              asUniqueStr(rangeChildren[0]?.textContent ?? '', UNIQUE_STRING_TYPES.Mc),
-              asUniqueStr(rangeChildren[1]?.textContent ?? '', UNIQUE_STRING_TYPES.Mc)
-            ))
-              result[version] = format
-          else throw new Error('Too many children')
-        }
+/** @type {Promise<{ [mc: Mc]: string }>} */
+const packFormats = cache('packFormats', async () => {
+  try {
+    const raw = (await (await fetch(new URL('https://minecraft.wiki/w/Pack_format'))).text()).replaceAll(
+      'src',
+      'notSrc'
+    )
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = raw
+    const table = wrapper.querySelector(
+      '#mw-content-text > div.mw-content-ltr.mw-parser-output > table:nth-child(11) > tbody'
+    )
+    if (table === null) throw new Error('Missing table')
+    /** @type {Object<string, string>} */
+    const result = {}
+    for (const row of /** @type {HTMLTableRowElement[]} */ (Array.from(table.children).slice(1))) {
+      const format = row.children[0]?.textContent
+      if (format === undefined || format === null) throw new Error('Missing format')
+      for (const rangeElement of [row.children[1], row.children[2]]) {
+        if (rangeElement === undefined) throw new Error('Missing range')
+        const rangeChildren = rangeElement.children
+        if (rangeChildren.length === 0) continue
+        if (rangeChildren.length === 1) result[rangeChildren[0]?.textContent ?? ''] = format
+        else if (rangeChildren.length === 2)
+          for (const version of getVersionsInRange(
+            asUniqueStr(rangeChildren[0]?.textContent ?? '', UNIQUE_STRING_TYPES.Mc),
+            asUniqueStr(rangeChildren[1]?.textContent ?? '', UNIQUE_STRING_TYPES.Mc)
+          ))
+            result[version] = format
+        else throw new Error('Too many children')
       }
-      return result
-    } catch (err) {
-      console.error(err)
-      console.error(
-        'Failed to parse https://minecraft.wiki/w/Pack_format, this means you will have to manually fill the formats in the resulting template.'
-      )
     }
-    return {}
-  })
-
-/** @type {Set<Promise<*>>} */
-export const wrappedPromises = new Set()
-
-/**
- * @template T
- * @param {Promise<T>} promise
- * @returns {WrappedPromise<T>}
- */
-export const wrapPromise = promise => {
-  wrappedPromises.add(promise)
-  /** @type {T} */
-  let result
-  const obj = {
-    get value() {
-      if (!obj.hasResolved) throw new Error('Promise has not resolved yet')
-      return result
-    },
-    promise,
-    hasResolved: false
+    return result
+  } catch (err) {
+    console.error(err)
+    console.error(
+      'Failed to parse https://minecraft.wiki/w/Pack_format, this means you will have to manually fill the formats in the resulting template.'
+    )
   }
-  promise.then(value => {
-    wrappedPromises.delete(promise)
-    obj.hasResolved = true
-    result = value
-  })
-  return obj
-}
+  return {}
+})
 
-/**
- * @template T
- * @param {WrappedPromise<T>} wrappedPromise
- * @returns {Promise<T>}
- */
-export const unwrapPromise = wrappedPromise =>
-  wrappedPromise.hasResolved ? Promise.resolve(wrappedPromise.value) : wrappedPromise.promise
+export const getPackFormats = () => packFormats
 
-/** @type {WrappedPromise<ExtraFiles>} */
-export const extraFiles = wrapPromise(
-  (async () =>
-    Object.fromEntries(
-      await Promise.all(
-        ['gradlew', 'gradlew.bat', 'gradle/wrapper/gradle-wrapper.jar', 'gradle/wrapper/gradle-wrapper.properties'].map(
-          async path => [path, await (await fetch(`./extras/${path}`)).text()]
-        )
+/** @type {Promise<ExtraFiles>} */
+export const extraFiles = (async () =>
+  Object.fromEntries(
+    await Promise.all(
+      ['gradlew', 'gradlew.bat', 'gradle/wrapper/gradle-wrapper.jar', 'gradle/wrapper/gradle-wrapper.properties'].map(
+        async path => [path, await (await fetch(`./extras/${path}`)).text()]
       )
-    ))()
-)
+    )
+  ))()

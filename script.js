@@ -1,10 +1,9 @@
 /**
- * @import {Mc, Loader, Id, JavaDepType, WrappedPromise, Folder, Yarn, DependencyInfo, ModrinthProject, ModrinthProjectVersion, ModrinthError, StringifiedFolder, VersionConstraints, ExtraFiles } from './types.d.js'
+ * @import {Mc, Loader, Id, JavaDepType, Mapper, DependencyInfo, ModrinthProject, VersionConstraints } from './types.d.js'
  */
 
-import { VersionMap, asUniqueStr, asStr, UNIQUE_STRING_TYPES, ObjectEntries, loaders, javaDepTypes } from './types.d.js'
+import { asUniqueStr, UNIQUE_STRING_TYPES, loaders, javaDepTypes } from './types.d.js'
 
-import { wrapPromise, wrappedPromises, unwrapPromise } from './data.js'
 import * as Data from './data.js'
 import Template from './template.js'
 ;(async () => {
@@ -12,9 +11,84 @@ import Template from './template.js'
   const lightThemeIcon = /** @type {HTMLElement} */ (document.getElementById('theme_light'))
   const darkThemeIcon = /** @type {HTMLElement} */ (document.getElementById('theme_dark'))
   const oledThemeIcon = /** @type {HTMLElement} */ (document.getElementById('theme_oled'))
-  const icons = [oledThemeIcon, darkThemeIcon, lightThemeIcon]
+
+  const versionSelectorElement = /** @type {HTMLDivElement} */ (document.getElementById('version_selector'))
+  const versionsCountElement = /** @type {HTMLSpanElement} */ (document.getElementById('versions_count'))
+
+  const supportsFabricCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('supports_fabric_checkbox'))
+  const supportsNeoOrForgeCheckbox = /** @type {HTMLInputElement} */ (
+    document.getElementById('supports_neo_forge_checkbox')
+  )
+  const supportsForgeCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('supports_forge_checkbox'))
+  const supportsNeoforgeCheckbox = /** @type {HTMLInputElement} */ (
+    document.getElementById('supports_neoforge_checkbox')
+  )
+  const onlyReleaseCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('only_release_checkbox'))
+  const onlySelectedCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('only_selected_checkbox'))
+
+  const sharedRunsCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('common_runs_checkbox'))
+  const githubActionsCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('github_actions_checkbox'))
+
+  const mappingYarnRadio = /** @type {HTMLInputElement} */ (document.getElementById('mappings_yarn_radio'))
+  const mappingParchmentRadio = /** @type {HTMLInputElement} */ (document.getElementById('mappings_parchment_radio'))
+  const mappingMojmapsRadio = /** @type {HTMLInputElement} */ (document.getElementById('mappings_mojmaps_radio'))
+
+  const modNameElement = /** @type {HTMLInputElement} */ (document.getElementById('mod_name_input'))
+  const modIdElement = /** @type {HTMLInputElement} */ (document.getElementById('mod_id_input'))
+  const modAuthorElement = /** @type {HTMLInputElement} */ (document.getElementById('mod_author_input'))
+  const modLicenseElement = /** @type {HTMLInputElement} */ (document.getElementById('mod_license_input'))
+  const modDescriptionElement = /** @type {HTMLTextAreaElement} */ (document.getElementById('mod_description_input'))
+
+  const dependencySelector = /** @type {HTMLDivElement} */ (document.getElementById('dependency_selector'))
+  const addDependencyId = /** @type {HTMLInputElement} */ (document.getElementById('add_dependency_id'))
+  const addDependencyButton = /** @type {HTMLElement} */ (document.getElementById('add_dependency_button'))
+
+  const downloadButton = /** @type {HTMLButtonElement} */ (document.getElementById('download_button'))
 
   let theme = Number.parseInt(localStorage.getItem('theme') ?? '1')
+
+  /** @type {VersionConstraints} */
+  const versionConstraints = {
+    supportsFabric: false,
+    supportsNeoOrForge: false,
+    supportsForge: false,
+    supportsNeoforge: false,
+    onlyRelease: true,
+    onlySelected: false
+  }
+
+  const selectedVersions = (() => {
+    /** @type {{ mc: Mc, loader: Loader }[]} */
+    const selectedVersions = []
+    let isFirstTick = true
+    setImmediate(() => (isFirstTick = false))
+    return new Proxy(selectedVersions, {
+      deleteProperty(target, prop) {
+        versionsCountElement.textContent = `Count\n${selectedVersions.length - 1}`
+        // @ts-expect-error
+        return delete target[prop]
+      },
+      set(target, prop, receiver) {
+        // @ts-expect-error
+        target[prop] = receiver
+        if (!isFirstTick) versionsCountElement.textContent = `Count\n${selectedVersions.length}`
+        return true
+      }
+    })
+  })()
+
+  const miscSettings = {
+    sharedRuns: true,
+    githubActions: true
+  }
+
+  /** @type {Mapper} */
+  let selectedMapping = asUniqueStr('yarn', UNIQUE_STRING_TYPES.Mapper)
+
+  /** @type {DependencyInfo[]} */
+  const manualDependencies = []
+
+  const icons = [oledThemeIcon, darkThemeIcon, lightThemeIcon]
 
   const applyTheme = () => {
     for (let index = 0; index < 3; index++) icons[index]?.classList.toggle('selected', theme === index)
@@ -27,51 +101,6 @@ import Template from './template.js'
     applyTheme()
   })
   applyTheme()
-
-  const versionSelectorElement = /** @type {HTMLDivElement} */ (document.getElementById('version_selector'))
-
-  /** @type {{ mc: Mc, loader: Loader }[]} */
-  const _selectedVersions = []
-  let _isFirstTick = true
-  const selectedVersions = new Proxy(_selectedVersions, {
-    deleteProperty(target, prop) {
-      versionsCountElement.textContent = `Count\n${_selectedVersions.length - 1}`
-      // @ts-expect-error
-      return delete target[prop]
-    },
-    set(target, prop, receiver) {
-      // @ts-expect-error
-      target[prop] = receiver
-      if (!_isFirstTick) versionsCountElement.textContent = `Count\n${_selectedVersions.length}`
-      return true
-    }
-  })
-
-  await new Promise(r => setImmediate(r))
-  _isFirstTick = false
-
-  const versionsCountElement = /** @type {HTMLSpanElement} */ (document.getElementById('versions_count'))
-
-  /** @type {VersionConstraints} */
-  const versionConstraints = {
-    supportsFabric: false,
-    supportsNeoOrForge: false,
-    supportsForge: false,
-    supportsNeoforge: false,
-    onlyRelease: true,
-    onlySelected: false
-  }
-
-  const supportsFabricCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('supports_fabric_checkbox'))
-  const supportsNeoOrForgeCheckbox = /** @type {HTMLInputElement} */ (
-    document.getElementById('supports_neo_forge_checkbox')
-  )
-  const supportsForgeCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('supports_forge_checkbox'))
-  const supportsNeoforgeCheckbox = /** @type {HTMLInputElement} */ (
-    document.getElementById('supports_neoforge_checkbox')
-  )
-  const onlyReleaseCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('only_release_checkbox'))
-  const onlySelectedCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('only_selected_checkbox'))
 
   for (const [checkbox, key] of [
     [supportsFabricCheckbox, 'supportsFabric'],
@@ -189,12 +218,13 @@ import Template from './template.js'
     populateVersionSelector()
   })
 
-  /** @type {'yarn' | 'parchment' | 'mojmaps'} */
-  let selectedMapping = 'yarn'
-
-  const mappingYarnRadio = /** @type {HTMLInputElement} */ (document.getElementById('mappings_yarn_radio'))
-  const mappingParchmentRadio = /** @type {HTMLInputElement} */ (document.getElementById('mappings_parchment_radio'))
-  const mappingMojmapsRadio = /** @type {HTMLInputElement} */ (document.getElementById('mappings_mojmaps_radio'))
+  for (const [checkbox, key] of [
+    [sharedRunsCheckbox, 'sharedRuns'],
+    [githubActionsCheckbox, 'githubActions']
+  ]) {
+    // @ts-expect-error
+    checkbox.addEventListener('change', () => (miscSettings[key] = checkbox.checked))
+  }
 
   for (const [radio, value] of [
     [mappingYarnRadio, 'yarn'],
@@ -207,29 +237,6 @@ import Template from './template.js'
       if (radio.checked) selectedMapping = value
     })
   }
-
-  const miscSettings = {
-    sharedRuns: true,
-    githubActions: true
-  }
-
-  const sharedRunsCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('common_runs_checkbox'))
-  const githubActionsCheckbox = /** @type {HTMLInputElement} */ (document.getElementById('github_actions_checkbox'))
-
-  for (const [checkbox, key] of [
-    [sharedRunsCheckbox, 'sharedRuns'],
-    [githubActionsCheckbox, 'githubActions']
-  ]) {
-    // @ts-expect-error
-    checkbox.addEventListener('change', () => (miscSettings[key] = checkbox.checked))
-  }
-
-  /** @type {DependencyInfo[]} */
-  const manualDependencies = []
-
-  const dependencySelector = /** @type {HTMLDivElement} */ (document.getElementById('dependency_selector'))
-  const addDependencyId = /** @type {HTMLInputElement} */ (document.getElementById('add_dependency_id'))
-  const addDependencyButton = /** @type {HTMLElement} */ (document.getElementById('add_dependency_button'))
 
   /**
    * @param {Id} id
@@ -307,14 +314,7 @@ import Template from './template.js'
   for (const id of ['P7dR8mSH', 'lhGA9TYQ'].map(id => asUniqueStr(id, UNIQUE_STRING_TYPES.Id)))
     addManualDependency(id, true, asUniqueStr('API', UNIQUE_STRING_TYPES.JavaDepType))
 
-  const modNameElement = /** @type {HTMLInputElement} */ (document.getElementById('mod_name_input'))
-  const modIdElement = /** @type {HTMLInputElement} */ (document.getElementById('mod_id_input'))
-  const modAuthorElement = /** @type {HTMLInputElement} */ (document.getElementById('mod_author_input'))
-  const modLicenseElement = /** @type {HTMLInputElement} */ (document.getElementById('mod_license_input'))
-  const modDescriptionElement = /** @type {HTMLTextAreaElement} */ (document.getElementById('mod_description_input'))
-
   let isDownloading = false
-  const downloadButton = /** @type {HTMLButtonElement} */ (document.getElementById('download_button'))
   downloadButton.addEventListener('click', async () => {
     if (isDownloading) return
     isDownloading = true
@@ -360,7 +360,7 @@ import Template from './template.js'
 
   populateVersionSelector()
 
-  await new Promise(r => setTimeout(r, 100))
+  await new Promise(r => setTimeout(r, 1000))
   supportsFabricCheckbox.click()
   supportsNeoOrForgeCheckbox.click()
   modNameElement.value = 'Demo Mod'

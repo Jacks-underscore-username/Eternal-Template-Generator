@@ -4,104 +4,13 @@
  * @typedef {string & { S: S, N: N }} UniqueString<S,N>
  */
 /**
- * @typedef {Object} VersionConstraints
- * @prop {boolean} supportsFabric
- * @prop {boolean} supportsNeoOrForge
- * @prop {boolean} supportsForge
- * @prop {boolean} supportsNeoforge
- * @prop {boolean} onlyRelease
- * @prop {boolean} onlySelected
- */
-
-/**
  * @typedef {UniqueString<string, 'Mc'>} Mc
  * @typedef {UniqueString<'fabric' | 'forge' | 'neoforge', 'Loader'>} Loader
  * @typedef {UniqueString<string, 'Name'>} Name
  * @typedef {UniqueString<string, 'Id'>} Id
  * @typedef {UniqueString<string, 'Slug'>} Slug
  * @typedef {UniqueString<'API' | 'API_OPTIONAL' | 'IMPL' | 'FRL' | 'INCLUDE', 'JavaDepType'>} JavaDepType
- */
-
-/**
- * @typedef {{ [key: string]: (string | StringifiedFolder) }} StringifiedFolder
- */
-/**
- * @typedef {Object} Yarn
- * @prop {string} gameVersion
- * @prop {string} separator
- * @prop {string} build
- * @prop {string} maven
- * @prop {string} version
- * @prop {boolean} stable
- */
-/**
- * @typedef {Object} FabricLoader
- * @prop {Object} loader
- * @prop {string} loader.separator
- * @prop {number} loader.build
- * @prop {string} loader.maven
- * @prop {string} loader.version
- * @prop {boolean} loader.stable
- * @prop {Object} intermediary
- * @prop {string} intermediary.maven
- * @prop {string} intermediary.version
- * @prop {boolean} intermediary.stable
- */
-/**
- * @typedef {Object} ModrinthError
- * @prop {string} error
- * @prop {string} description
- */
-/**
- * @typedef {Object} ModrinthProject
- * @prop {Name} title
- * @prop {Id} id
- * @prop {Slug} slug
- * @prop {string} icon_url
- * @prop {Loader[]} loaders
- */
-/**
- * @typedef {Object} ModrinthProjectVersion
- * @prop {string | null} version_number
- * @prop {Mc[]} game_versions
- * @prop {Loader[]} loaders
- * @prop {{ project_id: Id, version_id: string, dependency_type: 'required' | 'optional' | 'incompatible' | 'embedded' }[]} dependencies
- */
-/**
- * @typedef {Object} DependencyInfo
- * @prop {Name} name
- * @prop {Id} id
- * @prop {Slug} slug
- * @prop {boolean} required
- * @prop {Loader[]} validLoaders
- * @prop {JavaDepType} javaDepType
- */
-/**
- * @template T
- * @typedef {{ value: T, promise: Promise<T>, hasResolved: boolean }} WrappedPromise
- */
-/**
- * @typedef {Object} Folder
- * @prop {string} name
- * @prop {"folder"} type
- * @prop {Object<string, Folder | { name: string, type: "file", contents: string }>} contents
- * @prop {(name: string) => Folder} createFolder
- * @prop {(name: string, contents: string) => { name: string, type: "file", contents: string }} createFile
- */
-/**
- * @template {Object} T
- * @typedef {{ [key in keyof T as (string & { _: '' })]: key }[(string & { _: '' })]} KeyOf<T>
- */
-/**
- * @template {object} T
- * @typedef {{ [key in keyof T as (string & { _: '' })]: T[key] }[(string & { _: '' })]} ValueOf<T>
- */
-/**
- * @template {Object} T
- * @typedef {{ [key in keyof T as (string & { _: '' })]: [key, T[key]] }[(string & { _: '' })]} EntryOf<T>
- */
-/**
- * @typedef {{'gradlew':string,'gradlew.bat':string,'gradle/wrapper/gradle-wrapper.jar':string,'gradle/wrapper/gradle-wrapper.properties':string}} ExtraFiles
+ * @typedef {UniqueString<'yarn' | 'parchment' | 'mojmaps', 'Mapper'>} Mapper
  */
 
 export const UNIQUE_STRING_TYPES = {
@@ -110,7 +19,8 @@ export const UNIQUE_STRING_TYPES = {
   Name: /** @type {Name} */ (''),
   Id: /** @type {Id} */ (''),
   Slug: /** @type {Slug} */ (''),
-  JavaDepType: /** @type {JavaDepType} */ ('')
+  JavaDepType: /** @type {JavaDepType} */ (''),
+  Mapper: /** @type {Mapper} */ ('')
 }
 
 /**
@@ -127,6 +37,7 @@ export const asUniqueStr = (str, type) => str
  * @returns {T extends UniqueString<infer S, string> ? S : never}
  */ // @ts-expect-error
 export const asStr = str => str
+
 /**
  * @template {object} T
  * @param {T} obj
@@ -202,3 +113,96 @@ export class VersionMap {
     return VersionMap.fromEntries(this.entries.map((entry, index, array) => func(entry, index, array)))
   }
 }
+
+/**
+ * @template {Object} T
+ * @typedef {{ [key in keyof T as (string & { _: '' })]: key }[(string & { _: '' })]} KeyOf<T>
+ */
+
+/**
+ * @template {object} T
+ * @typedef {{ [key in keyof T as (string & { _: '' })]: T[key] }[(string & { _: '' })]} ValueOf<T>
+ */
+
+/**
+ * @template {Object} T
+ * @typedef {{ [key in keyof T as (string & { _: '' })]: [key, T[key]] }[(string & { _: '' })]} EntryOf<T>
+ */
+
+/**
+ * @typedef {Object} ModrinthError
+ * @prop {string} error
+ * @prop {string} description
+ */
+/**
+ * @typedef {Object} ModrinthProject
+ * @prop {Name} title
+ * @prop {Id} id
+ * @prop {Slug} slug
+ * @prop {string} icon_url
+ * @prop {Loader[]} loaders
+ */
+/**
+ * @typedef {Object} ModrinthProjectVersion
+ * @prop {string | null} version_number
+ * @prop {Mc[]} game_versions
+ * @prop {Loader[]} loaders
+ * @prop {{ project_id: Id, version_id: string, dependency_type: 'required' | 'optional' | 'incompatible' | 'embedded' }[]} dependencies
+ */
+
+/**
+ * @typedef {{ [key: string]: (string | StringifiedFolder) }} StringifiedFolder
+ */
+/**
+ * @typedef {Object} Yarn
+ * @prop {string} gameVersion
+ * @prop {string} separator
+ * @prop {string} build
+ * @prop {string} maven
+ * @prop {string} version
+ * @prop {boolean} stable
+ */
+/**
+ * @typedef {Object} FabricLoader
+ * @prop {Object} loader
+ * @prop {string} loader.separator
+ * @prop {number} loader.build
+ * @prop {string} loader.maven
+ * @prop {string} loader.version
+ * @prop {boolean} loader.stable
+ * @prop {Object} intermediary
+ * @prop {string} intermediary.maven
+ * @prop {string} intermediary.version
+ * @prop {boolean} intermediary.stable
+ */
+/**
+ * @typedef {Object} DependencyInfo
+ * @prop {Name} name
+ * @prop {Id} id
+ * @prop {Slug} slug
+ * @prop {boolean} required
+ * @prop {Loader[]} validLoaders
+ * @prop {JavaDepType} javaDepType
+ */
+/**
+ * @typedef {Object} Folder
+ * @prop {string} name
+ * @prop {"folder"} type
+ * @prop {Object<string, Folder | { name: string, type: "file", contents: string }>} contents
+ * @prop {(name: string) => Folder} createFolder
+ * @prop {(name: string, contents: string) => { name: string, type: "file", contents: string }} createFile
+ */
+
+/**
+ * @typedef {{'gradlew':string,'gradlew.bat':string,'gradle/wrapper/gradle-wrapper.jar':string,'gradle/wrapper/gradle-wrapper.properties':string}} ExtraFiles
+ */
+
+/**
+ * @typedef {Object} VersionConstraints
+ * @prop {boolean} supportsFabric
+ * @prop {boolean} supportsNeoOrForge
+ * @prop {boolean} supportsForge
+ * @prop {boolean} supportsNeoforge
+ * @prop {boolean} onlyRelease
+ * @prop {boolean} onlySelected
+ */
