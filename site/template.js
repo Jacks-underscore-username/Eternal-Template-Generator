@@ -1,10 +1,10 @@
 /**
- * @import {Mc, Loader, Folder, DependencyInfo, StringifiedFolder, ExtraFiles } from './types.d.js'
+ * @import {Mc, Loader, Mapper, Folder, DependencyInfo, StringifiedFolder } from './types.d.js'
  */
 
 import { asStr, ObjectEntries, loaders } from './types.d.js'
 
-import { wrapPromise, wrappedPromises, unwrapPromise } from './data.js'
+// import { wrapPromise, wrappedPromises, unwrapPromise } from './data.js'
 import * as Data from './data.js'
 
 /**
@@ -50,7 +50,7 @@ const downloadFolder = async (folder, fileName) => {
  * @param {DependencyInfo[]} config.manualDependencies
  * @param {{ name: string, id: string, author: string, license: string, description: string, className: string, stonecutterVcs: string }} config.modData
  * @param {(mc: Mc, loader: Loader) => void} config.removeVersion
- * @param {string} config.selectedMapping
+ * @param {Mapper} config.selectedMapping
  * @param {{ sharedRuns: boolean, githubActions: boolean }} config.miscSettings
  * @param {() => void} config.populateVersionSelector
  */
@@ -65,7 +65,7 @@ export default async config => {
     miscSettings,
     populateVersionSelector
   } = config
-  const extraFiles = await unwrapPromise(Data.extraFiles)
+  const extraFiles = await Data.extraFiles
   /**
    * @param {Folder | undefined} [parent]
    * @returns {Folder["createFolder"]}
@@ -100,18 +100,14 @@ export default async config => {
 
   updateStatus('Getting dependencies')
 
-  const dependencies = wrapPromise(
-    Data.getDependencyVersions(uniqueVersions, uniqueLoaders, updateStatus, manualDependencies)
-  )
+  const dependencies = Data.getDependencyVersions(uniqueVersions, uniqueLoaders, updateStatus, manualDependencies)
 
-  const yarnVersions = wrapPromise(Data.getYarnVersions())
-  const parchmentVersions = wrapPromise(Data.getParchmentVersions())
+  dependencies.then(() => updateStatus('Generating versions'))
 
-  const packFormats = wrapPromise(Data.getPackFormats())
+  const yarnVersions = Data.getYarnVersions()
+  const parchmentVersions = Data.getParchmentVersions()
 
-  await Promise.all(wrappedPromises)
-
-  updateStatus('Generating versions')
+  const packFormats = Data.getPackFormats()
 
   let hadWarnings = false
 
@@ -130,7 +126,7 @@ export default async config => {
     lines.push('')
 
     let missingRequiredDependency = false
-    for (const dependency of dependencies.value) {
+    for (const dependency of await dependencies) {
       const version = dependency.versions.get(mc, loader)
       if (version === undefined && dependency.required && dependency.validLoaders.includes(loader)) {
         if (dependency.required) {
@@ -164,7 +160,7 @@ export default async config => {
       )
 
     if (selectedMapping === 'yarn') {
-      const dependency = yarnVersions.value[mc]
+      const dependency = (await yarnVersions)[mc]
       if (dependency === undefined) {
         console.warn(`Skipping ${mc}-${loader}: missing yarn`)
         hadWarnings = true
@@ -174,20 +170,23 @@ export default async config => {
       lines.push(`deps.mappings.yarn=${dependency.version}`)
 
       // If there is a patch for this version specifically
-      const explicitPatch = Data.yarnPatches[loader]?.[mc]
+      const explicitPatch = Data.yarnPatches.get(mc, loader)
       if (explicitPatch !== undefined) lines.push(`deps.mappings.yarn.patch=${explicitPatch}`)
 
       // Otherwise use the most version recent patch if there is one
-      const explicitPatchVersions = Object.keys(Data.yarnPatches[loader] ?? {}).sort(Data.compareVersions)
+      const explicitPatchVersions = Data.yarnPatches.entries
+        .filter(entry => entry.loader === loader)
+        .map(entry => entry.mc)
+        .sort(Data.compareVersions)
       const oldestPatch = explicitPatchVersions[0] ?? '2'
       if (Data.compareVersions(mc, oldestPatch) === 1)
         for (const explicitVersion of explicitPatchVersions.toReversed())
           if (Data.compareVersions(mc, explicitVersion) === 1) {
-            lines.push(`deps.mappings.yarn.patch=${Data.yarnPatches[loader]?.[explicitVersion]}`)
+            lines.push(`deps.mappings.yarn.patch=${Data.yarnPatches.get(explicitVersion, loader)}`)
             break
           }
     } else if (selectedMapping === 'parchment') {
-      const dependency = parchmentVersions.value[mc]
+      const dependency = (await parchmentVersions)[mc]
       if (dependency === undefined) {
         console.warn(`Skipping ${mc}-${loader}: missing parchment`)
         hadWarnings = true
@@ -197,7 +196,7 @@ export default async config => {
       lines.push(`deps.mappings.parchment=${dependency}`)
     }
 
-    lines.push(`deps.pack_format=${packFormats.value[mc] ?? ''}`)
+    lines.push(`deps.pack_format=${(await packFormats)[mc] ?? ''}`)
 
     lines.push('')
     lines.push(`loom.platform=${loader}`)
@@ -214,7 +213,7 @@ export default async config => {
 
   updateStatus('Filling template')
 
-  let templateStr = await (await fetch('./template.json')).text()
+  let templateStr = Data.getTemplate(selectedMapping)
   const replacements = {
     '"author":{': `"${modData.author.toLowerCase()}":{`,
     '.author.': `.${modData.author.toLowerCase()}.`,
@@ -237,7 +236,7 @@ export default async config => {
     'config-license': `mod.license = ${modData.license}`,
     'config-description': `mod.description = ${modData.description}`,
     'config-author': `mod.authors = ${modData.author}`,
-    dependencies: dependencies.value.flatMap(dependency => [
+    dependencies: (await dependencies).flatMap(dependency => [
       'APISource(',
       `    DepType.${dependency.javaDepType},`,
       `    APIModInfo("${dependency.slug}", null, "${dependency.slug}"),`,
