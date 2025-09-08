@@ -8,3 +8,25 @@ plugins {
 // $start stonecutter-active
 stonecutter active "1.21.8-fabric"
 // $end stonecutter-active
+
+tasks.register("runAllClientsSequentially") {
+    group = "Minecraft"
+
+    val clientTasksToRun = stonecutter.versions.map { ver -> ":${ver.project}:runClient" }
+
+    doLast {
+        for (taskPath in clientTasksToRun) {
+            val clientTask = tasks.getByPath(taskPath)
+
+            logger.info("Running $taskPath}")
+
+            try {
+                clientTask.actions.forEach { action ->
+                    action.execute(clientTask)
+                }
+            } catch (e: Exception) {
+                logger.error("Client '$taskPath' failed or exited with an error: ${e.message}")
+            }
+        }
+    }
+}

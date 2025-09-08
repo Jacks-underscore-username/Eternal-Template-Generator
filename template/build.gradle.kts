@@ -567,6 +567,8 @@ stonecutter {
 }
 
 loom {
+    accessWidenerPath = file("../../src/main/resources/example_mod.accesswidener")
+
     silentMojangMappingsLicense()
     if (env.isForge) {
         forge {

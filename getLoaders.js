@@ -6,6 +6,9 @@ const htmlParser = require('node-html-parser')
   const doForge = ['fabric', 'neoforge'].every(str => !process.argv.includes(str))
   const doNeoforge = ['fabric', 'forge'].every(str => !process.argv.includes(str))
 
+  /** @type {{ fabric: string[], forge: string[], neoforge: string[] }} */
+  const brokenLoaderVersions = JSON.parse(fs.readFileSync('./broken-loader-versions.json', 'utf8'))
+
   /**
    * @template T
    * @typedef {{ value: T, promise: Promise<T>, hasResolved: boolean }} WrappedPromise
@@ -209,6 +212,17 @@ const htmlParser = require('node-html-parser')
   )
 
   await Promise.all(wrappedPromises)
+
+  for (const [list, broken, loader] of /** @type {[WrappedPromise<{ mcVersion: string }[]>, string[], string][]} */ ([
+    [fabricVersions, brokenLoaderVersions.fabric, 'fabric'],
+    [forgeVersions, brokenLoaderVersions.forge, 'forge'],
+    [neoforgeVersions, brokenLoaderVersions.neoforge, 'neoforge']
+  ]))
+    for (const brokenVersion of broken) {
+      console.log(`Skipping ${brokenVersion} ${loader}: manually skipped.`)
+      const index = list.value.findIndex(version => version.mcVersion === brokenVersion)
+      if (index !== -1) list.value.splice(index, 1)
+    }
 
   /** @type {Set<string>} */
   const mcVersions = new Set()

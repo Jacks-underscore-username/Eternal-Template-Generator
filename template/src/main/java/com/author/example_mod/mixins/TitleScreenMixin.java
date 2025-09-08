@@ -1,7 +1,7 @@
 // $if mappings-yarn
 package com.author.example_mod.mixins;
 
-//? if > 1.17.1 {
+//? if > 1.18.1 {
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 //? }
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TitleScreen.class)
 public class TitleScreenMixin {
-    //? if > 1.17.1
+    //? if > 1.18.1
     private static final Logger LOGGER = LogUtils.getLogger();
 
     @Inject(method = "init", at = @At("HEAD"))
@@ -27,8 +27,13 @@ public class TitleScreenMixin {
         baseString = baseString.replace("%LOADER%",loader);
         baseString = baseString.replace("%VERSION%",version);
 
-        //? if > 1.17.1
+        //? if > 1.18.1
         LOGGER.info(baseString);
+
+        TitleScreen titleScreen = (TitleScreen) (Object) this;
+
+        if (titleScreen.client != null)
+            titleScreen.client.scheduleStop();
     }
 }
 // $end mappings-yarn
