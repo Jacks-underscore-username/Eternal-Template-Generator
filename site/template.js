@@ -154,10 +154,12 @@ export default async config => {
       lines.push(
         `deps.core.forge.version_range=${Data.forgeVersions.find(entry => entry.mcVersion === mc)?.forgeVersion}`
       )
-    else if (asStr(loader) === 'neoforge')
+    else if (asStr(loader) === 'neoforge') {
       lines.push(
         `deps.core.neoforge.version_range=${Data.neoforgeVersions.find(entry => entry.mcVersion === mc)?.neoforgeVersion}`
       )
+      if (Data.compareVersions(mc, '1.20.2') !== 1) lines.push('deps.core.neoforge.loader.version_range=1 UNSET')
+    }
 
     if (selectedMapping === 'yarn') {
       const dependency = (await yarnVersions)[mc]

@@ -32,8 +32,11 @@ public class TitleScreenMixin {
 
         TitleScreen titleScreen = (TitleScreen) (Object) this;
 
-        if (titleScreen.client != null)
+        if (titleScreen.client != null) {
+            //? if > 1.18.1
+            LOGGER.info("Manually exiting");
             titleScreen.client.scheduleStop();
+        }
     }
 }
 // $end mappings-yarn

@@ -122,10 +122,12 @@ const htmlParser = require('node-html-parser')
                 'body > main > div.sidebar-left.sidebar-sticky > aside > section > ul > li > ul > li > a'
               )
               .map(element => element.textContent)
-          ].map(version => ({
-            mcVersion: version ?? 'MISSING',
-            url: `https://files.minecraftforge.net/net/minecraftforge/forge/index_${version ?? 'MISSING'}.html`
-          }))
+          ]
+            .map(version => ({
+              mcVersion: version ?? 'MISSING',
+              url: `https://files.minecraftforge.net/net/minecraftforge/forge/index_${version ?? 'MISSING'}.html`
+            }))
+            .filter(entry => compareVersions('1.21', entry.mcVersion) === 1)
 
           /** @type {{ mcVersion: string, forgeVersion: string }[]} */
           const result = []

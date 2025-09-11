@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.author.example_mod.forge.mixins",
-  "compatibilityLevel": "JAVA_${java_ver}",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [],
   "client": [],
   "injectors": {

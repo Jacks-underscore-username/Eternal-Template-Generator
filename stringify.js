@@ -1,6 +1,8 @@
 const fs = require('node:fs')
 const path = require('node:path')
 
+const shouldWatch = process.argv.includes('--watch')
+
 /**
  * @typedef {{[key: string]: (string | Obj)}} Obj
  */
@@ -23,3 +25,12 @@ const scan = folderPath => {
 const obj = scan(path.join(__dirname, 'template'))
 fs.writeFileSync(path.join(__dirname, 'site', 'template.json'), JSON.stringify(obj), 'utf8')
 console.log('Template stringified')
+
+if (shouldWatch) {
+  console.log('Watching for changes in the "template" directory.')
+  fs.watch(path.join(__dirname, 'template'), { recursive: true }, () => {
+    const obj = scan(path.join(__dirname, 'template'))
+    fs.writeFileSync(path.join(__dirname, 'site', 'template.json'), JSON.stringify(obj), 'utf8')
+    console.log('Template stringified')
+  })
+}

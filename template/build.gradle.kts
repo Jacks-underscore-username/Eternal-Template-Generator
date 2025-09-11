@@ -396,9 +396,9 @@ val dependencies = ModDependencies()
  * These values will change between versions and mod loaders. Handles generation of specific entries in mods.toml and neoforge.mods.toml
  */
 class SpecialMultiversionedConstants {
-    private val mandatoryIndicator = if (env.isNeo) "required" else "mandatory"
+    private val mandatoryIndicator = if (env.isNeo && !env.atMost("1.20.2")) "required" else "mandatory"
     val mixinField =
-        if (env.atMost("1.20.4") && env.isNeo) {
+        if (env.isNeo) {
             neoForgeMixinField()
         } else if (env.isFabric) {
             fabricMixinField()
@@ -414,15 +414,15 @@ class SpecialMultiversionedConstants {
     private fun excludes0(): List<String> {
         val out = arrayListOf<String>()
         if (!env.isForge) {
-            // NeoForge before 1.21 still uses the forge mods.toml :/ One of those goofy changes between versions.
-            if (!env.isNeo || !env.atLeast("1.20.6")) {
+            // NeoForge before 1.20.5 still uses the forge mods.toml :/ One of those goofy changes between versions.
+            if (!env.isNeo || !env.atMost("1.20.4")) {
                 out.add("META-INF/mods.toml")
             }
         }
         if (!env.isFabric) {
             out.add("fabric.mod.json")
         }
-        if (!env.isNeo) {
+        if (!env.isNeo || env.atMost("1.20.4")) {
             out.add("META-INF/neoforge.mods.toml")
         }
         return out

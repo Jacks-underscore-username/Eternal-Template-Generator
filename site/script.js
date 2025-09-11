@@ -374,6 +374,8 @@ import Template from './template.js'
   //   asUniqueStr('IMPL', UNIQUE_STRING_TYPES.JavaDepType)
   // )
 
+  const wantedVersions = ['1.16.5', '1.17.1', '1.18.2', '1.19.4', '1.20.1', '1.21.1', '1.21.4', '1.21.8']
+  // if (element instanceof HTMLInputElement && wantedVersions.includes(element.dataset['label'] ?? ''))
   for (const element of Array.from(document.querySelectorAll('#version_selector > div > input:nth-child(1)')))
     if (element instanceof HTMLInputElement && Data.compareVersions(element.dataset['label'] ?? '0', '1.16.5') >= 0)
       element.click()
