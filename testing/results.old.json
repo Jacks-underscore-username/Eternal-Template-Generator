@@ -1,7 +1,7 @@
 {
   "1.21.8-fabric": {
     "Mixins": {
-      "passed": true
+      "passed": false
     },
     "ATs": {
       "passed": true
@@ -209,10 +209,10 @@
   },
   "1.20.2-neoforge": {
     "Mixins": {
-      "passed": false
+      "passed": true
     },
     "ATs": {
-      "passed": false
+      "passed": true
     }
   },
   "1.20.1-fabric": {

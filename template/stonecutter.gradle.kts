@@ -1,7 +1,12 @@
+import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.TaskAction
+import org.gradle.process.ExecOperations
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
-import kotlin.ranges.IntRange
+import javax.inject.Inject
 
 plugins {
     id("dev.kikugie.stonecutter") version "0.7.9"
@@ -14,58 +19,25 @@ plugins {
 // $start stonecutter-active
 // $end stonecutter-active
 
+abstract class RunClientForVersionTask
+    @Inject
+    constructor(
+        private val execOperations: ExecOperations,
+    ) : DefaultTask() {
+        @get:Input
+        var version: String = ""
 
-var lastRun: String? = null
-var taskIndex = 0
-val taskCount = stonecutter.versions.size
-for (version in stonecutter.versions.map { ver -> ver.project }) {
-    val isFirst = taskIndex == 0
-    val currentLastRun = lastRun
-    taskIndex++
-    val name = "runAllClientsSequentially $version ($taskIndex-$taskCount)"
-    val taskPath = ":$version:runClient"
-    tasks.register(name) {
-        group = "eternal-impl"
-        if (isFirst) {
-            doFirst {
-                val sharedLogDir =
-                    project.layout.buildDirectory
-                        .dir("logs")
-                        .get()
-                        .asFile
-                if (!sharedLogDir.exists()) {
-                    sharedLogDir.mkdirs()
-                }
-                for (file in sharedLogDir.listFiles()!!) {
-                    val fileName = file.name.toString()
-                    if (fileName.contains("latest_")) {
-                        val newFileName = fileName.slice(IntRange(7, fileName.length - 1))
-                        println("Renamed $fileName to $newFileName")
-                        file.renameTo(File(sharedLogDir, newFileName))
-                    }
-                }
-                for (subVersion in stonecutter.versions.map { ver -> ver.project }) {
-                    val subLogDir =
-                        project.layout.buildDirectory
-                            .dir("../versions/$version/build/logs")
-                            .get()
-                            .asFile
-                    if (!subLogDir.exists()) {
-                        subLogDir.mkdirs()
-                    }
-                    for (file in subLogDir.listFiles()!!) {
-                        val fileName = file.name.toString()
-                        if (fileName.contains("latest_")) {
-                            val newFileName = fileName.slice(IntRange(7, fileName.length - 1))
-                            println("Renamed $fileName to $newFileName")
-                            file.renameTo(File(subLogDir, newFileName))
-                        }
-                    }
-                }
-            }
+        @get:Input
+        var isFirstRun: Boolean = false
+
+        init {
+            group = "eternal-impl"
         }
 
-        doLast {
+        @TaskAction
+        fun runClient() {
+            val taskPath = ":$version:runClient"
+
             val sharedLogDir =
                 project.layout.buildDirectory
                     .dir("logs")
@@ -74,6 +46,7 @@ for (version in stonecutter.versions.map { ver -> ver.project }) {
             if (!sharedLogDir.exists()) {
                 sharedLogDir.mkdirs()
             }
+
             val subLogDir =
                 project.layout.buildDirectory
                     .dir("../versions/$version/build/logs")
@@ -82,41 +55,101 @@ for (version in stonecutter.versions.map { ver -> ver.project }) {
             if (!subLogDir.exists()) {
                 subLogDir.mkdirs()
             }
-            val timestamp = SimpleDateFormat("yyyy.MM.dd_HH.mm.ss").format(Date())
-            val logFileName = "latest_runClient_${version}_$timestamp.log"
-            val sharedLogFile = File(sharedLogDir, logFileName)
 
-            logger.lifecycle("--- Starting client task: $taskPath ---")
-            logger.lifecycle("--- Logging output to: ${sharedLogFile.absolutePath} ---")
+            if (isFirstRun) {
+                project.logger.lifecycle("Performing initial log directory cleanup.")
+                for (file in sharedLogDir.listFiles() ?: emptyArray()) {
+                    val fileName = file.name
+                    if (fileName.contains("latest_")) {
+                        val newFileName = fileName.substring(7)
+                        project.logger.lifecycle("Renamed $fileName to $newFileName")
+                        file.renameTo(File(sharedLogDir, newFileName))
+                    }
+                }
+            }
+            for (file in subLogDir.listFiles() ?: emptyArray()) {
+                val fileName = file.name
+                if (fileName.contains("latest_")) {
+                    val newFileName = fileName.substring(7)
+                    project.logger.lifecycle("Renamed $fileName to $newFileName")
+                    file.renameTo(File(subLogDir, newFileName))
+                }
+            }
+
+            val timestamp = SimpleDateFormat("yyyy.MM.dd_HH.mm.ss").format(Date())
+            val currentLogFileName = "latest_runClient_${version}_$timestamp.log"
+            val actualSharedLogFile = File(sharedLogDir, currentLogFileName)
+
+            project.logger.lifecycle("--- Starting client task: $taskPath ---")
+            project.logger.lifecycle("--- Logging output to: ${actualSharedLogFile.absolutePath} ---")
+
+            val outputStream = ByteArrayOutputStream()
+            val errorStream = ByteArrayOutputStream()
 
             try {
-                project
+                execOperations
                     .exec {
                         workingDir = project.rootDir
                         commandLine(
-                            "bash",
-                            "-c",
-                            "${project.gradle.gradleHomeDir}/bin/gradle $taskPath --console=plain --info --stacktrace > ${sharedLogFile.absolutePath} 2>&1",
+                            "${project.gradle.gradleHomeDir}/bin/gradle",
+                            taskPath,
+                            "--console=plain",
+                            "--info",
+                            "--stacktrace",
                         )
+                        standardOutput = outputStream
+                        errorOutput = errorStream
+                        isIgnoreExitValue = true
                     }.assertNormalExitValue()
-                logger.lifecycle("--- Finished client task: $taskPath successfully ---")
+
+                actualSharedLogFile.writeBytes(outputStream.toByteArray())
+                if (errorStream.size() > 0) {
+                    actualSharedLogFile.appendBytes("\n--- ERROR OUTPUT ---\n".toByteArray())
+                    actualSharedLogFile.appendBytes(errorStream.toByteArray())
+                }
+
+                project.logger.lifecycle("--- Finished client task: $taskPath successfully ---")
             } catch (e: Exception) {
-                logger.error("Client '$taskPath' failed or exited with an error: ${e.message}")
+                actualSharedLogFile.writeBytes(outputStream.toByteArray())
+                if (errorStream.size() > 0) {
+                    actualSharedLogFile.appendBytes("\n--- ERROR OUTPUT ---\n".toByteArray())
+                    actualSharedLogFile.appendBytes(errorStream.toByteArray())
+                }
+                project.logger.error("Client '$taskPath' failed or exited with an error: ${e.message}")
             }
 
-            sharedLogFile.copyTo(File(subLogDir,logFileName))
-        }
-
-        if (currentLastRun != null) {
-            dependsOn(tasks.getByName(currentLastRun))
+            File(subLogDir, currentLogFileName).writeBytes(actualSharedLogFile.readBytes())
         }
     }
-    lastRun = name
+
+var lastRunTaskName: String? = null
+var taskCounter = 0
+val totalTaskCount = stonecutter.versions.size
+
+for (stonecutterVersion in stonecutter.versions.map { ver -> ver.project }) {
+    val isFirst = taskCounter == 0
+    taskCounter++
+    val currentTaskName = "runAllClientsSequentially $stonecutterVersion ($taskCounter-$totalTaskCount)"
+
+    val realLastTaskName = lastRunTaskName
+    val lastTask = if (realLastTaskName == null) null else tasks.named(realLastTaskName)
+
+    tasks.register<RunClientForVersionTask>(currentTaskName) {
+        group = "eternal-impl"
+        version = stonecutterVersion
+        isFirstRun = isFirst
+
+        if (lastTask != null) {
+            dependsOn(lastTask)
+        }
+    }
+    lastRunTaskName = currentTaskName
 }
 
-if (lastRun != null) {
+if (lastRunTaskName != null) {
     tasks.register("runAllClientsSequentially") {
         group = "eternal"
-        dependsOn(tasks.getByName(lastRun!!))
+        description = "Runs all Minecraft clients for all Stonecutter versions sequentially."
+        dependsOn(tasks.named(lastRunTaskName!!))
     }
 }
