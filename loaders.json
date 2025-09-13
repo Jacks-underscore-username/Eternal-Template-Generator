@@ -48,12 +48,10 @@
     "1.14.1",
     "1.14.1 Pre-Release 1",
     "1.14.1 Pre-Release 2",
-    "1.14.2",
     "1.14.2 Pre-Release 1",
     "1.14.2 Pre-Release 2",
     "1.14.2 Pre-Release 3",
     "1.14.2 Pre-Release 4",
-    "1.14.3",
     "1.14.3-pre1",
     "1.14.3-pre2",
     "1.14.3-pre3",
@@ -524,10 +522,6 @@
       "fabricVersion": "0.17.2"
     },
     {
-      "mcVersion": "1.14.2",
-      "fabricVersion": "0.17.2"
-    },
-    {
       "mcVersion": "1.14.2 Pre-Release 1",
       "fabricVersion": "0.17.2"
     },
@@ -541,10 +535,6 @@
     },
     {
       "mcVersion": "1.14.2 Pre-Release 4",
-      "fabricVersion": "0.17.2"
-    },
-    {
-      "mcVersion": "1.14.3",
       "fabricVersion": "0.17.2"
     },
     {
@@ -2366,46 +2356,6 @@
       "forgeVersion": "1.13.2-25.0.223"
     },
     {
-      "mcVersion": "1.14.2",
-      "forgeVersion": "1.14.2-26.0.63"
-    },
-    {
-      "mcVersion": "1.14.3",
-      "forgeVersion": "1.14.3-27.0.60"
-    },
-    {
-      "mcVersion": "1.14.4",
-      "forgeVersion": "1.14.4-28.2.26"
-    },
-    {
-      "mcVersion": "1.15",
-      "forgeVersion": "1.15-29.0.4"
-    },
-    {
-      "mcVersion": "1.15.1",
-      "forgeVersion": "1.15.1-30.0.51"
-    },
-    {
-      "mcVersion": "1.15.2",
-      "forgeVersion": "1.15.2-31.2.57"
-    },
-    {
-      "mcVersion": "1.16.1",
-      "forgeVersion": "1.16.1-32.0.108"
-    },
-    {
-      "mcVersion": "1.16.2",
-      "forgeVersion": "1.16.2-33.0.61"
-    },
-    {
-      "mcVersion": "1.16.3",
-      "forgeVersion": "1.16.3-34.1.0"
-    },
-    {
-      "mcVersion": "1.16.4",
-      "forgeVersion": "1.16.4-35.1.4"
-    },
-    {
       "mcVersion": "1.16.5",
       "forgeVersion": "1.16.5-36.2.34"
     },
@@ -2460,10 +2410,6 @@
     {
       "mcVersion": "1.20.4",
       "forgeVersion": "1.20.4-49.2.0"
-    },
-    {
-      "mcVersion": "1.20.6",
-      "forgeVersion": "1.20.6-50.2.0"
     }
   ],
   "neoforge": [
