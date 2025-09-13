@@ -730,7 +730,7 @@ tasks.processResources {
             "mc_min" to env.mcVersion.min,
             "mc_max" to env.mcVersion.max,
             "issue_tracker" to mod.issueTracker,
-            "java_ver" to env.javaVersion.toString(),
+            "java_version" to env.javaVersion.toString(),
             "forgelike_loader_ver" to dynamics.forgelikeLoaderVer,
             "forgelike_api_ver" to dynamics.forgelikeAPIVer,
             "loader_id" to env.loader,

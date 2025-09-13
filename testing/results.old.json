@@ -1,7 +1,7 @@
 {
   "1.21.8-fabric": {
     "Mixins": {
-      "passed": false
+      "passed": true
     },
     "ATs": {
       "passed": true
@@ -128,14 +128,6 @@
     }
   },
   "1.20.6-fabric": {
-    "Mixins": {
-      "passed": true
-    },
-    "ATs": {
-      "passed": true
-    }
-  },
-  "1.20.6-forge": {
     "Mixins": {
       "passed": true
     },
@@ -345,10 +337,10 @@
   },
   "1.18.1-fabric": {
     "Mixins": {
-      "passed": false
+      "passed": true
     },
     "ATs": {
-      "passed": false
+      "passed": true
     }
   },
   "1.18.1-forge": {
@@ -361,10 +353,10 @@
   },
   "1.18-fabric": {
     "Mixins": {
-      "passed": false
+      "passed": true
     },
     "ATs": {
-      "passed": false
+      "passed": true
     }
   },
   "1.18-forge": {
@@ -377,10 +369,10 @@
   },
   "1.17.1-fabric": {
     "Mixins": {
-      "passed": false
+      "passed": true
     },
     "ATs": {
-      "passed": false
+      "passed": true
     }
   },
   "1.17.1-forge": {
@@ -393,10 +385,10 @@
   },
   "1.16.5-fabric": {
     "Mixins": {
-      "passed": false
+      "passed": true
     },
     "ATs": {
-      "passed": false
+      "passed": true
     }
   },
   "1.16.5-forge": {

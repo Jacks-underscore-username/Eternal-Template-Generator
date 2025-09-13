@@ -2,10 +2,13 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.author.example_mod.neoforge.mixins",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_${java_version}",
   "mixins": [],
   "client": [],
   "injectors": {
     "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
   }
 }

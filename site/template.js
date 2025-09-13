@@ -117,7 +117,7 @@ export default async config => {
   const usedVersions = {}
   /** @type {Set<Loader>} */
   const usedLoaders = new Set()
-  for (const version of [...selectedVersions]) {
+  for (const version of [...selectedVersions.toSorted((a, b) => Data.compareVersions(b.mc, a.mc))]) {
     const loader = version.loader
     const mc = version.mc
 

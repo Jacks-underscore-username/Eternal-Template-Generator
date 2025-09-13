@@ -3,17 +3,12 @@ const path = require('node:path')
 
 const LOG_DIR = '/home/jackc/Downloads/build/logs'
 
-const latestLogFiles = []
-for (const fileName of fs.readdirSync(LOG_DIR))
-  if (fs.statSync(path.join(LOG_DIR, fileName)).isFile() && fileName.startsWith('latest_'))
-    latestLogFiles.push(fileName)
-
 /** @type {Object<string, (log: string, mc: string, loader: string) => ({ passed: true } | { passed: false, error?: string })>} */
 const tests = {
   Mixins: (log, mc, loader) => ({
     passed: log.split('\n').some(line => line.includes(`Hello from ${loader} on Minecraft ${mc}`))
   }),
-  ATs: log => ({
+  AWs: log => ({
     passed: log.split('\n').some(line => line.includes('Manually exiting'))
   })
 }
@@ -25,28 +20,37 @@ if (queriedTest === undefined) {
   process.exit(1)
 }
 
-/** @type {Object<string, Object<string, { passed: true } | { passed: false, error?: string }>>} */
-const results = {}
-for (const fileName of latestLogFiles) {
-  const mc = fileName.match(/^^latest_runClient_([0-9.]+)-[a-z]+/)?.[1] ?? ''
-  const loader = fileName.match(/^latest_runClient_[0-9.]+-([a-z]+)/)?.[1] ?? ''
-  const file = fs.readFileSync(path.join(LOG_DIR, fileName), 'utf8')
-  results[`${mc}-${loader}`] = Object.fromEntries(
-    Object.entries(tests).map(([name, test]) => {
-      try {
-        const result = test(file, mc, loader)
-        if (result.passed) return [name, { passed: true }]
-        return [name, { passed: false, error: result.error }]
-      } catch (error) {
-        return [name, { passed: false, error: String(error) }]
-      }
-    })
-  )
-}
+if (queriedTestName === undefined) {
+  const latestLogFiles = []
+  for (const fileName of fs.readdirSync(LOG_DIR))
+    if (fs.statSync(path.join(LOG_DIR, fileName)).isFile() && fileName.startsWith('latest_'))
+      latestLogFiles.push(fileName)
 
-if (queriedTestName) {
+  /** @type {Object<string, Object<string, { passed: true } | { passed: false, error?: string }>>} */
+  const results = {}
+  for (const fileName of latestLogFiles) {
+    const mc = fileName.match(/^^latest_runClient_([0-9.]+)-[a-z]+/)?.[1] ?? ''
+    const loader = fileName.match(/^latest_runClient_[0-9.]+-([a-z]+)/)?.[1] ?? ''
+    const file = fs.readFileSync(path.join(LOG_DIR, fileName), 'utf8')
+    results[`${mc}-${loader}`] = Object.fromEntries(
+      Object.entries(tests).map(([name, test]) => {
+        try {
+          const result = test(file, mc, loader)
+          if (result.passed) return [name, { passed: true }]
+          return [name, { passed: false, error: result.error }]
+        } catch (error) {
+          return [name, { passed: false, error: String(error) }]
+        }
+      })
+    )
+  }
+  if (fs.existsSync(path.join(__dirname, 'results.json')))
+    fs.renameSync(path.join(__dirname, 'results.json'), path.join(__dirname, 'results.old.json'))
+  fs.writeFileSync(path.join(__dirname, 'results.json'), JSON.stringify(results, undefined, 2))
+  console.log(JSON.stringify(results, undefined, 2))
+} else {
   console.log(
-    Object.entries(results)
+    Object.entries(JSON.parse(fs.readFileSync(path.join(__dirname, 'results.json'), 'utf8')))
       .flatMap(([version, result]) => {
         if (queriedTestName === 'All')
           return Object.entries(result).map(
@@ -59,9 +63,4 @@ if (queriedTestName) {
       })
       .join('\n')
   )
-} else {
-  if (fs.existsSync(path.join(__dirname, 'results.json')))
-    fs.renameSync(path.join(__dirname, 'results.json'), path.join(__dirname, 'results.old.json'))
-  fs.writeFileSync(path.join(__dirname, 'results.json'), JSON.stringify(results, undefined, 2))
-  console.log(JSON.stringify(results, undefined, 2))
 }
