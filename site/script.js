@@ -360,8 +360,6 @@ import Template from './template.js'
 
   populateVersionSelector()
 
-  return
-
   await new Promise(r => setTimeout(r, 1000))
   // supportsFabricCheckbox.click()
   // supportsNeoOrForgeCheckbox.click()
@@ -379,7 +377,7 @@ import Template from './template.js'
   const wantedVersions = ['1.16.5', '1.17.1', '1.18.2', '1.19.4', '1.20.1', '1.21.1', '1.21.4', '1.21.8']
   // if (element instanceof HTMLInputElement && wantedVersions.includes(element.dataset['label'] ?? ''))
   // if (element instanceof HTMLInputElement && Data.compareVersions(element.dataset['label'] ?? '0', '1.16.5') >= 0)
-  for (const element of Array.from(document.querySelectorAll('#version_selector > div > input:nth-child(1)')))
-    element.click()
-  document.querySelector('#dependency_selector > div:nth-child(1) > svg')?.dispatchEvent(new Event('click'))
+  // for (const element of Array.from(document.querySelectorAll('#version_selector > div > input:nth-child(1)')))
+  //   element.click()
+  // document.querySelector('#dependency_selector > div:nth-child(1) > svg')?.dispatchEvent(new Event('click'))
 })()

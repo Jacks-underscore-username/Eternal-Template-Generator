@@ -11,7 +11,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(/^$ mod_id_string {^/"example_mod"/^$}^/)
 public class ExampleModForge {
-    public ExampleModForge(FMLJavaModLoadingContext context) {
+    public ExampleModForge() {
+        FMLJavaModLoadingContext context = FMLJavaModLoadingContext.get();
         IEventBus eventBus = context.getModEventBus();
 
         eventBus.addListener((final FMLClientSetupEvent event) -> ExampleModClient.init(event, eventBus, context));

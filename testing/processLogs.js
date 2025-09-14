@@ -10,17 +10,28 @@ const tests = {
   }),
   AWs: log => ({
     passed: log.split('\n').some(line => line.includes('Manually exiting'))
-  })
+  }),
+  ClientSide: log => ({ passed: log.split('\n').some(line => line.includes('Hello from the client side!')) }),
+  CommonSide: log => ({ passed: log.split('\n').some(line => line.includes('Hello from the common side!')) })
 }
 
-const queriedTestName = process.argv[2]
-const queriedTest = queriedTestName === undefined || queriedTestName === 'All' ? false : tests[queriedTestName]
-if (queriedTest === undefined) {
-  console.error(`Unknown test: ${queriedTestName}, valid names are ${['All', ...Object.keys(tests)].join(', ')}`)
-  process.exit(1)
-}
+const queriedTestNames = process.argv.slice(2)
+const queriedTests = Array.from(
+  new Set(
+    queriedTestNames.flatMap(name => {
+      if (name === 'All') return Object.entries(tests)
+      const test = tests[name]
+      if (test === undefined) {
+        console.error(`Unknown test: ${name}`)
+        console.error(`Valid names are: ${[...Object.keys(tests), 'All'].join(', ')}`)
+        process.exit(1)
+      }
+      return [[name, test]]
+    })
+  )
+)
 
-if (queriedTestName === undefined) {
+if (!queriedTests.length) {
   const latestLogFiles = []
   for (const fileName of fs.readdirSync(LOG_DIR))
     if (fs.statSync(path.join(LOG_DIR, fileName)).isFile() && fileName.startsWith('latest_'))
@@ -48,19 +59,40 @@ if (queriedTestName === undefined) {
     fs.renameSync(path.join(__dirname, 'results.json'), path.join(__dirname, 'results.old.json'))
   fs.writeFileSync(path.join(__dirname, 'results.json'), JSON.stringify(results, undefined, 2))
   console.log(JSON.stringify(results, undefined, 2))
-} else {
+} else
   console.log(
     Object.entries(JSON.parse(fs.readFileSync(path.join(__dirname, 'results.json'), 'utf8')))
-      .flatMap(([version, result]) => {
-        if (queriedTestName === 'All')
-          return Object.entries(result).map(
-            ([name, test]) =>
-              `\x1b[96;1m${version}: \x1b[93mName=${name}, \x1b[${91 + Number(test.passed)}mPassed=${test.passed ? 'true' : test.error ? `false, Error=${test.error}` : 'false'}\x1b[0m`
-          )
-        const test = result[queriedTestName ?? '']
-        if (test === undefined) throw new TypeError('Uh oh')
-        return `\x1b[96;1m${version}: \x1b[93mName=${queriedTestName}, \x1b[${91 + Number(test.passed)}mPassed=${test.passed ? 'true' : test.error ? `false, Error=${test.error}` : 'false'}\x1b[0m`
-      })
+      .map(
+        /**
+         *
+         * @param {[String, { [name: string]: ({ passed: true } | { passed: false, error?: string })}]} param0
+         * @returns
+         */
+        ([version, results]) => {
+          const parts = []
+          for (const [name, result] of Object.entries(results))
+            if (queriedTests.some(entry => entry[0] === name))
+              parts.push(
+                `\x1b[93m${name}:`,
+                `\x1b[${91 + Number(result.passed)}m${result.passed ? 'Passed' : result.error ? `Failed, Error: ${result.error}` : 'Failed'}`
+              )
+          return [`\x1b[96m${version}`, ...parts, '\x1b[0m']
+        }
+      )
+      .map((line, _index, lines) =>
+        line.reduce(
+          (prev, part, index) =>
+            index
+              ? prev +
+                ' '.repeat(
+                  lines.reduce((pad, subLine) => Math.max(pad, subLine[index - 1]?.length ?? 0), 0) -
+                    (line[index - 1]?.length ?? 0) +
+                    1
+                ) +
+                part
+              : part,
+          ''
+        )
+      )
       .join('\n')
   )
-}

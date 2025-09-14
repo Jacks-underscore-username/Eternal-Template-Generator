@@ -4,3 +4,5 @@ node_modules
 site/loaders.json
 site/template.json
 site/yarn-patches.json
+testing/results.json
+testing/results.old.json
