@@ -47,6 +47,9 @@ export const ObjectEntries = obj => Object.entries(obj)
 
 // @ts-expect-error
 export const loaders = ['fabric', 'forge', 'neoforge'].map(loader => asUniqueStr(loader, UNIQUE_STRING_TYPES.Loader))
+export const loader_fabric = asUniqueStr('fabric', UNIQUE_STRING_TYPES.Loader)
+export const loader_forge = asUniqueStr('forge', UNIQUE_STRING_TYPES.Loader)
+export const loader_neoforge = asUniqueStr('neoforge', UNIQUE_STRING_TYPES.Loader)
 export const javaDepTypes = ['API', 'API_OPTIONAL', 'IMPL', 'FRL', 'INCLUDE'].map(type =>
   // @ts-expect-error
   asUniqueStr(type, UNIQUE_STRING_TYPES.JavaDepType)
