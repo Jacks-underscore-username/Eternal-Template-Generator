@@ -2,12 +2,16 @@
  * @import { Mc, Loader, Id, Mapper, Yarn, DependencyInfo, ModrinthProject, ModrinthError, ModrinthProjectVersion, VersionConstraints, ExtraFiles } from './types.d.js'
  */
 
-import { VersionMap, asUniqueStr, UNIQUE_STRING_TYPES, ObjectEntries, asStr } from './types.d.js'
+import { VersionMap, asUniqueStr, UNIQUE_STRING_TYPES, ObjectEntries, asStr, loader_fabric } from './types.d.js'
+
+import * as FabricNetApi from './libs/fabric.net/Api.js'
 
 const CACHE_LENGTH = 60 * 60 * 60 * 1000
 
 const fabricMetaUrl = 'https://meta.fabricmc.net/v2/'
 const modrinthUrl = 'https://api.modrinth.com/v2/'
+
+export const fabricApiId = asUniqueStr('P7dR8mSH', UNIQUE_STRING_TYPES.Id)
 
 /** @type {{ mcVersions: Mc[], fabric: { mcVersion: Mc, fabricVersion: string }[], forge: { mcVersion: Mc, forgeVersion: string }[], neoforge: { mcVersion: Mc, neoforgeVersion: string }[] }} */
 export const {
@@ -142,6 +146,26 @@ const parchmentVersions = (async () =>
 
 export const getParchmentVersions = () => parchmentVersions
 
+/** @type {Promise<{ [mc: Mc]: string }>} */
+const fabricApiVersions = new Promise(async resolve => {
+  /** @type {{ version: Mc, stable: boolean }[]} */
+  const mcVersions = await FabricNetApi.getGameVersions()
+  const queue = mcVersions.map(entry => entry.version)
+  /** @type {{ [mc: Mc]: string }} */
+  const results = {}
+  let threadCount = 0
+  const tickQueue = async () => {
+    threadCount++
+    const mc = queue.pop()
+    if (mc === undefined) return
+    results[mc] = await FabricNetApi.getApiVersionForMinecraft(mc)
+    threadCount--
+    if (queue.length) tickQueue()
+    else resolve(results)
+  }
+  for (let i = 0; i < 1; i++) tickQueue()
+})
+
 /**
  * @param {Mc[]} mcVersions
  * @param {Loader[]} loaders
@@ -197,7 +221,21 @@ export const getDependencyVersions = async (mcVersions, loaders, statusSubscribe
     console.info(`Getting ${info.slug} for mc ${[...mcVersions].join(', ')} and loaders ${[...loaders].join(', ')}`)
     statusSubscriber(`Getting ${info.slug} versions`)
     /** @type {ModrinthProjectVersion[]} */
-    const options = await (await fetch(url)).json()
+    const options =
+      info.id === fabricApiId
+        ? ObjectEntries(await fabricApiVersions).map(
+            /**
+             * @param {[Mc, string]} entry
+             * @returns {ModrinthProjectVersion}
+             */
+            ([mc, version]) => ({
+              version_number: version,
+              game_versions: [mc],
+              loaders: [loader_fabric],
+              dependencies: []
+            })
+          )
+        : await (await fetch(url)).json()
     for (const option of options)
       for (const mc of option.game_versions)
         for (const loader of option.loaders)

@@ -671,6 +671,14 @@ input.text_input {
     var(--color-timing);
 }
 
+#dependency_selector > *.disabled > svg {
+  display: none;
+}
+
+#dependency_selector > *.disabled > button:hover::before {
+  color: var(--text-color);
+}
+
 #dependency_selector > *:hover > span {
   color: var(--highlight-text-color);
 }

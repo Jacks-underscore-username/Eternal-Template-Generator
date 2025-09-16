@@ -1,17 +1,18 @@
-name: Sync Site
+name: Update Hardcoded Fabric Api Versions
 
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - main 
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
-  sync_site_content:
+  run_script_and_commit:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write 
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -20,10 +21,21 @@ jobs:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Prepare site contents
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun i
+
+      - name: Run the script
+        run: bun getFabricApiVersions.js
+
+      - name: Move generated assets
         run: |
-          mkdir -p temp-site-content
-          rsync -av --exclude='*.json' site/ temp-site-content/
+          mkdir -p temp-assets
+          mv site/libs/fabric.net/Api.js temp-assets/Api.js
 
       - name: Checkout 'generated' branch
         uses: actions/checkout@v4
@@ -32,13 +44,10 @@ jobs:
           path: generated
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Copy filtered site content into 'generated' branch directory
+      - name: Copy generated assets into the 'generated' branch directory
         run: |
-          rsync -av --delete \
-          --exclude='*.json' \
-          --exclude='libs/fabric.net/Api.js' \
-          --exclude='.git/*' \
-          temp-site-content/ generated/
+          mkdir generated/libs/fabric.net -p
+          mv temp-assets/Api.js generated/libs/fabric.net/Api.js
 
       - name: Check for changes and commit
         id: git-check
@@ -46,19 +55,19 @@ jobs:
           cd generated
           git config user.name "GitHub Actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add -A
+          git add "libs/fabric.net/Api.js" -f
           if ! git diff --cached --exit-code; then
             RETRY_COUNT=0
             MAX_RETRIES=5
             SUCCESS=false
 
             while [ "$RETRY_COUNT" -lt "$MAX_RETRIES" ]; do
-              COMMIT_MESSAGE="Chore: Synced site"
+              COMMIT_MESSAGE="Chore: Update hardcoded fabric api versions"
 
               git commit -m "$COMMIT_MESSAGE" || {
                 echo "Commit failed, possibly no changes after rebase or concurrent commit. Retrying."
                 git pull --rebase origin generated
-                git add -A
+                git add "libs/fabric.net/Api.js" -f
               }
 
               if git push origin generated; then
@@ -77,7 +86,7 @@ jobs:
               echo "::set-output name=committed::true"
             else
               echo "Failed to push changes after $MAX_RETRIES retries."
-              exit 1 # Fail the step
+              exit 1
             fi
           else
             echo "No changes to commit."

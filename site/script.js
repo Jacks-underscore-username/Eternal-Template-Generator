@@ -242,9 +242,10 @@ import Template from './template.js'
    * @param {Id} id
    * @param {boolean} required
    * @param {JavaDepType} javaDepType
+   * @param {boolean} locked
    * @returns {Promise<void>}
    */
-  const addManualDependency = async (id, required, javaDepType) => {
+  const addManualDependency = async (id, required, javaDepType, locked = false) => {
     if (manualDependencies.some(dependency => dependency.id === id)) return
     /** @type {ModrinthProject | undefined} */
     const response = await Data.getModrinthProjectById(id)
@@ -260,6 +261,7 @@ import Template from './template.js'
     }
     manualDependencies.push(entry)
     const wrapper = document.createElement('div')
+    if (locked) wrapper.classList.add('disabled')
     const icon = document.createElement('img')
     icon.style.gridArea = 'icon'
     icon.src = response.icon_url
@@ -270,6 +272,7 @@ import Template from './template.js'
     title.classList.add('s-s')
     wrapper.appendChild(title)
     const requiredToggle = document.createElement('input')
+    if (locked) requiredToggle.disabled = true
     requiredToggle.classList.add('option')
     requiredToggle.type = 'checkbox'
     // @ts-expect-error
@@ -280,6 +283,7 @@ import Template from './template.js'
     requiredToggle.addEventListener('change', () => (entry.required = requiredToggle.checked))
     let javaDepTypeIndex = javaDepTypes.indexOf(javaDepType)
     const javaDepTypeToggle = document.createElement('button')
+    if (locked) javaDepTypeToggle.disabled = true
     javaDepTypeToggle.dataset['label'] = javaDepTypes[javaDepTypeIndex] ?? ''
     javaDepTypeToggle.dataset['width'] = `${15}`
     javaDepTypeToggle.style.gridArea = 'java'
@@ -295,10 +299,11 @@ import Template from './template.js'
       '<svg style="grid-area: remove;" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>'
     const removeIcon = removeWrapper.firstChild ?? removeWrapper
     wrapper.appendChild(removeIcon)
-    removeIcon.addEventListener('click', () => {
-      wrapper.remove()
-      manualDependencies.splice(manualDependencies.findIndex(dependency => dependency.id === id))
-    })
+    if (!locked)
+      removeIcon.addEventListener('click', () => {
+        wrapper.remove()
+        manualDependencies.splice(manualDependencies.findIndex(dependency => dependency.id === id))
+      })
 
     dependencySelector.insertBefore(wrapper, dependencySelector.firstChild ?? dependencySelector)
   }
@@ -311,8 +316,7 @@ import Template from './template.js'
     )
   )
 
-  for (const id of ['P7dR8mSH', 'lhGA9TYQ'].map(id => asUniqueStr(id, UNIQUE_STRING_TYPES.Id)))
-    addManualDependency(id, true, asUniqueStr('API', UNIQUE_STRING_TYPES.JavaDepType))
+  addManualDependency(Data.fabricApiId, true, asUniqueStr('IMPL', UNIQUE_STRING_TYPES.JavaDepType), true)
 
   let isDownloading = false
   downloadButton.addEventListener('click', async () => {
@@ -375,9 +379,9 @@ import Template from './template.js'
   // )
 
   const wantedVersions = ['1.16.5', '1.17.1', '1.18.2', '1.19.4', '1.20.1', '1.21.1', '1.21.4', '1.21.8']
-  // if (element instanceof HTMLInputElement && wantedVersions.includes(element.dataset['label'] ?? ''))
-  // if (element instanceof HTMLInputElement && Data.compareVersions(element.dataset['label'] ?? '0', '1.16.5') >= 0)
-  // for (const element of Array.from(document.querySelectorAll('#version_selector > div > input:nth-child(1)')))
-  //   element.click()
-  // document.querySelector('#dependency_selector > div:nth-child(1) > svg')?.dispatchEvent(new Event('click'))
+  for (const element of Array.from(document.querySelectorAll('#version_selector > div > input:nth-child(1)')))
+    if (element instanceof HTMLInputElement && wantedVersions.includes(element.dataset['label'] ?? ''))
+      // if (element instanceof HTMLInputElement && Data.compareVersions(element.dataset['label'] ?? '0', '1.16.5') >= 0)
+      element.click()
+  document.querySelector('#dependency_selector > div:nth-child(1) > svg')?.dispatchEvent(new Event('click'))
 })()

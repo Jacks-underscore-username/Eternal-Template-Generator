@@ -564,6 +564,8 @@ stonecutter {
     constants.put("neoforge", env.isNeo)
 
     constants.put("dev_mode", isInDevMode)
+
+    filters.include("**/*.accesswidener")
 }
 
 loom {
@@ -660,6 +662,7 @@ dependencies {
 
 java {
     withSourcesJar()
+    withJavadocJar()
     val java =
         when (env.javaVersion) {
             8 -> JavaVersion.VERSION_1_8
@@ -670,6 +673,10 @@ java {
         }
     targetCompatibility = java
     sourceCompatibility = java
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(env.javaVersion)
+        vendor = JvmVendorSpec.AZUL
+    }
 }
 
 /**

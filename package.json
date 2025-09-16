@@ -4,11 +4,10 @@
   "devDependencies": {
     "@types/bun": "latest"
   },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
+  "peerDependencies": {},
   "dependencies": {
     "fast-xml-parser": "^5.2.5",
-    "node-html-parser": "^7.0.1"
+    "node-html-parser": "^7.0.1",
+    "typescript": "^5.9.2"
   }
 }
