@@ -31,7 +31,7 @@ const { execSync } = require('node:child_process')
     'utf8'
   )
   execSync(
-    `${path.join(__dirname, 'node_modules', 'typescript', 'bin', 'tsc')} --module esnext --skipLibCheck ${scriptPathTs}`
+    `${path.join(__dirname, 'node_modules', 'typescript', 'bin', 'tsc')} --module ESNext --target ESNext --skipLibCheck ${scriptPathTs}`
   )
   fs.rmSync(scriptPathTs)
   if (!fs.existsSync(path.dirname(outScriptPathJs))) fs.mkdirSync(path.dirname(outScriptPathJs))
