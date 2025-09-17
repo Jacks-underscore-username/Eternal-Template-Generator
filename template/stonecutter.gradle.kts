@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.HashMap
 import javax.inject.Inject
 
 plugins {
@@ -151,5 +152,43 @@ if (lastRunTaskName != null) {
         group = "eternal"
         description = "Runs all Minecraft clients for all Stonecutter versions sequentially."
         dependsOn(tasks.named(lastRunTaskName!!))
+    }
+}
+
+val sortedStonecutterVersions = stonecutter.versions.map { version -> version.project }.sorted()
+val checkReflectionGetInputsTask = tasks.register("checkReflection-getInputs") {
+    group = "eternal-impl"
+    val subTasks = sortedStonecutterVersions.map { version -> tasks.getByPath(":${version}:checkReflection $version") }
+    doLast {
+        println("Please enter the reflection input (e.g., 'FIND STATIC_METHOD net.minecraft.text.Text net.minecraft.text.Text String'):")
+        val userInput: String = System.`in`.bufferedReader().readLine().trim()
+
+        tasks.getByName("checkReflection").extra.set("input", userInput)
+
+        for (task in subTasks)
+            task.extra.set("input", userInput)
+    }
+}
+
+tasks.register("checkReflection") {
+    group = "eternal"
+    description = "Checks for existence of classes, fields, and methods."
+    val tasks = sortedStonecutterVersions.map { version -> tasks.getByPath(":${version}:checkReflection $version") }
+    for (task in tasks)
+        task.dependsOn(checkReflectionGetInputsTask)
+    dependsOn(checkReflectionGetInputsTask)
+    dependsOn(tasks)
+    doLast {
+        val results = tasks.map { task -> task.extra.get("output").toString() }
+        val uniqueResults = HashMap<String, ArrayList<String>>()
+        for ((index, result) in results.withIndex()) {
+            val version = sortedStonecutterVersions[index]
+            uniqueResults[result]?.add(version)
+            if (!uniqueResults.contains(result))
+                uniqueResults[result] = arrayListOf(version)
+        }
+        println("Results for '${this.extra.get("input")}'")
+        for (entry in uniqueResults)
+            println(entry.value.joinToString(", ") + ":\n" + entry.key)
     }
 }

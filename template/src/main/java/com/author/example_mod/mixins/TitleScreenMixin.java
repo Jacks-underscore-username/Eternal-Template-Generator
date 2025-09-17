@@ -1,6 +1,6 @@
 package com.author.example_mod.mixins;
 
-import com.author.example_mod.Compat;
+import com.author.example_mod.eternal.Utils;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,12 +20,12 @@ public class TitleScreenMixin {
         baseString = baseString.replace("%LOADER%",loader);
         baseString = baseString.replace("%VERSION%",version);
 
-        Compat.LOGGER.info(baseString);
+        Utils.LOGGER.info(baseString);
 
         TitleScreen titleScreen = (TitleScreen) (Object) this;
 
         if (titleScreen.client != null) {
-            Compat.LOGGER.info("Manually exiting");
+            Utils.LOGGER.info("Manually exiting");
             titleScreen.client.scheduleStop();
         }
     }

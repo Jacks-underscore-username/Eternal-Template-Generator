@@ -1,3 +1,4 @@
+import java.io.ByteArrayOutputStream
 import java.util.*
 import java.util.Optional
 import java.util.function.BiConsumer
@@ -5,6 +6,7 @@ import java.util.function.Consumer
 import java.util.function.Predicate
 
 plugins {
+    `java-library`
     `maven-publish`
     kotlin("jvm") version "2.2.0"
     id("dev.architectury.loom") version "1.11-SNAPSHOT"
@@ -662,7 +664,6 @@ dependencies {
 
 java {
     withSourcesJar()
-    withJavadocJar()
     val java =
         when (env.javaVersion) {
             8 -> JavaVersion.VERSION_1_8
@@ -778,6 +779,34 @@ tasks.clean {
 
 tasks.build {
     finalizedBy(tasks.getByName("moveJars"))
+}
+
+val checkReflectionTask = tasks.register<JavaExec>("checkReflection ${stonecutter.current.project}") {
+    group = "eternal-impl"
+    description = "Checks for existence of classes, fields, and methods in this version's compiled code."
+
+    val rootBuildDir = rootProject.layout.buildDirectory.get()
+    val buildSrcClassesDir = rootBuildDir.dir("classes/kotlin/main")
+    classpath += files(buildSrcClassesDir)
+    val buildSrcResourcesDir = rootBuildDir.dir("resources/main")
+    classpath += files(buildSrcResourcesDir)
+    classpath += sourceSets.main.get().runtimeClasspath
+
+    mainClass.set("com.author.example_mod.eternal.ReflectionHelper")
+
+    val outputStream = ByteArrayOutputStream()
+
+    doFirst {
+        args = listOf(this.extra.get("input") as String)
+
+        outputStream.reset()
+        standardOutput = outputStream
+    }
+
+    doLast {
+        val capturedOutput = outputStream.toString()
+        this.extra.set("output", capturedOutput)
+    }
 }
 
 // TODO: Enable auto-publishing.
