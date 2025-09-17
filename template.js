@@ -243,7 +243,7 @@ export default async config => {
       `    DepType.${dependency.javaDepType},`,
       `    APIModInfo("${dependency.slug}", null, "${dependency.slug}"),`,
       dependency.id === Data.fabricApiId
-        ? `    "net.fabricmc.fabric-api:fabric-api:${dependency.slug}",`
+        ? `    "net.fabricmc.fabric-api:fabric-api",`
         : `    "maven.modrinth:${dependency.slug}",`,
       `    optionalVersionProperty("deps.mods.${dependency.slug}"),`,
       ') { src ->',
