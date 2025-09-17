@@ -184,16 +184,25 @@ const htmlParser = require('node-html-parser')
       }
     }
 
+  const hardcodedForgePath = path.join(__dirname, 'forgeVersions.json')
+  if (process.argv.includes('forge'))
+    fs.writeFileSync(hardcodedForgePath, JSON.stringify(await forgeVersions, undefined, 2))
+
+  /** @type {Awaited<typeof forgeVersions>} */
+  const forge = (await forgeVersions).length
+    ? await forgeVersions
+    : JSON.parse(fs.readFileSync(hardcodedForgePath, 'utf8'))
+
   /** @type {Set<string>} */
   const mcVersions = new Set()
 
-  for (const version of [...(await fabricVersions), ...(await forgeVersions), ...(await neoforgeVersions)])
+  for (const version of [...(await fabricVersions), ...(await forge), ...(await neoforgeVersions)])
     mcVersions.add(version.mcVersion)
 
   const result = {
     mcVersions: [...mcVersions].sort(compareVersions),
     fabric: (await fabricVersions).sort((a, b) => compareVersions(a.mcVersion, b.mcVersion)),
-    forge: (await forgeVersions).sort((a, b) => compareVersions(a.mcVersion, b.mcVersion)),
+    forge: forge.sort((a, b) => compareVersions(a.mcVersion, b.mcVersion)),
     neoforge: (await neoforgeVersions).sort((a, b) => compareVersions(a.mcVersion, b.mcVersion))
   }
 

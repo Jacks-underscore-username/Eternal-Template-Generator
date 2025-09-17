@@ -1,0 +1,202 @@
+[
+  {
+    "mcVersion": "1.20.4",
+    "forgeVersion": "1.20.4-49.2.0"
+  },
+  {
+    "mcVersion": "1.20.2",
+    "forgeVersion": "1.20.2-48.1.0"
+  },
+  {
+    "mcVersion": "1.20.1",
+    "forgeVersion": "1.20.1-47.4.0"
+  },
+  {
+    "mcVersion": "1.20",
+    "forgeVersion": "1.20-46.0.14"
+  },
+  {
+    "mcVersion": "1.19.4",
+    "forgeVersion": "1.19.4-45.4.0"
+  },
+  {
+    "mcVersion": "1.19.3",
+    "forgeVersion": "1.19.3-44.1.0"
+  },
+  {
+    "mcVersion": "1.19.2",
+    "forgeVersion": "1.19.2-43.5.0"
+  },
+  {
+    "mcVersion": "1.19.1",
+    "forgeVersion": "1.19.1-42.0.9"
+  },
+  {
+    "mcVersion": "1.19",
+    "forgeVersion": "1.19-41.1.0"
+  },
+  {
+    "mcVersion": "1.18.2",
+    "forgeVersion": "1.18.2-40.3.0"
+  },
+  {
+    "mcVersion": "1.18.1",
+    "forgeVersion": "1.18.1-39.1.0"
+  },
+  {
+    "mcVersion": "1.18",
+    "forgeVersion": "1.18-38.0.17"
+  },
+  {
+    "mcVersion": "1.17.1",
+    "forgeVersion": "1.17.1-37.1.1"
+  },
+  {
+    "mcVersion": "1.16.5",
+    "forgeVersion": "1.16.5-36.2.34"
+  },
+  {
+    "mcVersion": "1.13.2",
+    "forgeVersion": "1.13.2-25.0.223"
+  },
+  {
+    "mcVersion": "1.12.2",
+    "forgeVersion": "1.12.2-14.23.5.2859"
+  },
+  {
+    "mcVersion": "1.12.1",
+    "forgeVersion": "1.12.1-14.22.1.2478"
+  },
+  {
+    "mcVersion": "1.12",
+    "forgeVersion": "1.12-14.21.1.2387"
+  },
+  {
+    "mcVersion": "1.11.2",
+    "forgeVersion": "1.11.2-13.20.1.2588"
+  },
+  {
+    "mcVersion": "1.11",
+    "forgeVersion": "1.11-13.19.1.2189"
+  },
+  {
+    "mcVersion": "1.10.2",
+    "forgeVersion": "1.10.2-12.18.3.2511"
+  },
+  {
+    "mcVersion": "1.10",
+    "forgeVersion": "1.10-12.18.0.2000"
+  },
+  {
+    "mcVersion": "1.9.4",
+    "forgeVersion": "1.9.4-12.17.0.2317"
+  },
+  {
+    "mcVersion": "1.9",
+    "forgeVersion": "1.9-12.16.1.1887"
+  },
+  {
+    "mcVersion": "1.8.9",
+    "forgeVersion": "1.8.9-11.15.1.2318"
+  },
+  {
+    "mcVersion": "1.8.8",
+    "forgeVersion": "1.8.8-11.15.0.1655"
+  },
+  {
+    "mcVersion": "1.8",
+    "forgeVersion": "1.8-11.14.4.1563"
+  },
+  {
+    "mcVersion": "1.7.10",
+    "forgeVersion": "1.7.10-10.13.4.1614"
+  },
+  {
+    "mcVersion": "1.7.10_pre4",
+    "forgeVersion": "1.7.10_pre4-10.12.2.1149"
+  },
+  {
+    "mcVersion": "1.7.2",
+    "forgeVersion": "1.7.2-10.12.2.1161"
+  },
+  {
+    "mcVersion": "1.6.4",
+    "forgeVersion": "1.6.4-9.11.1.1345"
+  },
+  {
+    "mcVersion": "1.6.3",
+    "forgeVersion": "1.6.3-9.11.0.878"
+  },
+  {
+    "mcVersion": "1.6.2",
+    "forgeVersion": "1.6.2-9.10.1.871"
+  },
+  {
+    "mcVersion": "1.6.1",
+    "forgeVersion": "1.6.1-8.9.0.775"
+  },
+  {
+    "mcVersion": "1.5.2",
+    "forgeVersion": "1.5.2-7.8.1.738"
+  },
+  {
+    "mcVersion": "1.5.1",
+    "forgeVersion": "1.5.1-7.7.2.682"
+  },
+  {
+    "mcVersion": "1.5",
+    "forgeVersion": "1.5-7.7.0.598"
+  },
+  {
+    "mcVersion": "1.4.7",
+    "forgeVersion": "1.4.7-6.6.2.534"
+  },
+  {
+    "mcVersion": "1.4.6",
+    "forgeVersion": "1.4.6-6.5.0.489"
+  },
+  {
+    "mcVersion": "1.4.5",
+    "forgeVersion": "1.4.5-6.4.2.448"
+  },
+  {
+    "mcVersion": "1.4.4",
+    "forgeVersion": "1.4.4-6.3.0.378"
+  },
+  {
+    "mcVersion": "1.4.3",
+    "forgeVersion": "1.4.3-6.2.1.358"
+  },
+  {
+    "mcVersion": "1.4.2",
+    "forgeVersion": "1.4.2-6.0.1.355"
+  },
+  {
+    "mcVersion": "1.4.1",
+    "forgeVersion": "1.4.1-6.0.0.329"
+  },
+  {
+    "mcVersion": "1.4.0",
+    "forgeVersion": "1.4.0-5.0.0.326"
+  },
+  {
+    "mcVersion": "1.3.2",
+    "forgeVersion": "1.3.2-4.3.5.318"
+  },
+  {
+    "mcVersion": "1.2.5",
+    "forgeVersion": "1.2.5-3.4.9.171"
+  },
+  {
+    "mcVersion": "1.2.4",
+    "forgeVersion": "1.2.4-2.0.0.68"
+  },
+  {
+    "mcVersion": "1.2.3",
+    "forgeVersion": "1.2.3-1.4.1.64"
+  },
+  {
+    "mcVersion": "1.1",
+    "forgeVersion": "1.1-1.3.4.29"
+  }
+]

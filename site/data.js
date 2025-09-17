@@ -158,6 +158,7 @@ const fabricApiVersions = new Promise(async resolve => {
     threadCount++
     const mc = queue.pop()
     if (mc === undefined) return
+    // @ts-expect-error
     results[mc] = await FabricNetApi.getApiVersionForMinecraft(mc)
     threadCount--
     if (queue.length) tickQueue()
