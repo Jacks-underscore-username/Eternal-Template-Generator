@@ -1,6 +1,6 @@
 package com.author.example_mod.client;
 
-import com.author.example_mod.Compat;
+import com.author.example_mod.eternal.Utils;
 //? if neoforge {
 /*import net.neoforged.fml.ModContainer;
 import net.neoforged.bus.api.IEventBus;
@@ -22,6 +22,6 @@ public class ExampleModClient {
     *///?} else if forge {
     /*public static void init(FMLClientSetupEvent event, IEventBus eventBus, FMLJavaModLoadingContext context) {
     *///?}
-        Compat.LOGGER.info("Hello from the client side!");
+        Utils.LOGGER.info("Hello from the client side!");
     }
 }
