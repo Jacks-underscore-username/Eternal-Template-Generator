@@ -4,6 +4,12 @@
  * @typedef {string & { S: S, N: N }} UniqueString<S,N>
  */
 /**
+ * @template {UniqueString<*, *>} U
+ * @template {string} T
+ * @typedef {UniqueString<U extends UniqueString<infer S, *> ? S : never, `${U extends UniqueString<*, infer N> ? N : never}${T}`>} ChainedUniqueString<U,T>
+ */
+
+/**
  * @typedef {UniqueString<string, 'Mc'>} Mc
  * @typedef {UniqueString<'fabric' | 'forge' | 'neoforge', 'Loader'>} Loader
  * @typedef {UniqueString<string, 'Name'>} Name
@@ -11,6 +17,7 @@
  * @typedef {UniqueString<string, 'Slug'>} Slug
  * @typedef {UniqueString<'API' | 'API_OPTIONAL' | 'IMPL' | 'FRL' | 'INCLUDE', 'JavaDepType'>} JavaDepType
  * @typedef {UniqueString<'yarn' | 'parchment' | 'mojmaps', 'Mapper'>} Mapper
+ * @typedef {UniqueString<keyof DependencyTypes, 'DependencyType'>} DependencyType
  */
 
 export const UNIQUE_STRING_TYPES = {
@@ -20,7 +27,8 @@ export const UNIQUE_STRING_TYPES = {
   Id: /** @type {Id} */ (''),
   Slug: /** @type {Slug} */ (''),
   JavaDepType: /** @type {JavaDepType} */ (''),
-  Mapper: /** @type {Mapper} */ ('')
+  Mapper: /** @type {Mapper} */ (''),
+  DependencyType: /** @type {DependencyType} */ ('')
 }
 
 /**
@@ -32,7 +40,7 @@ export const UNIQUE_STRING_TYPES = {
 export const asUniqueStr = (str, type) => str
 
 /**
- * @template {ValueOf<typeof UNIQUE_STRING_TYPES>} T
+ * @template {UniqueString<*, *>} T
  * @param {T} str
  * @returns {T extends UniqueString<infer S, string> ? S : never}
  */ // @ts-expect-error
@@ -50,7 +58,7 @@ export const loaders = ['fabric', 'forge', 'neoforge'].map(loader => asUniqueStr
 export const loader_fabric = asUniqueStr('fabric', UNIQUE_STRING_TYPES.Loader)
 export const loader_forge = asUniqueStr('forge', UNIQUE_STRING_TYPES.Loader)
 export const loader_neoforge = asUniqueStr('neoforge', UNIQUE_STRING_TYPES.Loader)
-export const javaDepTypes = ['API', 'API_OPTIONAL', 'IMPL', 'FRL', 'INCLUDE'].map(type =>
+export const javaDependencyTypes = ['API', 'API_OPTIONAL', 'IMPL', 'FRL', 'INCLUDE'].map(type =>
   // @ts-expect-error
   asUniqueStr(type, UNIQUE_STRING_TYPES.JavaDepType)
 )
@@ -153,6 +161,37 @@ export class VersionMap {
  * @prop {{ project_id: Id, version_id: string, dependency_type: 'required' | 'optional' | 'incompatible' | 'embedded' }[]} dependencies
  */
 
+/** @typedef {{ 'Modrinth': 0, 'FabricApi': 1 }} DependencyTypesStrings */
+/** @typedef {{ [key in keyof DependencyTypesStrings as string & UniqueString<string, 'key'>]: UniqueString<key,`DependencyType${key}`> }[UniqueString<string, 'key'>]} DependencyTypes */
+/**
+ * @template {keyof DependencyTypes} T
+ * @typedef {Object} DependencyResolver<T>
+ * @prop {UniqueString<string, `${T extends UniqueString<infer S, *> ? S : never}Maven`>} maven
+ */
+
+/** @type {keyof DependencyTypes} */
+const a = 'modrinth'
+/** @type {DependencyResolver<typeof a>} */
+const b = { maven: '' }
+
+/**
+ * @template {keyof DependencyTypes} T
+ * @typedef {Object} GenericDependency<T>
+ * @prop {string} title
+ * @prop {string} id
+ * @prop {Promise<string>} icon_url
+ * @prop {string} maven
+ * @prop {(mcVersions: Mc[], loaders: Loader[]) => Promise<VersionMap<GenericDependencyVersion>>} getVersions
+ *
+ */
+/**
+ * @typedef {Object} GenericDependencyVersion
+ * @prop {string} title
+ * @prop {string} id
+ * @prop {string} maven
+ * @prop {string} version_number
+ */
+
 /**
  * @typedef {{ [key: string]: (string | StringifiedFolder) }} StringifiedFolder
  */
@@ -180,6 +219,7 @@ export class VersionMap {
  */
 /**
  * @typedef {Object} DependencyInfo
+ * @prop {DependencyType} type
  * @prop {Name} name
  * @prop {Id} id
  * @prop {Slug} slug
@@ -209,3 +249,68 @@ export class VersionMap {
  * @prop {boolean} onlyRelease
  * @prop {boolean} onlySelected
  */
+
+// /** @typedef {{ A: 0, B: 0, C: 0 }} A */
+// /**
+//  * @template {Object} T
+//  * @typedef {Object} B
+//  * @prop {{ [key in keyof T as string & {_:'key'}]: key }[string & {_:'key'}]} any
+//  */
+// /** @typedef {B<A>} C */
+
+// /** @typedef {`${C['any']}*${C['any']}`} D */
+
+// /**
+//  * @template {string} T
+//  * @typedef {`${T}${T}${T}`} Permutations<T>
+//  */
+
+// /** @type {Permutations<'A' | 'B' | 'C'>} */
+// let t
+
+/**
+ * Typescript church encoded numbers.
+ * @typedef {false | {apply: false | CNum}} CNum
+ */
+
+/**
+ * Positive CNum (used often in recursion).
+ * @typedef {{ apply: CNum }} PCNum
+ */
+
+/**
+ * @typedef {false} CN0
+ * @typedef {{ apply: false }} CN1
+ * @typedef {{ apply: { apply: false } }} CN2
+ * @typedef {{ apply: { apply: { apply: false } } }} CN3
+ * @typedef {{ apply: { apply: { apply: { apply: false } } } }} CN4
+ * @typedef {{ apply: { apply: { apply: { apply: { apply: false }} } } }} CN5
+ */
+
+/**
+ * @template {CNum} a
+ * @template {CNum} b
+ * @typedef {a extends PCNum ? CAdd<a['apply'],{ apply: b}> : b} CAdd<a,b>
+ */
+
+/**
+ * @template {CNum} a
+ * @template {CNum} b
+ * @typedef {_CMult<a,b,a,CN0>} CMult<a,b>
+ */
+
+/**
+ * @template {CNum} a
+ * @template {CNum} b
+ * @template {CNum} remaining
+ * @template {CNum} result
+ * @typedef {remaining extends PCNum ? _CMult<a,b,remaining['apply'],CAdd<b,result>> : result} _CMult
+ */
+
+/**
+ * @template {string} str
+ * @template {CNum} count
+ * @typedef {count extends PCNum ? count['apply'] extends { apply: CNum} ? `${str}${RepeatString<str, count['apply']>}` : str : ""} RepeatString<str,count>
+ */
+
+/** @typedef {RepeatString<'X',CMult<CN5,CN5>>} result */ // -> 'X' repeated 25 times
