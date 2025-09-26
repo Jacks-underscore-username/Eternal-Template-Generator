@@ -15,18 +15,14 @@ plugins {
 
 repositories {
     mavenCentral()
-    exclusiveContent {
-        forRepository { maven("https://www.cursemaven.com") { name = "CurseForge" } }
-        filter { includeGroup("curse.maven") }
-    }
-    exclusiveContent {
-        forRepository { maven("https://api.modrinth.com/maven") { name = "Modrinth" } }
-        filter { includeGroup("maven.modrinth") }
-    }
+    maven("https://www.cursemaven.com")
     maven("https://maven.neoforged.net/releases/")
     maven("https://maven.architectury.dev/")
     maven("https://modmaven.dev/")
     maven("https://panel.ryuutech.com/nexus/repository/maven-releases/")
+    // $start mavens
+    // $end mavens
+
 }
 
 fun bool(str: String): Boolean = str.lowercase().startsWith("t")
@@ -250,12 +246,10 @@ class APIModInfo(
 class APISource(
     private val realType: DepType,
     val modInfo: APIModInfo,
-    val mavenLocation: String,
     val versionRange: Optional<VersionRange>,
-    private val enableCondition: Predicate<APISource>,
+    val mavenLocation: Optional<String>
 ) {
     val type = if (isInDevMode) { DepType.INCLUDE } else { this.realType }
-    val enabled = this.enableCondition.test(this)
 }
 
 val apis =
@@ -356,7 +350,7 @@ class ModDependencies {
 
     fun forEachOptional(cons: BiConsumer<String, VersionRange>) {
         apis.forEach { src ->
-            if (src.enabled && src.type.isOptional() &&
+            if (src.mavenLocation.isPresent() && src.type.isOptional() &&
                 src.type.includeInDepsList()
             ) {
                 src.versionRange.ifPresent { ver ->
@@ -380,7 +374,7 @@ class ModDependencies {
             cons.accept("fabric", env.fabricLoaderVersion)
         }
         apis.forEach { src ->
-            if (src.enabled && !src.type.isOptional() &&
+            if (src.mavenLocation.isPresent() && !src.type.isOptional() &&
                 src.type.includeInDepsList()
             ) {
                 src.versionRange.ifPresent { ver ->
@@ -509,7 +503,7 @@ dependencies.forEachAfter { mid, ver ->
 }
 apis.forEach { src ->
     src.modInfo.modid?.let {
-        stonecutter.constants.put(it, src.enabled)
+        stonecutter.constants.put(it, src.mavenLocation.isPresent())
         src.versionRange.ifPresent { ver ->
             stonecutter.dependencies[it] = ver.min
         }
@@ -640,21 +634,19 @@ dependencies {
     }
 
     apis.forEach { src ->
-        if (src.enabled) {
-            src.versionRange.ifPresent { ver ->
-                if (src.type == DepType.API || src.type == DepType.API_OPTIONAL) {
-                    modApi("${src.mavenLocation}:${ver.min}")
-                }
-                if (src.type == DepType.IMPL) {
-                    modImplementation("${src.mavenLocation}:${ver.min}")
-                }
-                if (src.type == DepType.FRL && env.isForge) {
-                    "forgeRuntimeLibrary"("${src.mavenLocation}:${ver.min}")
-                }
-                if (src.type == DepType.INCLUDE) {
-                    modImplementation("${src.mavenLocation}:${ver.min}")
-                    include("${src.mavenLocation}:${ver.min}")
-                }
+        if (src.mavenLocation.isPresent()) {
+            if (src.type == DepType.API || src.type == DepType.API_OPTIONAL) {
+                modApi(src.mavenLocation.get())
+            }
+            if (src.type == DepType.IMPL) {
+                modImplementation(src.mavenLocation.get())
+            }
+            if (src.type == DepType.FRL && env.isForge) {
+                "forgeRuntimeLibrary"(src.mavenLocation.get())
+            }
+            if (src.type == DepType.INCLUDE) {
+                modImplementation(src.mavenLocation.get())
+                include(src.mavenLocation.get())
             }
         }
     }

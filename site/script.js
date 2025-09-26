@@ -1,8 +1,8 @@
 /**
- * @import {Mc, Loader, Id, JavaDepType, Mapper, DependencyInfo, ModrinthProject, VersionConstraints } from './types.d.js'
+ * @import {Mc, Loader, MId, JavaDepType, Mapper, DependencyInfo, DependencySource, ModrinthProject, VersionConstraints } from './types.d.js'
  */
 
-import { asUniqueStr, UNIQUE_STRING_TYPES, loaders, javaDepTypes } from './types.d.js'
+import { asStr, asUniqueStr, loaders, javaDependencySources } from './types.d.js'
 
 import * as Data from './data.js'
 import Template from './template.js'
@@ -83,9 +83,9 @@ import Template from './template.js'
   }
 
   /** @type {Mapper} */
-  let selectedMapping = asUniqueStr('yarn', UNIQUE_STRING_TYPES.Mapper)
+  let selectedMapping = asUniqueStr('yarn', 'Mapper')
 
-  /** @type {DependencyInfo[]} */
+  /** @type {DependencyInfo<DependencySource>[]} */
   const manualDependencies = []
 
   const icons = [oledThemeIcon, darkThemeIcon, lightThemeIcon]
@@ -239,7 +239,7 @@ import Template from './template.js'
   }
 
   /**
-   * @param {Id} id
+   * @param {MId} id
    * @param {boolean} required
    * @param {JavaDepType} javaDepType
    * @param {boolean} locked
@@ -250,14 +250,16 @@ import Template from './template.js'
     /** @type {ModrinthProject | undefined} */
     const response = await Data.getModrinthProjectById(id)
     if (response === undefined) return
-    /** @type {DependencyInfo} */
+    /** @type {DependencyInfo<DependencySource>} */
     const entry = {
+      type: Data.specialIds[id] ?? asUniqueStr('Modrinth', 'DependencySource'),
       id,
       name: response.title,
       slug: response.slug,
       required,
       validLoaders: response.loaders,
-      javaDepType
+      javaDepType,
+      mavenSource: Data.mavenSources[asStr(Data.specialIds[id] ?? asUniqueStr('Modrinth', 'DependencySource'))]
     }
     manualDependencies.push(entry)
     const wrapper = document.createElement('div')
@@ -281,16 +283,16 @@ import Template from './template.js'
     requiredToggle.checked = required
     wrapper.appendChild(requiredToggle)
     requiredToggle.addEventListener('change', () => (entry.required = requiredToggle.checked))
-    let javaDepTypeIndex = javaDepTypes.indexOf(javaDepType)
+    let javaDepTypeIndex = javaDependencySources.indexOf(javaDepType)
     const javaDepTypeToggle = document.createElement('button')
     if (locked) javaDepTypeToggle.disabled = true
-    javaDepTypeToggle.dataset['label'] = javaDepTypes[javaDepTypeIndex] ?? ''
+    javaDepTypeToggle.dataset['label'] = javaDependencySources[javaDepTypeIndex] ?? ''
     javaDepTypeToggle.dataset['width'] = `${15}`
     javaDepTypeToggle.style.gridArea = 'java'
     wrapper.appendChild(javaDepTypeToggle)
     javaDepTypeToggle.addEventListener('click', () => {
-      javaDepTypeIndex = (javaDepTypeIndex + 1) % javaDepTypes.length
-      const type = javaDepTypes[javaDepTypeIndex] ?? asUniqueStr('IMPL', UNIQUE_STRING_TYPES.JavaDepType)
+      javaDepTypeIndex = (javaDepTypeIndex + 1) % javaDependencySources.length
+      const type = javaDependencySources[javaDepTypeIndex] ?? asUniqueStr('IMPL', 'JavaDepType')
       javaDepTypeToggle.dataset['label'] = type
       entry.javaDepType = type
     })
@@ -304,19 +306,21 @@ import Template from './template.js'
         wrapper.remove()
         manualDependencies.splice(manualDependencies.findIndex(dependency => dependency.id === id))
       })
+    const specialSpan = document.createElement('span')
+    specialSpan.style.gridArea = 'special'
+    specialSpan.classList.add('special')
+    specialSpan.classList.add('s-xs')
+    if (Data.specialIds[id] !== undefined) specialSpan.textContent = Data.mavenSources[asStr(Data.specialIds[id])]
+    wrapper.appendChild(specialSpan)
 
     dependencySelector.insertBefore(wrapper, dependencySelector.firstChild ?? dependencySelector)
   }
 
   addDependencyButton.addEventListener('click', () =>
-    addManualDependency(
-      asUniqueStr(addDependencyId.value, UNIQUE_STRING_TYPES.Id),
-      false,
-      asUniqueStr('IMPL', UNIQUE_STRING_TYPES.JavaDepType)
-    )
+    addManualDependency(asUniqueStr(addDependencyId.value, 'MId'), false, asUniqueStr('IMPL', 'JavaDepType'))
   )
 
-  addManualDependency(Data.fabricApiId, true, asUniqueStr('IMPL', UNIQUE_STRING_TYPES.JavaDepType), true)
+  addManualDependency(Data.fabricApiId, true, asUniqueStr('IMPL', 'JavaDepType'), true)
 
   let isDownloading = false
   downloadButton.addEventListener('click', async () => {

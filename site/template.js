@@ -1,8 +1,8 @@
 /**
- * @import {Mc, Loader, Mapper, Folder, DependencyInfo, StringifiedFolder } from './types.d.js'
+ * @import {Mc, Loader, Mapper, Folder, DependencyInfo, DependencySource, StringifiedFolder } from './types.d.js'
  */
 
-import { asStr, ObjectEntries, loaders } from './types.d.js'
+import { asStr, loaders } from './types.d.js'
 
 // import { wrapPromise, wrappedPromises, unwrapPromise } from './data.js'
 import * as Data from './data.js'
@@ -47,7 +47,7 @@ const downloadFolder = async (folder, fileName) => {
  * @param {Object} config
  * @param {{ mc: Mc, loader: Loader }[]} config.selectedVersions
  * @param {(status: string) => void} config.updateStatus
- * @param {DependencyInfo[]} config.manualDependencies
+ * @param {DependencyInfo<DependencySource>[]} config.manualDependencies
  * @param {{ name: string, id: string, author: string, license: string, description: string, className: string, stonecutterVcs: string }} config.modData
  * @param {(mc: Mc, loader: Loader) => void} config.removeVersion
  * @param {Mapper} config.selectedMapping
@@ -127,8 +127,8 @@ export default async config => {
 
     let missingRequiredDependency = false
     for (const dependency of await dependencies) {
-      const version = dependency.versions.get(mc, loader)
-      if (version === undefined && dependency.required && dependency.validLoaders.includes(loader)) {
+      const entry = dependency.versions.get(mc, loader)
+      if (entry === undefined && dependency.required && dependency.validLoaders.includes(loader)) {
         if (dependency.required) {
           console.warn(`Skipping ${mc}-${loader}: Missing required dependency ${dependency.name}`)
           hadWarnings = true
@@ -137,7 +137,10 @@ export default async config => {
         }
         continue
       }
-      if (version !== undefined) lines.push(`deps.mods.${dependency.slug}=${version}`)
+      if (entry !== undefined) {
+        lines.push(`deps.mods.${dependency.slug}.version=${entry.version}`)
+        lines.push(`deps.mods.${dependency.slug}.maven=${entry.maven}`)
+      }
     }
     if (missingRequiredDependency) {
       removeVersion(mc, loader)
@@ -228,7 +231,7 @@ export default async config => {
     'stonecutter-mapper': `val mapper = "${selectedMapping}"`,
     'pure-id': `private val id: String = "${modData.id}"`,
     'stonecutter-active': `stonecutter active "${modData.stonecutterVcs}"`,
-    'stonecutter-versions': ObjectEntries(usedVersions).map(
+    'stonecutter-versions': Object.entries(usedVersions).map(
       ([version, loaders]) => `ver(${[version, ...loaders].map(i => `"${i}"`).join(', ')})`
     ),
     'stonecutter-vcs': `vcsVersion = "${modData.stonecutterVcs}"`,
@@ -238,17 +241,16 @@ export default async config => {
     'config-license': `mod.license = ${modData.license}`,
     'config-description': `mod.description = ${modData.description}`,
     'config-author': `mod.authors = ${modData.author}`,
+    mavens: Array.from(new Set((await dependencies).flatMap(dependency => `maven("${dependency.mavenSource}")`))).join(
+      '\n'
+    ),
     dependencies: (await dependencies).flatMap(dependency => [
       'APISource(',
       `    DepType.${dependency.javaDepType},`,
       `    APIModInfo("${dependency.slug}", null, "${dependency.slug}"),`,
-      dependency.id === Data.fabricApiId
-        ? `    "net.fabricmc.fabric-api:fabric-api",`
-        : `    "maven.modrinth:${dependency.slug}",`,
-      `    optionalVersionProperty("deps.mods.${dependency.slug}"),`,
-      ') { src ->',
-      '    src.versionRange.isPresent',
-      '},'
+      `    optionalVersionProperty("deps.mods.${dependency.slug}.version"),`,
+      `    optionalStrProperty("deps.mods.${dependency.slug}.maven")`,
+      ')'
     ]),
     'config-fabric-range': `deps.core.fabric.loader.version_range=${Data.fabricVersions.reduce((prev, version) => (prev === undefined ? version.fabricVersion : Data.compareVersions(version.fabricVersion, prev) === 1 ? prev : version.fabricVersion), Data.fabricVersions[0]?.fabricVersion)} UNSET`
   }
@@ -261,7 +263,7 @@ export default async config => {
     'mappings-mojmaps': selectedMapping === 'mojmaps'
   }
 
-  for (const [from, to] of ObjectEntries(replacements)) templateStr = templateStr.replaceAll(from, to)
+  for (const [from, to] of Object.entries(replacements)) templateStr = templateStr.replaceAll(from, to)
 
   /** @type {StringifiedFolder} */
   const template = JSON.parse(templateStr)
@@ -328,7 +330,7 @@ export default async config => {
    * @param {string} [path]
    */
   const templateFolder = (folder, path = '') => {
-    for (const [name, item] of ObjectEntries(folder)) {
+    for (const [name, item] of Object.entries(folder)) {
       const itemPath = path.length ? `${path}/${name}` : name
       if (typeof item === 'string') {
         const result = templateFile(item, itemPath)
@@ -345,7 +347,7 @@ export default async config => {
    * @param {Folder} realFolder
    */
   const addDir = (jsonFolder, realFolder) => {
-    for (const [name, item] of ObjectEntries(jsonFolder))
+    for (const [name, item] of Object.entries(jsonFolder))
       if (typeof item === 'string') realFolder.createFile(name, item)
       else addDir(item, realFolder.createFolder(name))
   }
