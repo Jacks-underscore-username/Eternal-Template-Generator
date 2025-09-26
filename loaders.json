@@ -266,6 +266,7 @@
     "1.21.9-pre2",
     "1.21.9-pre3",
     "1.21.9-pre4",
+    "1.21.9-rc1",
     "3D Shareware v1.34",
     "18w43b",
     "18w43c",
@@ -1390,6 +1391,10 @@
     },
     {
       "mcVersion": "1.21.9-pre4",
+      "fabricVersion": "0.17.2"
+    },
+    {
+      "mcVersion": "1.21.9-rc1",
       "fabricVersion": "0.17.2"
     },
     {
