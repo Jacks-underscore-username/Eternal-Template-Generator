@@ -1,8 +1,8 @@
 /**
- * @import { Mc, Loader, Id, Mapper, Yarn, DependencyInfo, ModrinthProject, ModrinthError, ModrinthProjectVersion, VersionConstraints, ExtraFiles } from './types.d.js'
+ * @import { Mc, Loader, MId, Mapper, Yarn, MavenSource, DependencySource, DependencySources, GenericDependencyVersion, UniqueString, DependencyInfo, DependencyResolver, ModrinthProject, ModrinthError, ModrinthProjectVersion, VersionConstraints, ExtraFiles } from './types.d.js'
  */
 
-import { VersionMap, asUniqueStr, UNIQUE_STRING_TYPES, ObjectEntries, asStr, loader_fabric } from './types.d.js'
+import { VersionMap, asUniqueStr, asStr, loader_fabric } from './types.d.js'
 
 import * as FabricNetApi from './libs/fabric.net/Api.js'
 
@@ -11,7 +11,12 @@ const CACHE_LENGTH = 60 * 60 * 60 * 1000
 const fabricMetaUrl = 'https://meta.fabricmc.net/v2/'
 const modrinthUrl = 'https://api.modrinth.com/v2/'
 
-export const fabricApiId = asUniqueStr('P7dR8mSH', UNIQUE_STRING_TYPES.Id)
+/** @type {{ [id: MId]: DependencySource }} */
+export const specialIds = {
+  [asUniqueStr('P7dR8mSH', 'MId')]: asUniqueStr('FabricApi', 'DependencySource')
+}
+
+export const fabricApiId = asUniqueStr('P7dR8mSH', 'MId')
 
 /** @type {{ mcVersions: Mc[], fabric: { mcVersion: Mc, fabricVersion: string }[], forge: { mcVersion: Mc, forgeVersion: string }[], neoforge: { mcVersion: Mc, neoforgeVersion: string }[] }} */
 export const {
@@ -24,8 +29,8 @@ export const {
 /** @type {{ [loader: Loader]: { [mc: Mc]: string } }}} */
 const rawYarnPatches = await (await fetch('./yarn-patches.json')).json()
 export const yarnPatches = VersionMap.fromEntries(
-  ObjectEntries(rawYarnPatches).flatMap(([loader, entry]) =>
-    ObjectEntries(entry).flatMap(([mc, patch]) => ({ loader, mc, value: patch }))
+  Object.entries(rawYarnPatches).flatMap(([loader, entry]) =>
+    Object.entries(entry).flatMap(([mc, patch]) => ({ loader, mc, value: patch }))
   )
 )
 
@@ -167,21 +172,76 @@ const fabricApiVersions = new Promise(async resolve => {
   for (let i = 0; i < 1; i++) tickQueue()
 })
 
+/** @type {{[key in keyof DependencySources]: DependencyResolver<UniqueString<key, 'DependencySource'>>}} */
+const dependencyResolvers = {
+  Modrinth: async (pairs, info) => {
+    const mcVersions = new Set(pairs.map(pair => pair.mc))
+    const loaders = new Set(pairs.map(pair => pair.loader))
+    /** @type {VersionMap<GenericDependencyVersion<UniqueString<"Modrinth", "DependencySource">>>} */
+    const result = new VersionMap()
+    const url = new URL(`${modrinthUrl}project/${info.id}/version`)
+    url.searchParams.set('game_versions', JSON.stringify([...mcVersions]))
+    url.searchParams.set('loaders', JSON.stringify([...loaders]))
+    /** @type {ModrinthProjectVersion[]} */
+    const options = await (await fetch(url)).json()
+    for (const option of options)
+      for (const mc of option.game_versions)
+        for (const loader of option.loaders)
+          if (pairs.some(entry => entry.mc === mc && entry.loader === loader) && result.get(mc, loader) === undefined)
+            result.set(mc, loader, {
+              type: asUniqueStr('Modrinth', 'DependencySource'),
+              mavenSource: mavenSources.Modrinth,
+              versionMaven: asUniqueStr(`maven.modrinth:${option.version_number}`, 'VersionMaven'),
+              versionNumber: option.version_number,
+              dependencies: option.dependencies.map(dependency => ({
+                type: asUniqueStr('Modrinth', 'DependencySource'),
+                ...dependency
+              })),
+              ...info
+            })
+    return result
+  },
+  FabricApi: async (pairs, info) => {
+    return VersionMap.fromEntries(
+      Object.entries(await fabricApiVersions)
+        .filter(([mc]) => pairs.some(pair => pair.mc === mc))
+        .map(([mc, version]) => ({
+          mc,
+          loader: loader_fabric,
+          value: {
+            type: asUniqueStr('FabricApi', 'DependencySource'),
+            mavenSource: mavenSources.FabricApi,
+            versionMaven: asUniqueStr(`net.fabricmc.fabric-api:fabric-api:${version}`, 'VersionMaven'),
+            versionNumber: version,
+            dependencies: [],
+            ...info
+          }
+        }))
+    )
+  }
+}
+
+/** @type {{[key in keyof DependencySources]: MavenSource}} */
+export const mavenSources = {
+  Modrinth: asUniqueStr('https://api.modrinth.com/maven', 'MavenSource'),
+  FabricApi: asUniqueStr('https://maven.fabricmc.net', 'MavenSource')
+}
+
 /**
  * @param {Mc[]} mcVersions
  * @param {Loader[]} loaders
  * @param {(message: string) => void} statusSubscriber
- * @param {DependencyInfo[]} manualDependencies
- * @returns {Promise<(DependencyInfo & { versions: VersionMap<string> })[]>}
+ * @param {DependencyInfo<DependencySource>[]} manualDependencies
+ * @returns {Promise<(DependencyInfo<DependencySource> & { versions: VersionMap<{ version: String, maven: VersionMaven }> })[]>}
  */
 export const getDependencyVersions = async (mcVersions, loaders, statusSubscriber, manualDependencies) => {
-  /** @type {(DependencyInfo & { mc: Mc, loader: Loader })[]}} */
+  /** @type {(DependencyInfo<DependencySource> & { mc: Mc, loader: Loader })[]}} */
   const unprocessed = []
 
-  /** @type {(DependencyInfo & { versions: VersionMap<ModrinthProjectVersion> })[]} */
+  /** @type {(DependencyInfo<DependencySource> & { versions: VersionMap<GenericDependencyVersion<DependencySource>> })[]} */
   const processed = []
 
-  /** @type {{ [id: Id]: DependencyInfo }} */
+  /** @type {{ [id: MId]: DependencyInfo<DependencySource> }} */
   const infoMap = {}
 
   for (const manualDependency of manualDependencies) {
@@ -197,9 +257,10 @@ export const getDependencyVersions = async (mcVersions, loaders, statusSubscribe
   }
 
   while (unprocessed.length) {
+    /** @type {DependencyInfo<DependencySource> & { mc: Mc, loader: Loader} | undefined} */
     const info = unprocessed[0]
     if (info === undefined) throw new TypeError('Uh oh')
-    /** @type {(DependencyInfo & { mc: Mc, loader: Loader })[]}} */
+    /** @type {(DependencyInfo<DependencySource> & { mc: Mc, loader: Loader })[]}} */
     const current = []
     for (let index = 0; index < unprocessed.length; index++) {
       const entry = unprocessed[index]
@@ -211,52 +272,26 @@ export const getDependencyVersions = async (mcVersions, loaders, statusSubscribe
       }
     }
 
-    /** @type {VersionMap<ModrinthProjectVersion>} */
-    const versions = new VersionMap()
-
     const mcVersions = new Set(current.map(entry => entry.mc))
     const loaders = new Set(current.map(entry => entry.loader))
-    const url = new URL(`${modrinthUrl}project/${info.id}/version`)
-    url.searchParams.set('game_versions', JSON.stringify([...mcVersions]))
-    url.searchParams.set('loaders', JSON.stringify([...loaders]))
+
     console.info(`Getting ${info.slug} for mc ${[...mcVersions].join(', ')} and loaders ${[...loaders].join(', ')}`)
     statusSubscriber(`Getting ${info.slug} versions`)
-    /** @type {ModrinthProjectVersion[]} */
-    const options =
-      info.id === fabricApiId
-        ? ObjectEntries(await fabricApiVersions).map(
-            /**
-             * @param {[Mc, string]} entry
-             * @returns {ModrinthProjectVersion}
-             */
-            ([mc, version]) => ({
-              version_number: version,
-              game_versions: [mc],
-              loaders: [loader_fabric],
-              dependencies: []
-            })
-          )
-        : await (await fetch(url)).json()
-    for (const option of options)
-      for (const mc of option.game_versions)
-        for (const loader of option.loaders)
-          if (
-            current.some(entry => entry.mc === mc && entry.loader === loader) &&
-            versions.get(mc, loader) === undefined
-          )
-            versions.set(mc, loader, option)
+    const versions = await dependencyResolvers[asStr(info.type)](current, info)
 
     for (const version of versions.entries) {
       let entry = processed.find(entry => entry.id === info.id)
       if (entry === undefined) {
         entry = {
+          type: info.type,
           name: info.name,
           id: info.id,
           slug: info.slug,
           validLoaders: info.validLoaders,
           required: info.required,
           versions: new VersionMap(),
-          javaDepType: info.javaDepType
+          javaDepType: info.javaDepType,
+          mavenSource: info.mavenSource
         }
         processed.push(entry)
       }
@@ -266,9 +301,9 @@ export const getDependencyVersions = async (mcVersions, loaders, statusSubscribe
         entry.versions.set(
           version.mc,
           version.loader,
-          version.value.version_number !== null &&
-            oldEntry.version_number !== null &&
-            compareVersions(version.value.version_number, oldEntry.version_number)
+          version.value.versionNumber !== null &&
+            oldEntry.versionNumber !== null &&
+            compareVersions(version.value.versionNumber, oldEntry.versionNumber)
             ? version.value
             : oldEntry
         )
@@ -279,12 +314,14 @@ export const getDependencyVersions = async (mcVersions, loaders, statusSubscribe
             /** @type {ModrinthProject} */
             const response = JSON.parse(await cacheFetch(new URL(`${modrinthUrl}project/${dependency.project_id}`)))
             subInfo = infoMap[dependency.project_id] = {
+              type: info.type,
               name: response.title,
               id: response.id,
               slug: response.slug,
               validLoaders: response.loaders,
               required: info.required,
-              javaDepType: info.javaDepType
+              javaDepType: info.javaDepType,
+              mavenSource: info.mavenSource
             }
           }
           if (processed.find(entry => entry.id === subInfo.id) === undefined)
@@ -300,11 +337,10 @@ export const getDependencyVersions = async (mcVersions, loaders, statusSubscribe
   return processed
     .map(dependency => ({
       ...dependency,
-      versions: dependency.versions.map(version => {
-        const versionNumber = version.value.version_number
-        if (versionNumber === null) throw new Error('Missing version number for modrinth project')
-        return { ...version, value: versionNumber }
-      })
+      versions: dependency.versions.map(version => ({
+        ...version,
+        value: { version: version.value.versionNumber, maven: version.value.versionMaven }
+      }))
     }))
     .reverse()
 }
@@ -405,7 +441,7 @@ export const getVersionsInRange = (a, b) => {
 }
 
 /**
- * @param {Id} id
+ * @param {MId} id
  * @returns {Promise<ModrinthProject | undefined>}
  */
 export const getModrinthProjectById = async id => {
@@ -445,8 +481,8 @@ const packFormats = cache('packFormats', async () => {
         if (rangeChildren.length === 1) result[rangeChildren[0]?.textContent ?? ''] = format
         else if (rangeChildren.length === 2)
           for (const version of getVersionsInRange(
-            asUniqueStr(rangeChildren[0]?.textContent ?? '', UNIQUE_STRING_TYPES.Mc),
-            asUniqueStr(rangeChildren[1]?.textContent ?? '', UNIQUE_STRING_TYPES.Mc)
+            asUniqueStr(rangeChildren[0]?.textContent ?? '', 'Mc'),
+            asUniqueStr(rangeChildren[1]?.textContent ?? '', 'Mc')
           ))
             result[version] = format
         else throw new Error('Too many children')
@@ -464,7 +500,7 @@ const packFormats = cache('packFormats', async () => {
 
 export const getPackFormats = () => packFormats
 
-/** @type {Promise<ExtraFiles>} */
+/** @type {Promise<ExtraFiles>} */ // @ts-expect-error
 export const extraFiles = (async () =>
   Object.fromEntries(
     await Promise.all(

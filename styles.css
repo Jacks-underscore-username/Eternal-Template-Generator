@@ -641,7 +641,8 @@ input.text_input {
   grid-template:
     "remove required required" calc(var(--size) * 5)
     "icon java java" calc(var(--size) * 5)
-    "title title title" calc(var(--size) * 3);
+    "title title title" calc(var(--size) * 3)
+    "special special special" auto;
   border: calc(var(--size) / 2) solid var(--foreground-color);
   background: var(--foreground-color);
   border-radius: calc(var(--size) * var(--rounding-size));
@@ -701,6 +702,12 @@ input.text_input {
   max-width: calc(var(--size) * 5);
   max-height: calc(var(--size) * 5);
   clip-path: rect(0% 100% 100% 0% round 20%);
+}
+
+#dependency_selector > * > .special {
+  font-weight: bold;
+  font-style: italic;
+  color: var(--highlight-text-color);
 }
 
 #add_dependency_wrapper {
