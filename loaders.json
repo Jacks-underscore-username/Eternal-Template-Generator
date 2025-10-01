@@ -262,6 +262,7 @@
     "1.21.7-rc2",
     "1.21.8",
     "1.21.8-rc1",
+    "1.21.9",
     "1.21.9-pre1",
     "1.21.9-pre2",
     "1.21.9-pre3",
@@ -1378,6 +1379,10 @@
       "fabricVersion": "0.17.2"
     },
     {
+      "mcVersion": "1.21.9",
+      "fabricVersion": "0.17.2"
+    },
+    {
       "mcVersion": "1.21.9-pre1",
       "fabricVersion": "0.17.2"
     },
@@ -2484,6 +2489,10 @@
     {
       "mcVersion": "1.21.8",
       "neoforgeVersion": "21.8.47"
+    },
+    {
+      "mcVersion": "1.21.9",
+      "neoforgeVersion": "21.9.2-beta"
     }
   ]
 }
