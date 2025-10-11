@@ -73,7 +73,7 @@ export function isApiVersionvalidForMcVersion(apiVersion, mcVersion) {
         branch = "22w13oneblockatatime";
     }
     else if (mcVersion.startsWith("25w")) {
-        branch = "1.21.9";
+        branch = "1.21.11";
     }
     else if (mcVersion.startsWith("24w")) {
         branch = "1.21.4";
@@ -131,6 +131,9 @@ export function isApiVersionvalidForMcVersion(apiVersion, mcVersion) {
     }
     else if (mcVersion.startsWith("1.21.10")) {
         branch = "1.21.10";
+    }
+    else if (mcVersion.startsWith("1.21.11")) {
+        branch = "1.21.11";
     }
     else if (mcVersion.startsWith("1.21.5")) {
         branch = "1.21.5";
