@@ -2469,7 +2469,7 @@
     },
     {
       "mcVersion": "1.20.4",
-      "neoforgeVersion": "20.4.250"
+      "neoforgeVersion": "20.4.251"
     },
     {
       "mcVersion": "1.20.5",
@@ -2477,7 +2477,7 @@
     },
     {
       "mcVersion": "1.20.6",
-      "neoforgeVersion": "20.6.138"
+      "neoforgeVersion": "20.6.139"
     },
     {
       "mcVersion": "1.21.0",
@@ -2485,7 +2485,7 @@
     },
     {
       "mcVersion": "1.21.1",
-      "neoforgeVersion": "21.1.212"
+      "neoforgeVersion": "21.1.213"
     },
     {
       "mcVersion": "1.21.2",
@@ -2493,7 +2493,7 @@
     },
     {
       "mcVersion": "1.21.3",
-      "neoforgeVersion": "21.3.93"
+      "neoforgeVersion": "21.3.94"
     },
     {
       "mcVersion": "1.21.4",
@@ -2521,7 +2521,7 @@
     },
     {
       "mcVersion": "1.21.10",
-      "neoforgeVersion": "21.10.28-beta"
+      "neoforgeVersion": "21.10.31-beta"
     }
   ]
 }
