@@ -480,7 +480,8 @@
     "25w37a",
     "25w41a",
     "25w42a",
-    "25w43a"
+    "25w43a",
+    "25w44a"
   ],
   "fabric": [
     {
@@ -2258,6 +2259,10 @@
     {
       "mcVersion": "25w43a",
       "fabricVersion": "0.17.3"
+    },
+    {
+      "mcVersion": "25w44a",
+      "fabricVersion": "0.17.3"
     }
   ],
   "forge": [
@@ -2521,7 +2526,7 @@
     },
     {
       "mcVersion": "1.21.10",
-      "neoforgeVersion": "21.10.38-beta"
+      "neoforgeVersion": "21.10.39-beta"
     }
   ]
 }
