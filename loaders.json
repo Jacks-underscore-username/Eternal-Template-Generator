@@ -481,7 +481,8 @@
     "25w41a",
     "25w42a",
     "25w43a",
-    "25w44a"
+    "25w44a",
+    "25w45a"
   ],
   "fabric": [
     {
@@ -2262,6 +2263,10 @@
     },
     {
       "mcVersion": "25w44a",
+      "fabricVersion": "0.17.3"
+    },
+    {
+      "mcVersion": "25w45a",
       "fabricVersion": "0.17.3"
     }
   ],
