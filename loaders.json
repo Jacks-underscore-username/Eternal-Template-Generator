@@ -483,7 +483,9 @@
     "25w43a",
     "25w44a",
     "25w45a",
-    "25w45a_unobfuscated"
+    "25w45a_unobfuscated",
+    "25w46a",
+    "25w46a_unobfuscated"
   ],
   "fabric": [
     {
@@ -2273,6 +2275,14 @@
     {
       "mcVersion": "25w45a_unobfuscated",
       "fabricVersion": "0.18.0"
+    },
+    {
+      "mcVersion": "25w46a",
+      "fabricVersion": "0.18.0"
+    },
+    {
+      "mcVersion": "25w46a_unobfuscated",
+      "fabricVersion": "0.18.0"
     }
   ],
   "forge": [
@@ -2500,7 +2510,7 @@
     },
     {
       "mcVersion": "1.21.1",
-      "neoforgeVersion": "21.1.214"
+      "neoforgeVersion": "21.1.215"
     },
     {
       "mcVersion": "1.21.2",
@@ -2528,7 +2538,7 @@
     },
     {
       "mcVersion": "1.21.8",
-      "neoforgeVersion": "21.8.50"
+      "neoforgeVersion": "21.8.51"
     },
     {
       "mcVersion": "1.21.9",
@@ -2536,7 +2546,7 @@
     },
     {
       "mcVersion": "1.21.10",
-      "neoforgeVersion": "21.10.49-beta"
+      "neoforgeVersion": "21.10.50-beta"
     }
   ]
 }
