@@ -272,6 +272,8 @@
     "1.21.10-rc1",
     "1.21.11-pre1",
     "1.21.11-pre1_unobfuscated",
+    "1.21.11-pre2",
+    "1.21.11-pre2_unobfuscated",
     "3D Shareware v1.34",
     "18w43b",
     "18w43c",
@@ -1428,6 +1430,14 @@
     },
     {
       "mcVersion": "1.21.11-pre1_unobfuscated",
+      "fabricVersion": "0.18.1"
+    },
+    {
+      "mcVersion": "1.21.11-pre2",
+      "fabricVersion": "0.18.1"
+    },
+    {
+      "mcVersion": "1.21.11-pre2_unobfuscated",
       "fabricVersion": "0.18.1"
     },
     {
