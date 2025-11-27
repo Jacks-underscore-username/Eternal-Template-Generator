@@ -274,6 +274,8 @@
     "1.21.11-pre1_unobfuscated",
     "1.21.11-pre2",
     "1.21.11-pre2_unobfuscated",
+    "1.21.11-pre3",
+    "1.21.11-pre3_unobfuscated",
     "3D Shareware v1.34",
     "18w43b",
     "18w43c",
@@ -1441,6 +1443,14 @@
       "fabricVersion": "0.18.1"
     },
     {
+      "mcVersion": "1.21.11-pre3",
+      "fabricVersion": "0.18.1"
+    },
+    {
+      "mcVersion": "1.21.11-pre3_unobfuscated",
+      "fabricVersion": "0.18.1"
+    },
+    {
       "mcVersion": "3D Shareware v1.34",
       "fabricVersion": "0.18.1"
     },
@@ -2566,7 +2576,7 @@
     },
     {
       "mcVersion": "1.21.10",
-      "neoforgeVersion": "21.10.55-beta"
+      "neoforgeVersion": "21.10.56-beta"
     }
   ]
 }
