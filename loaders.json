@@ -2646,11 +2646,11 @@
     },
     {
       "mcVersion": "1.21.11",
-      "neoforgeVersion": "21.11.21-beta"
+      "neoforgeVersion": "21.11.24-beta"
     },
     {
       "mcVersion": "1.26.1",
-      "neoforgeVersion": "26.1.0.0-alpha.3+snapshot-1"
+      "neoforgeVersion": "26.1.0.0-alpha.4+snapshot-1"
     }
   ]
 }
