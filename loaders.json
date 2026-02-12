@@ -510,7 +510,8 @@
     "26.1-snapshot-3",
     "26.1-snapshot-4",
     "26.1-snapshot-5",
-    "26.1-snapshot-6"
+    "26.1-snapshot-6",
+    "26.1-snapshot-7"
   ],
   "fabric": [
     {
@@ -2403,6 +2404,10 @@
     },
     {
       "mcVersion": "26.1-snapshot-6",
+      "fabricVersion": "0.18.4"
+    },
+    {
+      "mcVersion": "26.1-snapshot-7",
       "fabricVersion": "0.18.4"
     }
   ],
