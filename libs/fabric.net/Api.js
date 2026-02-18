@@ -1,8 +1,8 @@
-const cacheFetch = async (url) => {
+const cacheFetch = async (url, init) => {
     const cached = sessionStorage.getItem(url) === null ? null : JSON.parse(sessionStorage.getItem(url) ?? '');
     let value;
     if (cached === null || Date.now() - cached.time > 10_000) {
-        value = await (await fetch(url)).text();
+        value = await (await fetch(url, init)).text();
         sessionStorage.setItem(url, JSON.stringify({ time: Date.now(), value }));
     }
     else
@@ -17,8 +17,13 @@ const cacheFetch = async (url) => {
 // Do not use these fallback servers to interact with our web services. They can and will be unavailable at times and only support limited throughput.
 const META = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net", "https://meta3.fabricmc.net"];
 const MAVEN = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net", "https://maven3.fabricmc.net"];
+var activeServiceIndex = 0;
 export async function getInstallerVersions() {
-    return getJson(META, "/v2/versions/installer");
+    var versions = await getJson(META, "/v2/versions/installer");
+    if (activeServiceIndex != 0) {
+        versions.forEach(v => v.url = v.url.replace(MAVEN[0], MAVEN[activeServiceIndex]));
+    }
+    return versions;
 }
 export async function getGameVersions() {
     return getJson(META, "/v2/versions/game");
@@ -51,6 +56,14 @@ export async function getApiVersionForMinecraft(minecraftVersion) {
     const apiVersions = await getApiVersions();
     return apiVersions.filter(v => isApiVersionvalidForMcVersion(v, minecraftVersion)).pop();
 }
+function getMajorMinecraftVersion(minecraftVersion) {
+    return getVersionParts(minecraftVersion)[0];
+}
+function getVersionParts(minecraftVersion) {
+    // Remove any snapshot or pre-release suffix
+    const targetVersion = minecraftVersion.split("-")[0];
+    return targetVersion.split(".").map((v) => parseInt(v));
+}
 export function isApiVersionvalidForMcVersion(apiVersion, mcVersion) {
     if (!mcVersion) {
         return false;
@@ -65,8 +78,17 @@ export function isApiVersionvalidForMcVersion(apiVersion, mcVersion) {
             branch = v;
         }
     });
+    const majorVersion = getMajorMinecraftVersion(mcVersion);
+    if (majorVersion >= 26) {
+        const index = mcVersion.indexOf("-");
+        var release = mcVersion.substring(0, index === -1 ? mcVersion.length : index);
+        branch = release;
+    }
     // Very dumb but idk of a better (easy) way.
-    if (mcVersion.startsWith("25w14craftmine")) {
+    if (mcVersion.endsWith("_unobfuscated")) {
+        branch = "1.21.11_unobfuscated";
+    }
+    else if (mcVersion.startsWith("25w14craftmine")) {
         branch = "25w14craftmine";
     }
     else if (mcVersion.startsWith("22w13oneblockatatime")) {
@@ -185,16 +207,21 @@ async function getText(hostnames, path) {
     return await response.text();
 }
 async function fetchFallback(hostnames, path) {
-    for (var hostname of hostnames) {
-        try {
-            const response = await cacheFetch(hostname + path);
-            if (response.ok) {
-                return response;
+    // First try to make a request within 5 seconds to any of the hostnames.
+    // If that fails, try again with a 30 second timeout.
+    for (var timeout of [5000, 30000]) {
+        for (var hostname of hostnames) {
+            try {
+                const response = await cacheFetch(hostname + path, { signal: AbortSignal.timeout(timeout) });
+                if (response.ok) {
+                    activeServiceIndex = hostnames.indexOf(hostname);
+                    return response;
+                }
+                console.error(await response.text());
             }
-            console.error(await response.text());
-        }
-        catch (e) {
-            console.error(e);
+            catch (e) {
+                console.error(e);
+            }
         }
     }
     throw new Error(`Failed to fetch: ${hostnames[0] + path}`);
