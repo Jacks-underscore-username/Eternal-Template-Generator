@@ -2,10 +2,9 @@
  * @import {Mc, Loader, Mapper, Folder, DependencyInfo, DependencySource, StringifiedFolder } from './types.d.js'
  */
 
-import { asStr, loaders } from './types.d.js'
-
 // import { wrapPromise, wrappedPromises, unwrapPromise } from './data.js'
 import * as Data from './data.js'
+import { asStr, loaders } from './types.d.js'
 
 /**
  * @param {Folder} folder
@@ -220,8 +219,8 @@ export default async config => {
 
   let templateStr = Data.getTemplate(selectedMapping)
   const replacements = {
-    '"author":{': `"${modData.author.toLowerCase()}":{`,
-    '.author.': `.${modData.author.toLowerCase()}.`,
+    '"author":{': `"${modData.author.toLowerCase().replaceAll(/[^a-z0-9]/g, '')}":{`,
+    '.author.': `.${modData.author.toLowerCase().replaceAll(/[^a-z0-9]/g, '')}.`,
     example_mod: modData.id,
     ExampleMod: modData.className
   }

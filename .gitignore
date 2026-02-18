@@ -1,6 +1,9 @@
 biome.jsonc
 jsconfig.json
+tsconfig.json
 node_modules
+innerGetFabricApiVersions.ts
+innerGetFabricApiVersions.js
 site/loaders.json
 site/template.json
 site/yarn-patches.json

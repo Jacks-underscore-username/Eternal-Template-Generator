@@ -1,5 +1,53 @@
 [
   {
+    "mcVersion": "1.21.11",
+    "forgeVersion": "1.21.11-61.1.0"
+  },
+  {
+    "mcVersion": "1.21.10",
+    "forgeVersion": "1.21.10-60.1.0"
+  },
+  {
+    "mcVersion": "1.21.9",
+    "forgeVersion": "1.21.9-59.0.5"
+  },
+  {
+    "mcVersion": "1.21.8",
+    "forgeVersion": "1.21.8-58.1.0"
+  },
+  {
+    "mcVersion": "1.21.7",
+    "forgeVersion": "1.21.7-57.0.3"
+  },
+  {
+    "mcVersion": "1.21.6",
+    "forgeVersion": "1.21.6-56.0.9"
+  },
+  {
+    "mcVersion": "1.21.5",
+    "forgeVersion": "1.21.5-55.1.0"
+  },
+  {
+    "mcVersion": "1.21.4",
+    "forgeVersion": "1.21.4-54.1.0"
+  },
+  {
+    "mcVersion": "1.21.3",
+    "forgeVersion": "1.21.3-53.1.0"
+  },
+  {
+    "mcVersion": "1.21.1",
+    "forgeVersion": "1.21.1-52.1.0"
+  },
+  {
+    "mcVersion": "1.21",
+    "forgeVersion": "1.21-51.0.33"
+  },
+  {
+    "mcVersion": "1.20.6",
+    "forgeVersion": "1.20.6-50.2.0"
+  },
+  {
     "mcVersion": "1.20.4",
     "forgeVersion": "1.20.4-49.2.0"
   },
@@ -9,7 +57,7 @@
   },
   {
     "mcVersion": "1.20.1",
-    "forgeVersion": "1.20.1-47.4.0"
+    "forgeVersion": "1.20.1-47.4.10"
   },
   {
     "mcVersion": "1.20",
@@ -113,7 +161,7 @@
   },
   {
     "mcVersion": "1.7.10_pre4",
-    "forgeVersion": "1.7.10_pre4-10.12.2.1149"
+    "forgeVersion": "10.12.2.1149-prerelease"
   },
   {
     "mcVersion": "1.7.2",

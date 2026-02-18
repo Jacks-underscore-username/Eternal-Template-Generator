@@ -2,9 +2,8 @@
  * @import { Mc, Loader, MId, Mapper, Yarn, MavenSource, DependencySource, DependencySources, GenericDependencyVersion, UniqueString, DependencyInfo, DependencyResolver, ModrinthProject, ModrinthError, ModrinthProjectVersion, VersionConstraints, ExtraFiles } from './types.d.js'
  */
 
-import { VersionMap, asUniqueStr, asStr, loader_fabric } from './types.d.js'
-
 import * as FabricNetApi from './libs/fabric.net/Api.js'
+import { asStr, asUniqueStr, loader_fabric, VersionMap } from './types.d.js'
 
 const CACHE_LENGTH = 60 * 60 * 60 * 1000
 
@@ -110,18 +109,18 @@ export const sortedMcVersions = Array.from(allMcVersions)
   .sort((a, b) => {
     if (isSnapshot(a) !== isSnapshot(b)) return isSnapshot(a) ? 1 : -1
     if (isSnapshot(a)) {
-      const ay = Number.parseInt(a.match(/^[0-9]+/)?.[0] ?? '')
-      const by = Number.parseInt(b.match(/^[0-9]+/)?.[0] ?? '')
+      const ay = Number.parseInt(a.match(/^[0-9]+/)?.[0] ?? '', 10)
+      const by = Number.parseInt(b.match(/^[0-9]+/)?.[0] ?? '', 10)
       if (ay !== by) return by - ay
-      const aw = Number.parseInt(a.match(/^[0-9]+w([0-9]+)/)?.[1] ?? '')
-      const bw = Number.parseInt(b.match(/^[0-9]+w([0-9]+)/)?.[1] ?? '')
+      const aw = Number.parseInt(a.match(/^[0-9]+w([0-9]+)/)?.[1] ?? '', 10)
+      const bw = Number.parseInt(b.match(/^[0-9]+w([0-9]+)/)?.[1] ?? '', 10)
       return bw - aw
     }
-    const aMajor = Number.parseInt(a.match(/^1\.([0-9]+)/)?.[1] ?? '')
-    const bMajor = Number.parseInt(b.match(/^1\.([0-9]+)/)?.[1] ?? '')
+    const aMajor = Number.parseInt(a.match(/^1\.([0-9]+)/)?.[1] ?? '', 10)
+    const bMajor = Number.parseInt(b.match(/^1\.([0-9]+)/)?.[1] ?? '', 10)
     if (aMajor !== bMajor) return bMajor - aMajor
-    const aMinor = Number.parseInt(a.match(/^1\.[0-9]+\.([0-9]+)/)?.[1] ?? '0')
-    const bMinor = Number.parseInt(b.match(/^1\.[0-9]+\.([0-9]+)/)?.[1] ?? '0')
+    const aMinor = Number.parseInt(a.match(/^1\.[0-9]+\.([0-9]+)/)?.[1] ?? '0', 10)
+    const bMinor = Number.parseInt(b.match(/^1\.[0-9]+\.([0-9]+)/)?.[1] ?? '0', 10)
     if (aMinor !== bMinor) return bMinor - aMinor
     if (isRelease(a) !== isRelease(b)) return isRelease(a) ? -1 : 1
     return 0
@@ -418,18 +417,18 @@ export const getVersionsInRange = (a, b) => {
       .sort((a, b) => {
         if (isSnapshot(a) !== isSnapshot(b)) return isSnapshot(a) ? 1 : -1
         if (isSnapshot(a)) {
-          const ay = Number.parseInt(a.match(/^[0-9]+/)?.[0] ?? '')
-          const by = Number.parseInt(b.match(/^[0-9]+/)?.[0] ?? '')
+          const ay = Number.parseInt(a.match(/^[0-9]+/)?.[0] ?? '', 10)
+          const by = Number.parseInt(b.match(/^[0-9]+/)?.[0] ?? '', 10)
           if (ay !== by) return by - ay
-          const aw = Number.parseInt(a.match(/^[0-9]+w([0-9]+)/)?.[1] ?? '')
-          const bw = Number.parseInt(b.match(/^[0-9]+w([0-9]+)/)?.[1] ?? '')
+          const aw = Number.parseInt(a.match(/^[0-9]+w([0-9]+)/)?.[1] ?? '', 10)
+          const bw = Number.parseInt(b.match(/^[0-9]+w([0-9]+)/)?.[1] ?? '', 10)
           return bw - aw
         }
-        const aMajor = Number.parseInt(a.match(/^1\.([0-9]+)/)?.[1] ?? '')
-        const bMajor = Number.parseInt(b.match(/^1\.([0-9]+)/)?.[1] ?? '')
+        const aMajor = Number.parseInt(a.match(/^1\.([0-9]+)/)?.[1] ?? '', 10)
+        const bMajor = Number.parseInt(b.match(/^1\.([0-9]+)/)?.[1] ?? '', 10)
         if (aMajor !== bMajor) return bMajor - aMajor
-        const aMinor = Number.parseInt(a.match(/^1\.[0-9]+\.([0-9]+)/)?.[1] ?? '0')
-        const bMinor = Number.parseInt(b.match(/^1\.[0-9]+\.([0-9]+)/)?.[1] ?? '0')
+        const aMinor = Number.parseInt(a.match(/^1\.[0-9]+\.([0-9]+)/)?.[1] ?? '0', 10)
+        const bMinor = Number.parseInt(b.match(/^1\.[0-9]+\.([0-9]+)/)?.[1] ?? '0', 10)
         if (aMinor !== bMinor) return bMinor - aMinor
         if (isRelease(a) !== isRelease(b)) return isRelease(a) ? -1 : 1
         return 0

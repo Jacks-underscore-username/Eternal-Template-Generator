@@ -18,9 +18,9 @@ import net.minecraft.server.command.ServerCommandSource;
 import java.util.ArrayList;
 
 //? if forge {
-@Mod.EventBusSubscriber(modid =/*$ mod_id_string {*/"ancient_trinkets"/*$}*/, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid =/*$ mod_id_string {*/"filtered_slots"/*$}*/, bus = Mod.EventBusSubscriber.Bus.FORGE)
  //?} else if neoforge {
-/*@EventBusSubscriber(modid = /^$ mod_id_string {^/"ancient_trinkets"/^$}^/)
+/*@EventBusSubscriber(modid = /^$ mod_id_string {^/"filtered_slots"/^$}^/)
  *///?}
 public class CommandRegistration {
     @FunctionalInterface

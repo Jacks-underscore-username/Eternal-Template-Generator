@@ -15,8 +15,8 @@ const { XMLParser } = require('fast-xml-parser')
     const mcVersionToBuildMap = {}
     for (const version of versions) {
       const mcVersion = version.match(/^([0-9.]+)/)?.[1] ?? ''
-      const build = Number.parseInt(version.match(/^[0-9.]+\+build\.([0-9]+)/)?.[1] ?? '')
-      if (mcVersionToBuildMap[mcVersion] === undefined || Number.parseInt(mcVersionToBuildMap[mcVersion]) < build)
+      const build = Number.parseInt(version.match(/^[0-9.]+\+build\.([0-9]+)/)?.[1] ?? '', 10)
+      if (mcVersionToBuildMap[mcVersion] === undefined || Number.parseInt(mcVersionToBuildMap[mcVersion], 10) < build)
         mcVersionToBuildMap[mcVersion] = `${build}`
     }
     for (const [mcVersion, build] of Object.entries(mcVersionToBuildMap))

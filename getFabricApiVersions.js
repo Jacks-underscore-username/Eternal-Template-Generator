@@ -11,12 +11,12 @@ const { execSync } = require('node:child_process')
   fs.writeFileSync(
     scriptPathTs,
     [
-      'const cacheFetch = async (url: string): Promise<Response> => {',
+      'const cacheFetch = async (url: string, init?: RequestInit): Promise<Response> => {',
       '  const cached: { time: number; value: string } | null =',
       "    sessionStorage.getItem(url) === null ? null : JSON.parse(sessionStorage.getItem(url) ?? '')",
       '  let value: string',
       '  if (cached === null || Date.now() - cached.time > 10_000) {',
-      '    value = await (await fetch(url)).text()',
+      '    value = await (await fetch(url, init)).text()',
       '    sessionStorage.setItem(url, JSON.stringify({ time: Date.now(), value }))',
       '  } else value = cached.value',
       '  // @ts-expect-error',

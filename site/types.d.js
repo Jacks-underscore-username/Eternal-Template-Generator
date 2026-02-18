@@ -28,10 +28,10 @@
  * @template {string} str
  * @template {string} id
  * @param {str} str
- * @param {id} id
+ * @param {id} _id
  * @returns {KnownUniqueStringTypes[id] extends UniqueString<infer options, id> ? str extends options ? UniqueString<str, id> : never : UniqueString<str, id>}
  */ // @ts-expect-error
-export const asUniqueStr = (str, id) => str
+export const asUniqueStr = (str, _id) => str
 
 /**
  * @template {string | UniqueString<*, *>} T

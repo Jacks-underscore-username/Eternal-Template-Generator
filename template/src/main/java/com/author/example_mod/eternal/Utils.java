@@ -11,9 +11,9 @@ import net.minecraft.text.Text;
 
 public class Utils {
     //? if (forge && <= 1.18) || <= 1.16.5 {
-    public static final Logger LOGGER = LogManager.getLogger(/*$ mod_id_string {*/"ancient_trinkets"/*$}*/);
+    public static final Logger LOGGER = LogManager.getLogger(/*$ mod_id_string {*/"filtered_slots"/*$}*/);
     //?} else {
-    /*public static final Logger LOGGER = LoggerFactory.getLogger(/^$ mod_id_string {^/"ancient_trinkets"/^$}^/);
+    /*public static final Logger LOGGER = LoggerFactory.getLogger(/^$ mod_id_string {^/"filtered_slots"/^$}^/);
      *///?}
 
     public static Text literalText(String string) {

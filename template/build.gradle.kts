@@ -652,6 +652,14 @@ dependencies {
     }
 
     vineflowerDecompilerClasspath("org.vineflower:vineflower:1.10.1")
+
+        annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0")?.let { compileOnly(it) }
+    if (env.isFabric)
+        include("io.github.llamalad7:mixinextras-fabric:0.5.0")?.let { implementation(it) }
+    else if (env.isNeo)
+        include("io.github.llamalad7:mixinextras-neoforge:0.5.0")?.let { implementation(it) }
+    else if (env.isForge)
+        include("io.github.llamalad7:mixinextras-forge:0.5.0")?.let { implementation(it) }
 }
 
 java {

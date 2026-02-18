@@ -2,10 +2,9 @@
  * @import {Mc, Loader, MId, JavaDepType, Mapper, DependencyInfo, DependencySource, ModrinthProject, VersionConstraints } from './types.d.js'
  */
 
-import { asStr, asUniqueStr, loaders, javaDependencySources } from './types.d.js'
-
 import * as Data from './data.js'
 import Template from './template.js'
+import { asStr, asUniqueStr, javaDependencySources, loaders } from './types.d.js'
 ;(async () => {
   const themeToggle = /** @type {HTMLDivElement} */ (document.getElementById('theme_toggle'))
   const lightThemeIcon = /** @type {HTMLElement} */ (document.getElementById('theme_light'))
@@ -45,7 +44,7 @@ import Template from './template.js'
 
   const downloadButton = /** @type {HTMLButtonElement} */ (document.getElementById('download_button'))
 
-  let theme = Number.parseInt(localStorage.getItem('theme') ?? '1')
+  let theme = Number.parseInt(localStorage.getItem('theme') ?? '1', 10)
 
   /** @type {VersionConstraints} */
   const versionConstraints = {
@@ -369,20 +368,16 @@ import Template from './template.js'
   populateVersionSelector()
 
   await new Promise(r => setTimeout(r, 1000))
-  // supportsFabricCheckbox.click()
-  // supportsNeoOrForgeCheckbox.click()
-  // modNameElement.value = 'Demo Mod'
-  // modIdElement.value = 'demo_mod'
-  // modAuthorElement.value = 'Me'
-  // modLicenseElement.value = 'MITE'
-  // modDescriptionElement.value = 'Really just a demo mod'
-  // addManualDependency(
-  //   asUniqueStr('nfn13YXA', UNIQUE_STRING_TYPES.Id),
-  //   true,
-  //   asUniqueStr('IMPL', UNIQUE_STRING_TYPES.JavaDepType)
-  // )
+  supportsFabricCheckbox.click()
+  supportsNeoOrForgeCheckbox.click()
+  modNameElement.value = 'Demo Mod'
+  modIdElement.value = 'demo_mod'
+  modAuthorElement.value = 'Me'
+  modLicenseElement.value = 'MITE'
+  modDescriptionElement.value = 'Really just a demo mod'
+  addManualDependency(asUniqueStr('nfn13YXA', 'MId'), true, asUniqueStr('IMPL', 'JavaDepType'))
 
-  const wantedVersions = ['1.16.5', '1.17.1', '1.18.2', '1.19.4', '1.20.1', '1.21.1', '1.21.4', '1.21.8']
+  const wantedVersions = ['1.16.5', '1.17.1', '1.18.2', '1.19.4', '1.20.1', '1.21.1', '1.21.4', '1.21.8', '1.21.11']
   for (const element of Array.from(document.querySelectorAll('#version_selector > div > input:nth-child(1)')))
     if (element instanceof HTMLInputElement && wantedVersions.includes(element.dataset['label'] ?? ''))
       // if (element instanceof HTMLInputElement && Data.compareVersions(element.dataset['label'] ?? '0', '1.16.5') >= 0)
