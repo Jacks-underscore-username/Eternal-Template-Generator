@@ -2,10 +2,9 @@
  * @import {Mc, Loader, Mapper, Folder, DependencyInfo, DependencySource, StringifiedFolder } from './types.d.js'
  */
 
-import { asStr, loaders } from './types.d.js'
-
 // import { wrapPromise, wrappedPromises, unwrapPromise } from './data.js'
 import * as Data from './data.js'
+import { asStr, loaders } from './types.d.js'
 
 /**
  * @param {Folder} folder
