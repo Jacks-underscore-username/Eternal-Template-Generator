@@ -26,63 +26,6 @@
     )
   );
 
-  --background-color: calc(
-    var(--is-theme-0) *
-    #000000 +
-    var(--is-theme-1) *
-    "#16181c" +
-    var(--is-theme-2) *
-    "#ebebeb"
-  );
-  --middle-color: calc(
-    var(--is-theme-0) *
-    #101013 +
-    var(--is-theme-1) *
-    "#26292f" +
-    var(--is-theme-2) *
-    "#ffffff"
-  );
-  --foreground-color: calc(
-    var(--is-theme-0) *
-    #222329 +
-    var(--is-theme-1) *
-    "#33363d" +
-    var(--is-theme-2) *
-    "#f5f5f5"
-  );
-  --highlight-background-color: calc(
-    var(--is-theme-0) *
-    #134229 +
-    var(--is-theme-1) *
-    "#23553e" +
-    var(--is-theme-2) *
-    "#00af5c"
-  );
-  --highlight-text-color: calc(
-    var(--is-theme-0) *
-    #1bd669 +
-    var(--is-theme-1) *
-    "#1cc463" +
-    var(--is-theme-2) *
-    "#fbfefc"
-  );
-  --text-color: calc(
-    var(--is-theme-0) *
-    #ecf9fb +
-    var(--is-theme-1) *
-    "#ecf9fb" +
-    var(--is-theme-2) *
-    "#2c313c"
-  );
-  --hint-color: calc(
-    var(--is-theme-0) *
-    #757c84 +
-    var(--is-theme-1) *
-    "#72767c" +
-    var(--is-theme-2) *
-    "#9d9ea1"
-  );
-
   --background-color: rgb(
     calc(
       var(--is-theme-0) *
@@ -271,7 +214,7 @@
 
   --color-time: 0.25s;
   --small-move-time: 0.15s;
-  --big-move-time: 0.50s;
+  --big-move-time: 0.5s;
 
   --do-timing: 1;
   --do-color-timing: calc(1 * var(--do-timing));
@@ -411,9 +354,11 @@ body {
   background: var(--foreground-color);
   border-radius: calc(var(--size) * var(--rounding-size));
   padding: calc(var(--size) * 2);
-  transition: border-color calc(var(--do-color-timing) * var(--color-time))
-    var(--color-timing), background
-    calc(var(--do-color-timing) * var(--color-time)) var(--color-timing);
+  transition:
+    border-color calc(var(--do-color-timing) * var(--color-time))
+    var(--color-timing),
+    background calc(var(--do-color-timing) * var(--color-time))
+    var(--color-timing);
 }
 
 .option::before {
@@ -430,7 +375,6 @@ body {
   pointer-events: none;
   z-index: 1;
   font-size: calc(var(--size) * 1.5);
-  color: var(--text-color);
   transition: color calc(var(--do-color-timing) * var(--color-time))
     var(--color-timing);
 }
@@ -455,15 +399,15 @@ button {
   height: calc(var(--size) * 3);
   text-align: center;
 
-  border-radius: calc(var(--size) * 50);
-
   border: calc(var(--size) / 2) solid var(--foreground-color);
   background: var(--foreground-color);
   border-radius: calc(var(--size) * var(--rounding-size));
   padding: calc(var(--size) * 2);
-  transition: border-color calc(var(--do-color-timing) * var(--color-time))
-    var(--color-timing), background
-    calc(var(--do-color-timing) * var(--color-time)) var(--color-timing);
+  transition:
+    border-color calc(var(--do-color-timing) * var(--color-time))
+    var(--color-timing),
+    background calc(var(--do-color-timing) * var(--color-time))
+    var(--color-timing);
 }
 
 button::before {
@@ -500,10 +444,12 @@ input.text_input {
   background: var(--foreground-color);
   border-radius: calc(var(--size) * var(--rounding-size));
   color: var(--text-color);
-  transition: border-color calc(var(--do-color-timing) * var(--color-time))
-    var(--color-timing), background
-    calc(var(--do-color-timing) * var(--color-time)) var(--color-timing), color
-    calc(var(--do-color-timing) * var(--color-time)) var(--color-timing);
+  transition:
+    border-color calc(var(--do-color-timing) * var(--color-time))
+    var(--color-timing),
+    background calc(var(--do-color-timing) * var(--color-time))
+    var(--color-timing),
+    color calc(var(--do-color-timing) * var(--color-time)) var(--color-timing);
 }
 
 textarea.text_input {
@@ -648,9 +594,11 @@ input.text_input {
   border-radius: calc(var(--size) * var(--rounding-size));
   padding: var(--size);
   gap: var(--size);
-  transition: border-color calc(var(--do-color-timing) * var(--color-time))
-    var(--color-timing), background
-    calc(var(--do-color-timing) * var(--color-time)) var(--color-timing);
+  transition:
+    border-color calc(var(--do-color-timing) * var(--color-time))
+    var(--color-timing),
+    background calc(var(--do-color-timing) * var(--color-time))
+    var(--color-timing);
 }
 
 #dependency_selector > * > button {
@@ -667,9 +615,9 @@ input.text_input {
   text-align: center;
   color: var(--text-color);
   fill: var(--text-color);
-  transition: color calc(var(--do-color-timing) * var(--color-time))
-    var(--color-timing), fill calc(var(--do-color-timing) * var(--color-time))
-    var(--color-timing);
+  transition:
+    color calc(var(--do-color-timing) * var(--color-time)) var(--color-timing),
+    fill calc(var(--do-color-timing) * var(--color-time)) var(--color-timing);
 }
 
 #dependency_selector > *.disabled > svg {
@@ -720,9 +668,9 @@ input.text_input {
 #add_dependency_button {
   fill: var(--text-color);
   transform: scale(1);
-  transition: fill calc(var(--do-color-timing) * var(--color-time))
-    var(--color-timing), transform
-    calc(var(--do-small-move-timing) * var(--small-move-time))
+  transition:
+    fill calc(var(--do-color-timing) * var(--color-time)) var(--color-timing),
+    transform calc(var(--do-small-move-timing) * var(--small-move-time))
     var(--small-move-timing);
 }
 

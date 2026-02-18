@@ -220,8 +220,8 @@ export default async config => {
 
   let templateStr = Data.getTemplate(selectedMapping)
   const replacements = {
-    '"author":{': `"${modData.author.toLowerCase()}":{`,
-    '.author.': `.${modData.author.toLowerCase()}.`,
+    '"author":{': `"${modData.author.toLowerCase().replaceAll(/[^a-z0-9]/g, '')}":{`,
+    '.author.': `.${modData.author.toLowerCase().replaceAll(/[^a-z0-9]/g, '')}.`,
     example_mod: modData.id,
     ExampleMod: modData.className
   }
