@@ -507,6 +507,7 @@
     "25w46a_unobfuscated",
     "26.1-pre-1",
     "26.1-pre-2",
+    "26.1-pre-3",
     "26.1-snapshot-1",
     "26.1-snapshot-2",
     "26.1-snapshot-3",
@@ -2397,6 +2398,10 @@
       "fabricVersion": "0.18.4"
     },
     {
+      "mcVersion": "26.1-pre-3",
+      "fabricVersion": "0.18.4"
+    },
+    {
       "mcVersion": "26.1-snapshot-1",
       "fabricVersion": "0.18.4"
     },
@@ -2758,7 +2763,7 @@
     },
     {
       "mcVersion": "1.26.1",
-      "neoforgeVersion": "26.1.0.0-alpha.14+snapshot-11"
+      "neoforgeVersion": "26.1.0.0-alpha.15+pre-3"
     }
   ]
 }
