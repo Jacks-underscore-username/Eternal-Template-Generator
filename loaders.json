@@ -508,6 +508,7 @@
     "26.1-pre-1",
     "26.1-pre-2",
     "26.1-pre-3",
+    "26.1-rc-1",
     "26.1-snapshot-1",
     "26.1-snapshot-2",
     "26.1-snapshot-3",
@@ -2399,6 +2400,10 @@
     },
     {
       "mcVersion": "26.1-pre-3",
+      "fabricVersion": "0.18.4"
+    },
+    {
+      "mcVersion": "26.1-rc-1",
       "fabricVersion": "0.18.4"
     },
     {
