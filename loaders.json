@@ -510,6 +510,7 @@
     "26.1-pre-3",
     "26.1-rc-1",
     "26.1-rc-2",
+    "26.1-rc-3",
     "26.1-snapshot-1",
     "26.1-snapshot-2",
     "26.1-snapshot-3",
@@ -2412,6 +2413,10 @@
       "fabricVersion": "0.18.4"
     },
     {
+      "mcVersion": "26.1-rc-3",
+      "fabricVersion": "0.18.4"
+    },
+    {
       "mcVersion": "26.1-snapshot-1",
       "fabricVersion": "0.18.4"
     },
@@ -2729,7 +2734,7 @@
     },
     {
       "mcVersion": "1.21.1",
-      "neoforgeVersion": "21.1.220"
+      "neoforgeVersion": "21.1.221"
     },
     {
       "mcVersion": "1.21.2",
@@ -2737,15 +2742,15 @@
     },
     {
       "mcVersion": "1.21.3",
-      "neoforgeVersion": "21.3.95"
+      "neoforgeVersion": "21.3.96"
     },
     {
       "mcVersion": "1.21.4",
-      "neoforgeVersion": "21.4.156"
+      "neoforgeVersion": "21.4.157"
     },
     {
       "mcVersion": "1.21.5",
-      "neoforgeVersion": "21.5.96"
+      "neoforgeVersion": "21.5.97"
     },
     {
       "mcVersion": "1.21.6",
@@ -2757,7 +2762,7 @@
     },
     {
       "mcVersion": "1.21.8",
-      "neoforgeVersion": "21.8.52"
+      "neoforgeVersion": "21.8.53"
     },
     {
       "mcVersion": "1.21.9",
@@ -2769,7 +2774,7 @@
     },
     {
       "mcVersion": "1.21.11",
-      "neoforgeVersion": "21.11.38-beta"
+      "neoforgeVersion": "21.11.39-beta"
     },
     {
       "mcVersion": "1.26.1",
