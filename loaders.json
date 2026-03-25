@@ -505,6 +505,7 @@
     "25w45a_unobfuscated",
     "25w46a",
     "25w46a_unobfuscated",
+    "26.1",
     "26.1-pre-1",
     "26.1-pre-2",
     "26.1-pre-3",
@@ -2393,6 +2394,10 @@
       "fabricVersion": "0.18.4"
     },
     {
+      "mcVersion": "26.1",
+      "fabricVersion": "0.18.4"
+    },
+    {
       "mcVersion": "26.1-pre-1",
       "fabricVersion": "0.18.4"
     },
@@ -2709,6 +2714,10 @@
     {
       "mcVersion": "1.21.11",
       "forgeVersion": "1.21.11-61.1.0"
+    },
+    {
+      "mcVersion": "26.1",
+      "forgeVersion": "26.1-62.0.0"
     }
   ],
   "neoforge": [
@@ -2774,11 +2783,11 @@
     },
     {
       "mcVersion": "1.21.11",
-      "neoforgeVersion": "21.11.39-beta"
+      "neoforgeVersion": "21.11.40-beta"
     },
     {
       "mcVersion": "1.26.1",
-      "neoforgeVersion": "26.1.0.0-alpha.15+pre-3"
+      "neoforgeVersion": "26.1.0.1-beta"
     }
   ]
 }
