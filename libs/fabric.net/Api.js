@@ -54,7 +54,11 @@ export function getKotlinAdapterVersions() {
 }
 export async function getApiVersionForMinecraft(minecraftVersion) {
     const apiVersions = await getApiVersions();
-    return apiVersions.filter(v => isApiVersionvalidForMcVersion(v, minecraftVersion)).pop();
+    const resolvedVersion = apiVersions.filter(v => isApiVersionvalidForMcVersion(v, minecraftVersion)).pop();
+    if (!resolvedVersion) {
+        throw new Error(`Could not find a valid Fabric API version for Minecraft ${minecraftVersion}`);
+    }
+    return resolvedVersion;
 }
 function getMajorMinecraftVersion(minecraftVersion) {
     return getVersionParts(minecraftVersion)[0];
