@@ -2762,7 +2762,7 @@
     },
     {
       "mcVersion": "1.21.1",
-      "neoforgeVersion": "21.1.222"
+      "neoforgeVersion": "21.1.223"
     },
     {
       "mcVersion": "1.21.2",
@@ -2806,7 +2806,7 @@
     },
     {
       "mcVersion": "1.26.1",
-      "neoforgeVersion": "26.1.1.2-beta"
+      "neoforgeVersion": "26.1.1.6-beta"
     }
   ]
 }
