@@ -534,6 +534,7 @@
     "26.2-snapshot-5",
     "26.2-snapshot-6",
     "26.2-snapshot-7",
+    "26.2-snapshot-8",
     "26w14a"
   ],
   "fabric": [
@@ -2522,6 +2523,10 @@
       "fabricVersion": "0.19.2"
     },
     {
+      "mcVersion": "26.2-snapshot-8",
+      "fabricVersion": "0.19.2"
+    },
+    {
       "mcVersion": "26w14a",
       "fabricVersion": "0.19.2"
     }
@@ -2855,7 +2860,7 @@
     },
     {
       "mcVersion": "1.26.1",
-      "neoforgeVersion": "26.1.2.59-beta"
+      "neoforgeVersion": "26.1.2.61-beta"
     }
   ]
 }
