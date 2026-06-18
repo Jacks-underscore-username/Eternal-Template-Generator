@@ -2837,6 +2837,10 @@
     {
       "mcVersion": "26.1.2",
       "forgeVersion": "26.1.2-64.0.9"
+    },
+    {
+      "mcVersion": "26.2",
+      "forgeVersion": "26.2-65.0.0"
     }
   ],
   "neoforge": [
