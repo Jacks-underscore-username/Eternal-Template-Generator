@@ -2920,11 +2920,11 @@
     },
     {
       "mcVersion": "1.26.1",
-      "neoforgeVersion": "26.1.2.76"
+      "neoforgeVersion": "26.1.2.77"
     },
     {
       "mcVersion": "1.26.2",
-      "neoforgeVersion": "26.2.0.7-beta"
+      "neoforgeVersion": "26.2.0.8-beta"
     }
   ]
 }
