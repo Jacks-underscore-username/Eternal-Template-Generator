@@ -549,6 +549,7 @@
     "26.3-snapshot-2",
     "26.3-snapshot-3",
     "26.3-snapshot-4",
+    "26.3-snapshot-5",
     "26w14a"
   ],
   "fabric": [
@@ -2593,6 +2594,10 @@
       "fabricVersion": "0.19.3"
     },
     {
+      "mcVersion": "26.3-snapshot-5",
+      "fabricVersion": "0.19.3"
+    },
+    {
       "mcVersion": "26w14a",
       "fabricVersion": "0.19.3"
     }
@@ -2856,11 +2861,11 @@
     },
     {
       "mcVersion": "26.1.2",
-      "forgeVersion": "26.1.2-64.0.12"
+      "forgeVersion": "26.1.2-64.0.14"
     },
     {
       "mcVersion": "26.2",
-      "forgeVersion": "26.2-65.0.6"
+      "forgeVersion": "26.2-65.0.9"
     }
   ],
   "neoforge": [
@@ -2934,7 +2939,7 @@
     },
     {
       "mcVersion": "1.26.2",
-      "neoforgeVersion": "26.2.0.26-beta"
+      "neoforgeVersion": "26.2.0.28-beta"
     }
   ]
 }
