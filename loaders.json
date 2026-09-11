@@ -548,6 +548,7 @@
     "26.3-pre-1",
     "26.3-pre-2",
     "26.3-pre-3",
+    "26.3-rc-1",
     "26.3-snapshot-1",
     "26.3-snapshot-2",
     "26.3-snapshot-3",
@@ -2598,6 +2599,10 @@
       "fabricVersion": "0.19.5"
     },
     {
+      "mcVersion": "26.3-rc-1",
+      "fabricVersion": "0.19.5"
+    },
+    {
       "mcVersion": "26.3-snapshot-1",
       "fabricVersion": "0.19.5"
     },
@@ -2975,11 +2980,11 @@
     },
     {
       "mcVersion": "1.26.1",
-      "neoforgeVersion": "26.1.2.108"
+      "neoforgeVersion": "26.1.2.109"
     },
     {
       "mcVersion": "1.26.2",
-      "neoforgeVersion": "26.2.0.84"
+      "neoforgeVersion": "26.2.0.86"
     }
   ]
 }
