@@ -566,6 +566,7 @@
     "26.4-snapshot-1",
     "26.4-snapshot-2",
     "26.4-snapshot-3",
+    "26.4-snapshot-4",
     "26w14a"
   ],
   "fabric": [
@@ -2671,6 +2672,10 @@
     },
     {
       "mcVersion": "26.4-snapshot-3",
+      "fabricVersion": "0.19.5"
+    },
+    {
+      "mcVersion": "26.4-snapshot-4",
       "fabricVersion": "0.19.5"
     },
     {
