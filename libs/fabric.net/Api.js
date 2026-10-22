@@ -43,9 +43,6 @@ export async function getLauncherProfile(minecraftVersion, loaderVersion) {
 export async function getJavadocList() {
     return getText(MAVEN, "/jdlist.txt").then((list) => list.split("\n"));
 }
-export async function getLatestYarnVersion(gameVersion) {
-    return (await getJson(META, `/v2/versions/yarn/${gameVersion}?limit=1`))[0];
-}
 export function getApiVersions() {
     return getMavenVersions("/net/fabricmc/fabric-api/fabric-api/maven-metadata.xml");
 }
